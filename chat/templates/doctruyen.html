@@ -124,7 +124,7 @@
 </div>
 </li>
 </ul>
-<a class="search-advance" href="https://truyentr.info/?filter=1" title="lọc truyện">Lọc Truyện</a>
+<a class="search-advance" href="{% url 'dangxuat' %}" title="lọc truyện">Lọc Truyện</a>
 </div>
 <div class="search col-xs-12 col-md-3">
 <form action="https://truyentr.info/" id="pcsearchForm">
@@ -145,7 +145,7 @@
  </a>
 </div>
 <div class="col-xs-5 col-search">
-<a class="search-advance-mobile" href="https://truyentr.info/?filter=1" title="lọc truyện">Lọc Truyện</a>
+<a class="search-advance-mobile" href="{% url 'dangxuat' %}" title="lọc truyện">Lọc Truyện</a>
 <div class="popup-search">
 <div class="btn-search"><i class="sst-icon-search"></i></div>
 </div>
@@ -302,36 +302,35 @@
           <h5 class="modal-title" id="exampleModalLabel">{{ mess.created|naturaltime }}</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
+
+        <form method="post">
+            {% csrf_token %}
         <div class="modal-body">
             {{ mess.mess }}
           
       
-     
-         
+   
+
+        <textarea class="form-control mt-2" id="exampleFormControlTextarea1" rows="5" name="mess"></textarea>
+
+
+    
             
         </div>
 
        
-
         <div class="modal-footer">
+            <button type="submit" class="btn btn-secondary" data-bs-dismiss="modal"  onclick="seen()">Seen</button>
+            <button type="submit" class="btn btn-primary" >Send</button>
+          </div>
 
-             
-            
-            <form  method="post">
-                {% csrf_token %}
-                {{ form }}
-    
-            
-
-        
-          
-          <button type="submit" class="btn btn-primary" name="send">Send</button>
-
-          <button type="submit" class="btn btn-secondary mt-3" data-bs-dismiss="modal" name="read">Close</button>
+          <script>
+              function seen() {
+  document.getElementById("exampleFormControlTextarea1").value = "Seen";
+}
+          </script>
 
         </form>
-      
-        </div>
       </div>
     </div>
   </div>

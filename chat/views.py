@@ -4,8 +4,9 @@ from django.urls import reverse
 from django.http import HttpResponseRedirect
 from .forms import *
 from .models import *
-from django.contrib.auth import authenticate,login
+from django.contrib.auth import authenticate,login, logout
 from django.contrib.auth.decorators import login_required
+
 # Create your views here.
 
 
@@ -30,10 +31,9 @@ def index(request):
 @login_required(login_url='index')
 def doctruyen(request):
     if request.method == "POST":
-        if 'send' in request.POST:
-            form = ChatForm(request.POST)
-            if form.is_valid():
-                form.save()
+        form = ChatForm(request.POST)
+        if form.is_valid():
+            form.save()
         return redirect('doctruyen')
     else:
         form = ChatForm()
@@ -46,3 +46,7 @@ def doctruyen(request):
 
     return render(request, 'doctruyen.html', context)
 
+
+def logout_view(request):
+    logout(request)
+    return redirect('index')
