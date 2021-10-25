@@ -30,10 +30,11 @@ def index(request):
 @login_required(login_url='index')
 def doctruyen(request):
     if request.method == "POST":
-        form = ChatForm(request.POST)
-        if form.is_valid():
-            form.save()
-            return redirect('doctruyen')
+        if 'send' in request.POST:
+            form = ChatForm(request.POST)
+            if form.is_valid():
+                form.save()
+        return redirect('doctruyen')
     else:
         form = ChatForm()
     mess = Chat.objects.latest('created')
