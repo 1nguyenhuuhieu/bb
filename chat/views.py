@@ -38,8 +38,6 @@ def doctruyen(request):
             form = ChatForm(request.POST)
             if form.is_valid():
                 form.save()
-            else:
-                print("dsf")
         
         elif 'update' in request.POST:
             update_mess = latest_mess.mess + ". " +  request.POST['mess']
