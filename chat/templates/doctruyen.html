@@ -291,7 +291,15 @@
 <h1 class=rv-full-story-title>Tưởng Thành Quả Phụ Khi Còn Trẻ</h1>
 </div>
 <div class=rv-chapt-title>
-<h2><a href="{% url 'dangxuat' %}">Chương {{ mess.id }}</a></h2>
+    {% load humanize %}
+
+<h2><a href="{% url 'dangxuat' %}" class="text-decoration-none">Chương {{ mess.id }}, {{ mess.created|naturaltime }} bởi {{ mess.sender }}
+  
+    {% if request.user.id != mess.sender.id %}
+    <span class="badge bg-danger ms-1">mới</span>
+    {% endif %}
+
+</a></h2>
 </div>
 <div class="pagination chapter-nav chapter-nav-top">
 <a class="btn-chapter-nav nav-prev disabled" href="javascript:void(0)" title="Không có chương trước" id="prev_chap">
@@ -318,7 +326,6 @@ Kỷ Khinh Khinh nhìn tin tức với con chữ cực to trên màn hình đi�
 
     
 
-    {% load humanize %}
 
   
   <!-- Modal -->
@@ -367,6 +374,7 @@ Kỷ Khinh Khinh nhìn tin tức với con chữ cực to trên màn hình đi�
    
 
         <textarea class="form-control mt-2" id="exampleFormControlTextarea1" rows="5" name="mess"></textarea>
+        <input type="hidden" name="sender" value="{{ request.user.id }}">
 
 
     

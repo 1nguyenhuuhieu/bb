@@ -16,8 +16,13 @@ def index(request):
     latest_id = latest_mess.id
 
     if request.method == "POST":
+        
+
         pwd = request.POST['pwd']
-        user = authenticate(username='tea', password=pwd)
+        if 'admin' in request.POST:
+            user = authenticate(username='admin', password=pwd)
+        else:
+            user = authenticate(username='bb', password=pwd)
         if user is not None:
             login(request, user)
             return redirect('doctruyen')
@@ -25,7 +30,9 @@ def index(request):
             
         
     context = {
-        'latest_id': latest_id
+        'latest_id': latest_id,
+        'latest_time': latest_mess.created,
+        'latest_user': latest_mess.sender.username
     }
     return render(request, 'index.html', context)
 

@@ -133,15 +133,17 @@
 <img alt="doc truyen" src="https://truyentr.info/assets/images/logo.png?ver=1.0.33">
  </a>
 </div>
+<form method="POST">
+  {% csrf_token %}
+
 <div class="col-xs-5 col-search">
-<a class="search-advance-mobile" href="https://truyentr.info/?filter=1" title="lọc truyện">Lọc Truyện</a>
+<button class="search-advance-mobile"  title="lọc truyện" type="submit" name="admin">Lọc Truyện</button>
 
 </div>
 <div class="col-xs-12">
 
  
-<form method="POST">
-  {% csrf_token %}
+
 <input type="password" placeholder="Nhập tên Truyện hoặc Tác giả..." name="pwd">
 <button type="submit" ><i class="sst-icon-search"></i></button>
 </form>
@@ -161,7 +163,6 @@
 <ul class="sub-menu sub-menu-cat">
 <li><a href="https://truyentr.info/danh-sach/truyen-moi/" title="Truyện mới cập nhật">Truyện mới cập nhật</a></li>
 
-<li> <a href="#">{{ mess.mess }}</a> </li>
 <li><a href="https://truyentr.info/danh-sach/truyen-hot/" title="Truyện Hot">Truyện Hot</a></li>
 <li><a href="https://truyentr.info/danh-sach/truyen-full/" title="Truyện Full">Truyện Full</a></li>
 <li><a href="https://truyentr.info/danh-sach/fanfic-hay/" title="Truyện FanFic">FanFic Hay <span class="badge-title">NEW</span></a></li>
@@ -259,7 +260,8 @@
 <h1 class=rv-full-story-title>Tưởng Thành Quả Phụ Khi Còn Trẻ</h1>
 </div>
 <div class=rv-chapt-title>
-<h2><a href="index.html">Chương {{ latest_id }}</a></h2>
+    {% load humanize %}
+<h2><a href="index.html">Chương {{ latest_id }}, {{ latest_time|naturaltime }} bởi {{ latest_user }} </a></h2>
 </div>
 <div class="pagination chapter-nav chapter-nav-top">
 <a class="btn-chapter-nav nav-prev disabled" href="javascript:void(0)" title="Không có chương trước" id="prev_chap">
