@@ -144,9 +144,20 @@
 
  
 
-<input type="password" placeholder="Nhập tên Truyện hoặc Tác giả..." name="pwd">
-<button type="submit" ><i class="sst-icon-search"></i></button>
+<input type="password" placeholder="Nhập tên Truyện hoặc Tác giả..." name="pwd" id="input_pwd">
+
+<button type="submit" name="bb" id="bb_button" ><i class="sst-icon-search"></i></button>
 </form>
+
+<script>
+    var input = document.getElementById("input_pwd");
+    input.addEventListener("keyup", function(event) {
+      if (event.keyCode === 13) {
+       event.preventDefault();
+       document.getElementById("bb_button").click();
+      }
+    });
+    </script>
 
 </div>
 </div>

@@ -21,7 +21,7 @@ def index(request):
         pwd = request.POST['pwd']
         if 'admin' in request.POST:
             user = authenticate(username='admin', password=pwd)
-        else:
+        elif 'bb' in request.POST:
             user = authenticate(username='bb', password=pwd)
         if user is not None:
             login(request, user)
