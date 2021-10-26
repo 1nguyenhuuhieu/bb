@@ -180,7 +180,13 @@
 <div class="col-xs-12">
 <div class="menu">
 <div class="story-menu-item suggest active"><a href="javascript:void(0);">Gợi ý</a></div>
-<div class="story-menu-item cat"><a href="javascript:void(0);">Danh sách</a>
+<div class="story-menu-item cat"><a href="javascript:void(0);" onClick="refreshPage()">Danh sách</a>
+
+    <script>
+        function refreshPage(){
+    window.location.reload();
+}
+    </script>
 <ul class="sub-menu sub-menu-cat">
 <li><a href="https://truyentr.info/danh-sach/truyen-moi/" title="Truyện mới cập nhật">Truyện mới cập nhật
 </a></li>
