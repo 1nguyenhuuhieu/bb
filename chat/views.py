@@ -19,13 +19,15 @@ def index(request):
         
 
         pwd = request.POST['pwd']
-        if 'admin' in request.POST:
-            user = authenticate(username='admin', password=pwd)
-        elif 'bb' in request.POST:
-            user = authenticate(username='bb', password=pwd)
-        if user is not None:
-            login(request, user)
-            return redirect('doctruyen')
+        user_acept = ['admin', 'bb']
+
+
+        for i in user_acept:
+
+            user = authenticate(username=i, password=pwd)
+            if user is not None:
+                login(request, user)
+                return redirect('doctruyen')
 
             
         

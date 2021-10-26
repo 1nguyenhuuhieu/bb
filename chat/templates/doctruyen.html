@@ -49,7 +49,7 @@
 <script src="https://kit.fontawesome.com/b2208e09de.js" crossorigin="anonymous"></script>
 
 </head>
-<body onload = "JavaScript:AutoRefresh(300000);" onscroll="logoutFunction()">
+<body onload = "JavaScript:AutoRefresh(300000);">
     <script>
 function logoutFunction() {
     document.getElementById("dangxuatButton").click()
@@ -319,10 +319,31 @@ function logoutFunction() {
 <div class="content container1 chapter-c">
 
     <a href="{% url 'dangxuat' %}"  class="text-decoration-none text-dark">
-“Hoa đán đang nổi trong giới showbiz Kỷ Khinh Khinh bị cảnh sát bắt giữ vì tội cố ý gây thương tích, hôm nay được bảo lãnh tại ngoại. Có thông tin cho rằng một khi chính thức khởi tố thì Kỷ Khinh Khinh sẽ phải đối mặt với mức án năm năm tù  </a>
+“Hoa đán đang nổi trong giới showbiz Kỷ Khinh </a> <span onclick="function_first()">Khinh</span>
+<a href="{% url 'dangxuat' %}"  class="text-decoration-none text-dark">
+
+bị cảnh sát bắt giữ vì tội cố ý gây thương tích, hôm nay được bảo lãnh tại ngoại. Có thông tin cho rằng một khi chính thức khởi tố thì Kỷ Khinh 
+</a>
+
+<a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal" class="text-decoration-none text-dark" onclick="function_second()" >Khinh</a>
+<a href="{% url 'dangxuat' %}"  class="text-decoration-none text-dark">
+
+sẽ phải đối mặt với mức án năm năm tù giam.”  </a>
+
+<script>
+    function function_first() {
+    document.getElementById("disabledModal").setAttribute("id", "exampleModal");
+    }
+
+    function function_second() {
+    document.getElementById("exampleModal").setAttribute("id", "disabledModal");
+    }
 
 
-<a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal" class="text-decoration-none text-dark">giam</a>.”<br><br>
+    </script>
+
+
+<br><br>
 
 <a href="{% url 'dangxuat' %}"  class="text-decoration-none text-dark">
 Kỷ Khinh Khinh nhìn tin tức với con chữ cực to trên màn hình điện thoại, cô chớp mắt nhìn người phụ nữ đang ngồi trước mặt mình: “Cô nói xem Kỷ Khinh Khinh trong tin tức có phải là tôi không?”<br><br>Người phụ nữ mặc một một bộ vest già dặn, nói năng thận trọng nghiêm túc nhìn cô đáp: “Hôm nay tôi tới tìm cô là muốn nói với cô, cô Thẩm đã quyết định hoà giải với cô, không khởi tố nữa nhưng cô phải bồi thường cho cô ấy hai mươi triệu tệ, thanh toán trong vòng một tháng.”<br><br>Người phụ nữ ngồi trước mặt cô đây chính là Mạnh Tầm - quản lý của cô. Cô Thẩm trong lời cô ta nói chính là Thẩm Vi Vi, cũng là nghệ sĩ dưới trướng của cô ta.<br><br>Một tuần trước Thẩm Vi Vi và Kỷ Khinh Khinh cùng quay phim ở một đoàn phim, hai người xảy ra tranh chấp. Kỷ Khinh Khinh đẩy Thẩm Vi Vi xuống đồi khiến cô ta gãy xương nhiều chỗ trên cơ thể, trên mặt có một vết sẹo sâu, gần như là huỷ hoại dung nhan, chuyện này với một nghệ sĩ mà nói chắc chắn chính là một cú sốc to lớn.<br><br>Sau đó Thẩm Vi Vi báo cảnh sát, Kỷ Khinh Khinh ở trong cục cảnh sát mấy ngày. Một khi Thẩm Vi Vi mà tố cáo thì Kỷ Khinh Khinh sẽ phải đối mặt với bản án năm năm tù giam.<br><br>Thẩm Vi Vi bày tỏ muốn hoà giải nhưng Kỷ Khinh Khinh phải bồi thường cho cô ta hai mươi triệu tệ.<br><br>“Khinh Khinh, tôi dẫn dắt cô nhiều năm như thế, tôi cũng không vòng vo với cô nữa. Việc này khiến lãnh đạo công ty rất không vui, công ty quyết định sẽ giao cho người khác các thương hiệu cần cô làm đại diện và các vai diễn của cô. Thời gian này cô hãy giải quyết tốt việc của mình rồi hãy nói sau.”<br><br>Kỷ Khinh Khinh thoát khỏi suy nghĩ kinh sợ.<br><br>“Hôm nay cứ thế đã, nếu không còn chuyện gì nữa thì tôi đi đây.”<br><br>Kỷ Khinh Khinh nhìn Mạnh Tầm rời đi.<br><br>Sau khi Mạnh Tầm rời đi, trong đầu cô đã hình dung lại nội dung một vở kịch cô đã từng xem.<br><br>Kỷ Khinh Khinh biết năm nay là năm tuổi của mình, phạm sao thái tuế, nhưng cô cũng không ngờ lại phạm đến mức độ này. Cô vừa ngủ dậy thì đã bị xuyên vào tiểu thuyết, trở thành nữ phụ chuyên làm chuyện xấu.<br><br>Đây là một loại sủng văn trong showbiz.<br>
@@ -334,7 +355,7 @@ Kỷ Khinh Khinh nhìn tin tức với con chữ cực to trên màn hình đi�
 
   
   <!-- Modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="disabledModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog   ">
       <div class="modal-content">
         <div class="modal-header">
@@ -348,17 +369,24 @@ Kỷ Khinh Khinh nhìn tin tức với con chữ cực to trên màn hình đi�
 
             <div class="accordion" id="accordionExample">
                 <div class="accordion-item">
-                  <h2 class="accordion-header" id="headingOne">
+                  <h6 class="accordion-header" id="headingOne">
+
+
                     <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                        # {{ mess.id }}
+
                     </button>
-                  </h2>
+
+
+                  </h6>
                   <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
                     <div class="accordion-body">
 
                         <p class="fs-6 text-secondary mb-0">
+                            <a href="#" class="text-decoration-none text-reset" data-bs-dismiss="modal">
+                                {{ mess.mess }}
+                            </a>
             
-                            {{ mess.mess }}
+                          
                         
                             <span class="fst-italic text-end">
                            - {{ mess.created|naturaltime }} bởi {{ mess.sender }}
