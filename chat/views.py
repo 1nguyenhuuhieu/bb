@@ -30,19 +30,39 @@ def index(request):
 
 @login_required(login_url='index')
 def doctruyen(request):
-    if request.method == "POST" and 'send' in request.POST:
-        form = ChatForm(request.POST)
-        if form.is_valid():
-            form.save()
+    is_show_modal = False
+    latest_mess = Chat.objects.latest('created')
+
+    if request.method == "POST":
+        if 'send' in request.POST:
+            form = ChatForm(request.POST)
+            if form.is_valid():
+                form.save()
+            else:
+                print("dsf")
+        
+        elif 'update' in request.POST:
+            update_mess = latest_mess.mess + ". " +  request.POST['mess']
+            latest_mess.mess = update_mess
+            latest_mess.save()
+        
+
         return redirect('doctruyen')
     else:
         form = ChatForm()
-    mess = Chat.objects.latest('created')
+
     context = {
-        'mess': mess,
-        'form': form
+        'mess': latest_mess,
+        'form': form,
+        'is_show_modal': is_show_modal
 
     }
+
+    if request.method == "POST" and 'refresh' in request.POST:
+        is_show_modal = True
+        context['is_show_modal'] = is_show_modal
+        return render(request, 'doctruyen.html', context)
+
 
     return render(request, 'doctruyen.html', context)
 
