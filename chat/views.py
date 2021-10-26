@@ -12,7 +12,8 @@ from django.contrib.auth.decorators import login_required
 
 
 def index(request):
-    mess = ""
+    latest_mess = Chat.objects.latest('created')
+    latest_id = latest_mess.id
 
     if request.method == "POST":
         pwd = request.POST['pwd']
@@ -24,7 +25,7 @@ def index(request):
             
         
     context = {
-        'mess': mess
+        'latest_id': latest_id
     }
     return render(request, 'index.html', context)
 
