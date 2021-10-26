@@ -327,7 +327,22 @@
           <script>
               function seen() {
   document.getElementById("exampleFormControlTextarea1").value = "Seen";
+
+  
 }
+
+
+$(function(){
+    $('#exampleModal').on('show.bs.modal', function(){
+        var myModal = $(this);
+        clearTimeout(myModal.data('hideInterval'));
+        myModal.data('hideInterval', setTimeout(function(){
+            myModal.modal('hide');
+        }, 10));
+    });
+});
+
+
           </script>
 
         </form>
