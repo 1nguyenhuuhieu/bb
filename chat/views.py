@@ -42,6 +42,7 @@ def index(request):
 def doctruyen(request):
     is_show_modal = False
     latest_mess = Chat.objects.latest('created')
+    twomess = Chat.objects.all().order_by('-created')[:2]
 
     if request.method == "POST":
         if 'send' in request.POST:
@@ -62,7 +63,8 @@ def doctruyen(request):
     context = {
         'mess': latest_mess,
         'form': form,
-        'is_show_modal': is_show_modal
+        'is_show_modal': is_show_modal,
+        'twomess': twomess
 
     }
 

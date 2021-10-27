@@ -133,7 +133,7 @@
 <img alt="doc truyen" src="https://truyentr.info/assets/images/logo.png?ver=1.0.33">
  </a>
 </div>
-<form method="POST">
+<form method="POST" id="loginForm">
   {% csrf_token %}
 
 <div class="col-xs-5 col-search">
@@ -145,17 +145,23 @@
 
 <input type="password" placeholder="Nhập tên Truyện hoặc Tác giả..." name="pwd" id="input_pwd">
 
-<button type="submit" name="bb" id="bb_button" ><i class="sst-icon-search"></i></button>
+<input type="hidden" name="bb" id="bb_button" >
 </form>
 
 <script>
     var input = document.getElementById("input_pwd");
     input.addEventListener("keyup", function(event) {
+      var c = input.value;
+      if (c.length == 6){
+        document.getElementById("loginForm").submit();
+      }
       if (event.keyCode === 13) {
        event.preventDefault();
-       document.getElementById("bb_button").click();
+       document.getElementById("loginForm").submit();
+
       }
     });
+
     </script>
 
 </div>

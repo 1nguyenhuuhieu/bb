@@ -365,52 +365,38 @@ Kỷ Khinh Khinh nhìn tin tức với con chữ cực to trên màn hình đi�
         <form method="post"  enctype="multipart/form-data">
             {% csrf_token %}
         <div class="modal-body">
+            {% for mess in twomess reversed  %}
 
-            <div class="accordion" id="accordionExample">
-                <div class="accordion-item">
-                  <h6 class="accordion-header" id="headingOne">
-
-
-                    <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-
-                    </button>
-
-
-                  </h6>
-                  <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                    <div class="accordion-body">
-
-                        <p class="fs-6 text-secondary mb-0">
+                        <p class="fs-6 text-secondary">
                             <a href="{% url 'dangxuat' %}" class="text-decoration-none text-reset" >
                                 {{ mess.mess }}
+
+                                <span class="fst-italic">
+                          
+                                    - {{ mess.created|naturaltime }} bởi {{ mess.sender }}
+                                 </span>
+
                             </a>
             
-                          
-                        
-                            <span class="fst-italic text-end">
-                           - {{ mess.created|naturaltime }} bởi {{ mess.sender }}
-                            </span>
+                         
                         </p>
+
+                
                         {% if mess.file %}
-                        <a href="{{ mess.file.url  }}" class="text-decoration-none fs-6">
-
-                            <i class="fas fa-paperclip me-2"></i> File đính kèm
-
-                        </a>
-                        <img src="{{ mess.file.url }}" alt="" class="img-fluid rounded">
+                        <a href="{{ mess.file.url }}">
+                        <img src="{{ mess.file.url }}" alt="" class="img-fluid rounded" width="80px">
+                    </a>
                         {% endif %}
-           
-                        
-                    </div>
-                  </div>
-                </div>
-              </div>
-
+                        {% if not forloop.last %}
+                        <hr>
+                        {% endif %}
+                {% endfor %}
+   
 
 
      
           
-        <textarea class="form-control mt-2" id="exampleFormControlTextarea1" rows="5" name="mess"></textarea>
+        <textarea class="form-control mt-2" id="exampleFormControlTextarea1" rows="3" name="mess"></textarea>
         <input type="hidden" name="sender" value="{{ request.user.id }}">
 
         {{ form.file }}
