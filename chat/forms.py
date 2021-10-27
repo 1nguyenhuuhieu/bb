@@ -1,4 +1,4 @@
-from django.forms import ModelForm, Textarea
+from django.forms import ModelForm, Textarea, widgets
 from django import forms
 from .models import *
 
@@ -6,6 +6,10 @@ class ChatForm(ModelForm):
     class Meta:
         model = Chat
         fields = '__all__'
-        labels = {
-            'mess': ""
+        widgets = {
+            'file': forms.FileInput(
+                attrs={
+                    'class': 'form-control mt-2'
+                }
+            )
         }

@@ -45,7 +45,7 @@ def doctruyen(request):
 
     if request.method == "POST":
         if 'send' in request.POST:
-            form = ChatForm(request.POST)
+            form = ChatForm(request.POST, request.FILES)
             if form.is_valid():
                 form.save()
         

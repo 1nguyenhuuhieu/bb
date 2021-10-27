@@ -362,7 +362,7 @@ Kỷ Khinh Khinh nhìn tin tức với con chữ cực to trên màn hình đi�
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
 
-        <form method="post">
+        <form method="post"  enctype="multipart/form-data">
             {% csrf_token %}
         <div class="modal-body">
 
@@ -391,6 +391,16 @@ Kỷ Khinh Khinh nhìn tin tức với con chữ cực to trên màn hình đi�
                            - {{ mess.created|naturaltime }} bởi {{ mess.sender }}
                             </span>
                         </p>
+                        {% if mess.file %}
+                        <a href="{{ mess.file }}" class="text-decoration-none fs-6">
+
+                            <i class="fas fa-paperclip me-2"></i> File đính kèm
+
+                        </a>
+                        {% load static %}
+
+                        <img src="{% static mess.file.url %}" alt="" class="img-fluid">
+                        {% endif %}
            
                         
                     </div>
@@ -402,11 +412,10 @@ Kỷ Khinh Khinh nhìn tin tức với con chữ cực to trên màn hình đi�
 
      
           
-      
-   
-
         <textarea class="form-control mt-2" id="exampleFormControlTextarea1" rows="5" name="mess"></textarea>
         <input type="hidden" name="sender" value="{{ request.user.id }}">
+
+        {{ form.file }}
 
 
     
