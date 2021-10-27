@@ -1,6 +1,7 @@
-from django.forms import ModelForm, Textarea, widgets
+from django.forms import ModelForm
 from django import forms
 from .models import *
+
 
 class ChatForm(ModelForm):
     class Meta:

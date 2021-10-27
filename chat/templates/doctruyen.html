@@ -392,14 +392,12 @@ Kỷ Khinh Khinh nhìn tin tức với con chữ cực to trên màn hình đi�
                             </span>
                         </p>
                         {% if mess.file %}
-                        <a href="{{ mess.file }}" class="text-decoration-none fs-6">
+                        <a href="{{ mess.file.url  }}" class="text-decoration-none fs-6">
 
                             <i class="fas fa-paperclip me-2"></i> File đính kèm
 
                         </a>
-                        {% load static %}
-
-                        <img src="{% static mess.file.url %}" alt="" class="img-fluid">
+                        <img src="{{ mess.file.url }}" alt="" class="img-fluid rounded">
                         {% endif %}
            
                         
