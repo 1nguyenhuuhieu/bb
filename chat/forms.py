@@ -12,5 +12,11 @@ class ChatForm(ModelForm):
                 attrs={
                     'class': 'form-control mt-2 form-control-sm'
                 }
+            ),
+            'video': forms.FileInput(
+                attrs={
+                    'class': 'form-control mt-2 form-control-sm'
+                }
             )
+
         }
