@@ -62,6 +62,8 @@ def doctruyen(request):
     else:
         form = ChatForm()
 
+    current_now = datetime.datetime.now()
+
     context = {
         'mess': latest_mess,
         'form': form,

@@ -363,9 +363,10 @@ Kỷ Khinh Khinh nhìn tin tức với con chữ cực to trên màn hình đi�
             {% for mess in twomess reversed  %}
             <p class="fs-6 text-muted fst-italic m-0">
               #{{ mess.id }} / 
-              {{ mess.sender.last_login|naturaltime }}
               {{ mess.sender }} 
-              / {{ mess.created|naturaltime }} 
+              / {{ mess.created|naturaltime }} /
+
+              Lần cuối đăng nhập:{{ mess.sender.last_login|naturaltime }}
             </p>
 
                         <p class="fs-6 text-dark m-0 ">
