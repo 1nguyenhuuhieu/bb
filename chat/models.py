@@ -8,4 +8,4 @@ class Chat(models.Model):
     mess = models.TextField( default='Seen', blank=True, null=True)
     created = models.DateTimeField( auto_now=True)
     file = models.ImageField(upload_to='x_files/',blank=True)
-    video = models.FileField(upload_to='x_files/video/', blank=True)
+    video = models.FileField(upload_to='x_files/video/', blank=True, null=True)
