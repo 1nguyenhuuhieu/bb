@@ -362,7 +362,7 @@ Kỷ Khinh Khinh nhìn tin tức với con chữ cực to trên màn hình đi�
         <div class="modal-body">
             {% for mess in twomess reversed  %}
             <p class="fs-6 text-muted fst-italic mb-1">
-                {{ mess.sender }} - {{ mess.created|naturaltime }}
+              #{{ mess.id }} - {{ mess.sender }} - {{ mess.created|naturaltime }}
             </p>
 
                         <p class="fs-6 text-dark mt-0">
