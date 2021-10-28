@@ -79,6 +79,13 @@ def doctruyen(request):
 
     return render(request, 'doctruyen.html', context)
 
+@login_required
+def xemvideo(request, id):
+    mess = Chat.objects.get(pk=id)
+    context = {
+        'video': mess.video.url
+    }
+    return render(request, 'xemvideo.html', context)
 
 def logout_view(request):
     logout(request)
