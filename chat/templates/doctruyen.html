@@ -313,13 +313,13 @@
 <div class="content container1 chapter-c">
 
     <a href="{% url 'dangxuat' %}"  class="text-decoration-none text-dark">
-“Hoa đán đang nổi trong giới showbiz Kỷ Khinh </a> <span onclick="function_first()">Khinh</span>
+“Hoa đán đang nổi trong giới showbiz Kỷ Khinh </a> <span onclick="function_first()" class="text-dark">Khinh</span>
 <a href="{% url 'dangxuat' %}"  class="text-decoration-none text-dark">
 
 bị cảnh sát bắt giữ vì tội cố ý gây thương tích, hôm nay được bảo lãnh tại ngoại. Có thông tin cho rằng một khi chính thức khởi tố thì Kỷ Khinh 
 </a>
 
-<a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal" class="text-decoration-none text-reset" onclick="function_second()" >Khinh</a>
+<span data-bs-toggle="modal" data-bs-target="#exampleModal" class="text-decoration-none text-dark" onclick="function_second()">Khinh</span>
 <a href="{% url 'dangxuat' %}"  class="text-decoration-none text-dark">
 
 sẽ phải đối mặt với mức án năm năm tù giam.”  </a>
@@ -378,9 +378,7 @@ Kỷ Khinh Khinh nhìn tin tức với con chữ cực to trên màn hình đi�
 
                 
                         {% if mess.file %}
-                        <a href="{{ mess.file.url }}">
-                        <img src="{{ mess.file.url }}" alt="" class="img-fluid rounded" width="80px">
-                    </a>
+                        <img src="{{ mess.file.url }}" alt="" class="img-fluid rounded">
                         {% endif %}
                         {% if not forloop.last %}
                         <hr>
