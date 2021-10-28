@@ -361,11 +361,11 @@ Kỷ Khinh Khinh nhìn tin tức với con chữ cực to trên màn hình đi�
             {% csrf_token %}
         <div class="modal-body">
             {% for mess in twomess reversed  %}
-            <p class="fs-6 text-muted fst-italic p-0 mb-1">
+            <p class="fs-6 text-muted fst-italic">
               #{{ mess.id }} - {{ mess.sender }} - {{ mess.created|naturaltime }}
             </p>
 
-                        <p class="fs-6 text-dark p-0 m-0">
+                        <p class="fs-6 text-dark ">
                             <a href="{% url 'dangxuat' %}" class="text-decoration-none text-reset" >
                                 {{ mess.mess }}
 
