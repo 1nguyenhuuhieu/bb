@@ -10,12 +10,12 @@ class ChatForm(ModelForm):
         widgets = {
             'file': forms.FileInput(
                 attrs={
-                    'class': 'form-control mt-2 form-control-sm'
+                    'class': 'form-control form-control-sm'
                 }
             ),
             'video': forms.FileInput(
                 attrs={
-                    'class': 'form-control mt-2 form-control-sm'
+                    'class': 'form-control form-control-sm'
                 }
             )
 
