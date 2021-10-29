@@ -77,7 +77,6 @@ def doctruyen(request):
 
     }
 
-    print(is_show_modal)
     return render(request, 'doctruyen.html', context)
 
 @login_required
