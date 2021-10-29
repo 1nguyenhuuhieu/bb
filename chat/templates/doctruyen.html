@@ -408,6 +408,7 @@ Kỷ Khinh Khinh nhìn tin tức với con chữ cực to trên màn hình đi�
         <form method="post"  enctype="multipart/form-data">
             {% csrf_token %}
         <div class="modal-body">
+            <p><a href="#" class="tooltip-test" title="Tooltip">This link</a> and <a href="#" class="tooltip-test" title="Tooltip">that link</a> have tooltips on hover.</p>
 
             {% for mess in twomess reversed  %}
             <p class="fs-6 text-muted m-0">
@@ -415,7 +416,6 @@ Kỷ Khinh Khinh nhìn tin tức với con chữ cực to trên màn hình đi�
               #{{ mess.id }}, <a href="#" class="text-decoration-none text-dark tooltip-test"  title="Đăng nhập lần cuối: {{ mess.sender.last_login|naturaltime }}">{{ mess.sender }}</a>  {{ mess.created|naturaltime }}
             </p>
 
-            <p><a href="#" class="tooltip-test" title="Tooltip">This link</a> and <a href="#" class="tooltip-test" title="Tooltip">that link</a> have tooltips on hover.</p>
 
                         <p class="fs-6 text-dark m-0 ">
                             <a href="{% url 'dangxuat' %}" class="text-decoration-none text-reset" >
