@@ -40,7 +40,7 @@
 <script src="https://kit.fontawesome.com/b2208e09de.js" crossorigin="anonymous"></script>
 
 </head>
-<body onload = "JavaScript:AutoRefresh(300000);">
+<body onload = "onloadFunctiondoctruyen()">
 
 <div class="section-header pc">
 <div class="container">
@@ -325,6 +325,8 @@ bị cảnh sát bắt giữ vì tội cố ý gây thương tích, hôm nay đ�
 sẽ phải đối mặt với mức án năm năm tù giam.”  </a>
 
 <script>
+
+    
     function function_first() {
     document.getElementById("disabledModal").setAttribute("id", "exampleModal");
     }
@@ -332,10 +334,28 @@ sẽ phải đối mặt với mức án năm năm tù giam.”  </a>
     function function_second() {
     document.getElementById("exampleModal").setAttribute("id", "disabledModal");
 
+
     }
 
 
-    </script>
+
+</script>
+
+
+<script>
+
+    function onloadFunctiondoctruyen(){
+        JavaScript:AutoRefresh(300000);
+        {% if is_show_modal %}
+        var myModal = new bootstrap.Modal(document.getElementById('disabledModal')); 
+        myModal.show();
+        {% endif %}
+    }
+    
+
+
+
+</script>
 
 
 <br><br>
@@ -454,7 +474,7 @@ Kỷ Khinh Khinh nhìn tin tức với con chữ cực to trên màn hình đi�
         <div class="modal-footer d-flex justify-content-between">
             <div>
                 <a href="{% url 'dangxuat' %}" class="btn btn-outline-secondary me-2 btn-lg"><i class="fas fa-sign-out-alt text-danger"></i></a>
-                <button class="btn btn-outline-secondary btn-lg" onClick="refreshPage()"><i class="fas fa-sync-alt text-success"></i></button>
+                <button class="btn btn-outline-secondary btn-lg" name="refresh" type="submit"><i class="fas fa-sync-alt text-success"></i></button>
 
             </div>
 

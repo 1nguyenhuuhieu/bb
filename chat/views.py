@@ -57,6 +57,8 @@ def doctruyen(request):
             update_mess = latest_mess.mess + ". " +  request.POST['mess']
             latest_mess.mess = update_mess
             latest_mess.save()
+        elif "refresh" in request.POST:
+            request.session['is_show_modal'] = True
         
         return redirect('doctruyen')
     else:
@@ -75,10 +77,6 @@ def doctruyen(request):
         'twomess': twomess
 
     }
-
-    if request.method == "POST" and 'refresh' in request.POST:
-        request.session['is_show_modal'] = True
-        return render(request, 'doctruyen.html', context)
 
     print(is_show_modal)
     return render(request, 'doctruyen.html', context)
