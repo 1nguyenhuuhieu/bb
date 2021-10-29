@@ -69,7 +69,6 @@ def doctruyen(request):
     else:
         is_show_modal = False
     
-    is_show_modal = False
 
     context = {
         'mess': latest_mess,
