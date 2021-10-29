@@ -1,3 +1,4 @@
+from django.http.response import Http404
 from django.shortcuts import render
 from django.shortcuts import redirect
 from django.urls import reverse
@@ -42,6 +43,7 @@ def index(request):
 
 @login_required(login_url='index')
 def doctruyen(request):
+    request.session['is_access_photos'] = True
     is_show_modal = False
     latest_mess = Chat.objects.latest('created')
     twomess = Chat.objects.all().order_by('-created')[:2]
@@ -90,18 +92,21 @@ def xemvideo(request, id):
 
 @login_required
 def photos(request):
-    images = Chat.objects.exclude(file__exact='').exclude(file__isnull=True)
-    for image in images:
-        image_file = Path(image.file.url)
-        if image_file.is_file():
-            images = images.exclude(pk=image.id)
+    if 'is_access_photos' in request.session:
+        del request.session['is_access_photos']
+        images = Chat.objects.exclude(file__exact='').exclude(file__isnull=True)
+        for image in images:
+            image_file = Path(image.file.url)
+            if image_file.is_file():
+                images = images.exclude(pk=image.id)
 
-    print(images)
-    context = {
-        'images': images
-    }
+        context = {
+            'images': images
+        }
+        return render(request, 'photos.html', context)
 
-    return render(request, 'photos.html', context)
+    raise Http404
+
 
 def logout_view(request):
     logout(request)
