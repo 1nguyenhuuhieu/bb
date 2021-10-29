@@ -108,16 +108,6 @@ def photos(request):
     raise Http404
 
 
-@login_required
-def getM(request):
-    twomess_json = Chat.objects.all().order_by('-created')[:2]
-    return JsonResponse(
-        {
-            "twomess_json":list(twomess_json.values())
-        }
-    )
-
-
 
 def logout_view(request):
     logout(request)
