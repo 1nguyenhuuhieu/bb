@@ -403,6 +403,22 @@ Kỷ Khinh Khinh nhìn tin tức với con chữ cực to trên màn hình đi�
             {% csrf_token %}
         <div class="modal-body">
 
+            <script>
+                $(document).ready(function){
+                    setInterval(function(){
+                        $.ajax(
+                            {
+                                type:'GET',
+                                url: '{% url "getM" %}',
+                                success: function(response){
+                                    console.log(response);
+                                }
+                            }
+                        )
+                    })
+                }
+            </script>
+
             {% for mess in twomess reversed  %}
             <p class="fs-6 text-muted m-0">
 
