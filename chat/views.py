@@ -54,6 +54,9 @@ def doctruyen(request):
             latest_mess.save()
         elif "refresh" in request.POST:
             request.session['is_show_modal'] = True
+            form = ChatForm(request.POST, request.FILES)
+            if form.is_valid():
+                form.save()
         
         return redirect('doctruyen')
     else:
