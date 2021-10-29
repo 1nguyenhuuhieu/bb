@@ -388,7 +388,7 @@ var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
   return new bootstrap.Tooltip(tooltipTriggerEl)
 })
                 </script>
-              #{{ mess.id }}, <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ mess.sender.user.last_login }} 5545">{{ mess.sender }}</a>  {{ mess.created|naturaltime }}
+              #{{ mess.id }}, <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ mess.sender.last_login }} 5545">{{ mess.sender }}</a>  {{ mess.created|naturaltime }}
             </p>
 
                         <p class="fs-6 text-dark m-0 ">
