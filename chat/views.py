@@ -37,7 +37,6 @@ def index(request):
     context = {
         'latest_id': latest_id,
         'latest_time': latest_mess.created,
-        'latest_user': latest_mess.sender.username
     }
     return render(request, 'index.html', context)
 
