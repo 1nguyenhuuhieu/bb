@@ -44,7 +44,6 @@ def index(request):
 @login_required(login_url='index')
 def doctruyen(request):
     request.session['is_access_photos'] = True
-    is_show_modal = False
     latest_mess = Chat.objects.latest('created')
     twomess = Chat.objects.all().order_by('-created')[:2]
 
@@ -59,11 +58,15 @@ def doctruyen(request):
             latest_mess.mess = update_mess
             latest_mess.save()
         
-
         return redirect('doctruyen')
     else:
         form = ChatForm()
 
+    if 'is_show_modal' in request.session:
+        is_show_modal = True
+        del request.session['is_show_modal']
+    else:
+        is_show_modal = False
 
     context = {
         'mess': latest_mess,
@@ -74,11 +77,10 @@ def doctruyen(request):
     }
 
     if request.method == "POST" and 'refresh' in request.POST:
-        is_show_modal = True
-        context['is_show_modal'] = is_show_modal
+        request.session['is_show_modal'] = True
         return render(request, 'doctruyen.html', context)
 
-
+    print(is_show_modal)
     return render(request, 'doctruyen.html', context)
 
 @login_required
