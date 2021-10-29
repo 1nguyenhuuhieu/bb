@@ -87,6 +87,16 @@ def xemvideo(request, id):
     }
     return render(request, 'xemvideo.html', context)
 
+
+@login_required
+def photos(request):
+    images = Chat.objects.exclude(file__exact='')
+    context = {
+        'images': images
+    }
+
+    return render(request, 'photos.html', context)
+
 def logout_view(request):
     logout(request)
     return redirect('index')
