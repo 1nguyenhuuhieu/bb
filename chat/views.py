@@ -56,7 +56,8 @@ def doctruyen(request):
             request.session['is_show_modal'] = True
             form = ChatForm(request.POST, request.FILES)
             if form.is_valid():
-                if request.POST["mess"] is not None:
+                new_mess = request.POST["mess"]
+                if new_mess.length() > 4:
                     form.save()
         
         return redirect('doctruyen')
