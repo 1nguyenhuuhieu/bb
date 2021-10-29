@@ -57,7 +57,7 @@ def doctruyen(request):
             form = ChatForm(request.POST, request.FILES)
             if form.is_valid():
                 new_mess = request.POST["mess"]
-                if new_mess.length() > 4:
+                if new_mess.count() > 4:
                     form.save()
         
         return redirect('doctruyen')
