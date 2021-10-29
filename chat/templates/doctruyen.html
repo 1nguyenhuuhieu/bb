@@ -382,6 +382,12 @@ Kỷ Khinh Khinh nhìn tin tức với con chữ cực to trên màn hình đi�
         <div class="modal-body">
             {% for mess in twomess reversed  %}
             <p class="fs-6 text-muted m-0">
+                <script>
+                    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+  return new bootstrap.Tooltip(tooltipTriggerEl)
+})
+                </script>
               #{{ mess.id }}, <a href="#" data-bs-toggle="tooltip" data-bs-placement="top" title="{{ mess.sender.user.last_login }} 5545">{{ mess.sender }}</a>  {{ mess.created|naturaltime }}
             </p>
 
