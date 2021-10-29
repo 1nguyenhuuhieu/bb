@@ -348,12 +348,6 @@ sẽ phải đối mặt với mức án năm năm tù giam.”  </a>
         var myModal = new bootstrap.Modal(document.getElementById('disabledModal')); 
         myModal.show();
         {% endif %}
-
-        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
-var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
-  return new bootstrap.Tooltip(tooltipTriggerEl)
-})
-
     }
     
 
@@ -408,12 +402,11 @@ Kỷ Khinh Khinh nhìn tin tức với con chữ cực to trên màn hình đi�
         <form method="post"  enctype="multipart/form-data">
             {% csrf_token %}
         <div class="modal-body">
-            <p><a href="#" class="tooltip-test" title="Tooltip">This link</a> and <a href="#" class="tooltip-test" title="Tooltip">that link</a> have tooltips on hover.</p>
 
             {% for mess in twomess reversed  %}
             <p class="fs-6 text-muted m-0">
 
-              #{{ mess.id }}, <a href="#" class="text-decoration-none text-dark tooltip-test"  title="Đăng nhập lần cuối: {{ mess.sender.last_login|naturaltime }}">{{ mess.sender }}</a>  {{ mess.created|naturaltime }}
+              {{ mess.sender }} {{ mess.created|naturaltime }}
             </p>
 
 
