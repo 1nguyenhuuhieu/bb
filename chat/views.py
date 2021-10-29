@@ -18,14 +18,9 @@ def index(request):
     latest_id = latest_mess.id
 
     if request.method == "POST":
-        
-
         pwd = request.POST['pwd']
         user_acept = ['admin', 'bb']
-
-
         for i in user_acept:
-
             user = authenticate(username=i, password=pwd)
             if user is not None:
                 login(request, user)
@@ -37,6 +32,7 @@ def index(request):
     context = {
         'latest_id': latest_id,
         'latest_time': latest_mess.created,
+        'latest_user': latest_mess.sender,
     }
     return render(request, 'index.html', context)
 
