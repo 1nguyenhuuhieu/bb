@@ -68,6 +68,8 @@ def doctruyen(request):
         del request.session['is_show_modal']
     else:
         is_show_modal = False
+    
+    is_show_modal = False
 
     context = {
         'mess': latest_mess,
