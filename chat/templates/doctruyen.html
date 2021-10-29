@@ -399,15 +399,19 @@ Kỷ Khinh Khinh nhìn tin tức với con chữ cực to trên màn hình đi�
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
 
-        <form method="post"  enctype="multipart/form-data">
-            {% csrf_token %}
-        <div class="modal-body">
-            <script>
-                var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+
+        <script>
+            var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
 var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
 return new bootstrap.Tooltip(tooltipTriggerEl)
 })
-            </script>
+        </script>
+
+        
+        <form method="post"  enctype="multipart/form-data">
+            {% csrf_token %}
+        <div class="modal-body">
+
             {% for mess in twomess reversed  %}
             <p class="fs-6 text-muted m-0">
 
