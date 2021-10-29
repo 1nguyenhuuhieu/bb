@@ -9,7 +9,7 @@ from django.contrib.auth.decorators import login_required
 
 from django.http import JsonResponse
 # Create your views here.
-
+from pathlib import Path
 
 
 def index(request):
@@ -90,7 +90,13 @@ def xemvideo(request, id):
 
 @login_required
 def photos(request):
-    images = Chat.objects.exclude(file__exact='')
+    images = Chat.objects.exclude(file__exact='').exclude(file__isnull=True)
+    for image in images:
+        image_file = Path(image.file.url)
+        if image_file.is_file():
+            images = images.exclude(pk=image.id)
+
+    print(images)
     context = {
         'images': images
     }
