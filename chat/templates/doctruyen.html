@@ -413,11 +413,11 @@ Kỷ Khinh Khinh nhìn tin tức với con chữ cực to trên màn hình đi�
                         <div class="accordion mt-2" id="accordionFlushExample">
                             <div class="accordion-item">
                               <h2 class="accordion-header p-0" id="flush-headingOne">
-                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush{{mess.id}}" aria-expanded="false" aria-controls="flush-collapseOne">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#flush{{mess.id}}" aria-expanded="false" aria-controls="flush-collapseOne">
                                     <i class="fas fa-image"></i>
                                 </button>
                               </h2>
-                              <div id="flush{{mess.id}}" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                              <div id="flush{{mess.id}}" class="accordion-collapse collapse show" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                                 <div class="accordion-body p-0">
                                     <img src="{{ mess.file.url }}" alt="" class="img-fluid">
                                 </div>
