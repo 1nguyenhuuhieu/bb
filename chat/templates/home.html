@@ -137,9 +137,23 @@
   <div class="p-4 p-md-5 mb-4  rounded border">
 
     <div class="col-md-6 px-0">
-      <h1 class="display-4 fst-italic text-danger fw-bold">Khối u ác tính</h1>
-      {% load humanize %}
-      <small>{{ latest_time|naturaltime }} - {{ latest_user }}</small>
+      <div class="d-flex justify-content-between align-items-center">
+        <h1 class="display-4 fst-italic">Khối u ác tính</h1>
+        <i class="far fa-heart fs-4
+        
+        {% if latest_user|safe == 'admin' %}
+        text-danger
+        {% else %}
+        text-primary
+        {% endif %}
+        
+        "></i> 
+        
+
+      </div>
+      
+
+      <hr>
       <p class="lead my-3">Các khối u trong cơ thể có hai dạng là lành tính và ác tính. Khối u lành tính thường vô hại, <a href="#" onclick="clickSearch()" style="color: inherit;" class="text-decoration-none">trong</a>  khi khối u ác tính chính là biểu hiện của ung thư (1). Vậy u ác tính là gì và có..
       </p>
   
