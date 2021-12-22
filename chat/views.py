@@ -13,6 +13,14 @@ from django.http import JsonResponse
 from pathlib import Path
 
 
+
+from django.contrib.auth.models import User
+from rest_framework import viewsets
+from rest_framework import permissions
+from .serializers import UserSerializer
+
+
+
 def index(request):
     latest_mess = Chat.objects.latest('created')
     latest_id = latest_mess.id
@@ -107,3 +115,12 @@ def photos(request):
 def logout_view(request):
     logout(request)
     return redirect('index')
+
+
+class UserViewSet(viewsets.ModelViewSet):
+    """
+    API endpoint that allows users to be viewed or edited.
+    """
+    queryset = User.objects.all().order_by('-date_joined')
+    serializer_class = UserSerializer
+    permission_classes = [permissions.IsAuthenticated]

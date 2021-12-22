@@ -125,7 +125,7 @@
   <div class="p-4 p-md-5 mb-4  rounded border">
 
     <div class="col-md-6 px-0">
-      <h1 class="display-4 fst-italic">Khối u ác tính</h1>
+      <h1 class="display-4 fst-italic text-danger fw-bold">Khối u ác tính</h1>
       {% load humanize %}
       <small>{{ latest_time|naturaltime }} - {{ latest_user }}</small>
       <p class="lead my-3">Các khối u trong cơ thể có hai dạng là lành tính và ác tính. Khối u lành tính thường vô hại, <a href="#" onclick="clickSearch()" style="color: inherit;" class="text-decoration-none">trong</a>  khi khối u ác tính chính là biểu hiện của ung thư (1). Vậy u ác tính là gì và có..
@@ -139,6 +139,10 @@
   <div class="row mb-2">
     <div class="col-md-6">
       <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+        <div class="col-auto">
+            <img src="{% static 'imgs/tieuduong.jpg' %}" alt="" class="img-fluid">
+
+        </div>
         <div class="col p-4 d-flex flex-column position-static">
           <strong class="d-inline-block mb-2 text-primary">Bệnh tim mạch</strong>
           <h3 class="mb-0">Tiểu đường tuýp 2</h3>
@@ -146,14 +150,15 @@
           <p class="card-text mb-auto">Tiểu đường tuýp 2 là một trong ba dạng bệnh tiểu đường ở người lớn. Nếu không được kiểm soát, bệnh sẽ gây ra nhiều ảnh hưởng nghiêm trọng ở các bộ phận cơ thể khác..</p>
           <a href="https://hellobacsi.com/" class="stretched-link">Xem tiếp</a>
         </div>
-        <div class="col-auto d-none d-lg-block">
-          <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-
-        </div>
+    
       </div>
     </div>
     <div class="col-md-6">
       <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+        <div class="col-auto">
+            <img src="{% static 'imgs/rangvang.jpg' %}" alt="" class="img-fluid">
+
+        </div>
         <div class="col p-4 d-flex flex-column position-static">
           <strong class="d-inline-block mb-2 text-success">Vấn đề về răng</strong>
           <h3 class="mb-0">"Điểm mặt" 8 thói quen sai lầm là nguyên nhân khiến răng bị ố vàng</h3>
@@ -161,10 +166,7 @@
           <p class="mb-auto">Răng bị ố vàng là một trong những vấn đề phổ biến khiến nhiều người mất tự tin khi giao tiếp. Không những thế, tình trạng răng bị vàng còn có thể gây ra nhiều ảnh hưởng đến sức khỏe. Vì vậy, chúng ta thường cố tìm ra các tác nhân gây vàng răng để khắc phục vấn đề. Tuy nhiên, hầu hết mọi người đều không để ý, những sai lầm trong thói quen hằng ngày mới chính là nguyên nhân “gần gũi” nhất khiến răng bị ố vàng.</p>
           <a href="https://hellobacsi.com/" class="stretched-link">Xem tiếp</a>
         </div>
-        <div class="col-auto d-none d-lg-block">
-          <svg class="bd-placeholder-img" width="200" height="250" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-
-        </div>
+   
       </div>
     </div>
   </div>
