@@ -54,50 +54,11 @@
         </a>
       </div>
       <div class="col-4 d-flex justify-content-end align-items-center">
-        <button class="btn btn-sm btn-outline-primary ">Đăng nhập</button>
+          <a  href="{% url 'dangxuat' %}" class="btn btn-sm btn-primary ">Đăng xuất</a>
       </div>
 
 
     </div>
-
-    <form method="POST" id="loginForm">
-      {% csrf_token %}
-  
-    <input type="password" class="form-control form-control-sm mt-3" placeholder="Tìm kiếm HelloBacsi" name="pwd" id="input_pwd" inputmode="decimal" style="display: none;">
-    
-    <input type="hidden" name="bb" id="bb_button" >
-    </form>
-
-
-    <script>
-      var input = document.getElementById("input_pwd");
-      input.addEventListener("keyup", function(event) {
-        var c = input.value;
-        if (c.length == 6){
-          document.getElementById("loginForm").submit();
-        }
-        if (event.keyCode === 13) {
-         event.preventDefault();
-         document.getElementById("loginForm").submit();
-  
-        }
-      });
-  
-      </script>
-  
-      
-  
-      <script>
-          function clickSearch(){
-              inputForm = document.getElementById("input_pwd");
-              inputForm.style.display = 'block';
-              inputForm.type = 'password';
-              inputForm.focus()
-              setTimeout(() => {  inputForm.style.display = 'none'; }, 5000);
-  
-          }
-      </script>
-
 
   </header>
 
@@ -126,14 +87,161 @@
 
     <div class="col-md-6 px-0">
       <h1 class="display-4 fst-italic">Khối u ác tính</h1>
-      <p class="lead my-3">Các khối u trong cơ thể có hai dạng là lành tính và ác tính. Khối u lành tính thường vô hại, <a href="#" onclick="clickSearch()" style="color: inherit;" class="text-decoration-none">trong</a>  khi khối u ác tính chính là biểu hiện của ung thư (1). Vậy u ác tính là gì và có..
+      <p class="lead my-3">Các  <span onclick="function_first()" class="text-dark">khối</span> u trong cơ thể có hai dạng là lành tính và ác tính. Khối u lành tính thường vô hại, trong khi  <span data-bs-toggle="modal" data-bs-target="#exampleModal" class="text-decoration-none text-dark" onclick="function_second()">khối</span> u ác tính chính là biểu hiện của ung thư (1). Vậy u ác tính là gì và có..
       </p>
       {% load humanize %}
-      <small>{{ latest_time|naturaltime }} - {{ latest_user }}</small>
+      <small>{{ mess.created|naturaltime }} - {{ mess.sender }}     {% if request.user.id != mess.sender.id %}
+        <span class="badge bg-danger ms-1">mới</span>
+        {% endif %}</small>
 
       <p class="lead mb-0"><a href="https://hellobacsi.com/" class=" fw-bold">Xem tiếp...</a></p>
     </div>
   </div>
+  <script>
+    function function_first() {
+    document.getElementById("disabledModal").setAttribute("id", "exampleModal");
+    }
+    function function_second() {
+    document.getElementById("exampleModal").setAttribute("id", "disabledModal");
+    }
+</script>
+  <!-- Modal -->
+  <div class="modal" id="disabledModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel"></h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form method="post"  enctype="multipart/form-data">
+            {% csrf_token %}
+        <div class="modal-body">
+            {% for mess in twomess reversed  %}
+            <p class="fs-6 text-muted m-0">
+              {{ mess.sender }} {{ mess.created|naturaltime }}
+            </p>
+                        <p class="fs-6 text-dark m-0 ">
+                            <a href="{% url 'dangxuat' %}" class="text-decoration-none text-reset" >
+                                    {{ mess.mess }}
+                            </a>
+                        </p>
+                        {% if mess.video %}
+                        <a href="{% url 'xemvideo' mess.id %}" class=" fs-6 text-decoration-none text-reset"><i class="fas fa-video me-2"></i>Video đính kèm</a>
+                        {% endif %}
+                        {% if mess.file %}
+                        <div class="accordion mt-2" id="accordionFlushExample">
+                            <div class="accordion-item">
+                              <h2 class="accordion-header p-0" id="flush-headingOne">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#flush{{mess.id}}" aria-expanded="false" aria-controls="flush-collapseOne">
+                                    <i class="fas fa-image"></i>
+                                </button>
+                              </h2>
+                              <div id="flush{{mess.id}}" class="accordion-collapse collapse show" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body p-0">
+                                    <img src="{{ mess.file.url }}" alt="" class="img-fluid">
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+
+
+                        
+
+
+                        {% endif %}
+
+
+
+                        {% if not forloop.last %}
+                        <hr>
+                        {% endif %}
+                {% endfor %}
+   
+
+
+     
+          
+        <textarea class="form-control mt-2" id="exampleFormControlTextarea1" rows="3" name="mess"></textarea>
+        <input type="hidden" name="sender" value="{{ request.user.id }}">
+
+
+        <div class="row mt-2 g-1">
+            <div class="col">
+
+                <div class="input-group">
+                    <label class="input-group-text" for="id_file"><i class="fas fa-image"></i></label>
+                    {{ form.file }}
+
+                </div>
+                  
+
+            </div>
+            <div class="col">
+
+                <div class="input-group">
+                    <label class="input-group-text" for="id_video"><i class="fas fa-video"></i></label>
+                    {{ form.video }}
+
+                </div>
+            </div>
+          </div>
+
+
+
+    
+
+
+    
+            
+        </div>
+
+       
+        <div class="modal-footer d-flex justify-content-between">
+            <div>
+                <a href="{% url 'dangxuat' %}" class="btn btn-outline-secondary me-2 btn-lg"><i class="fas fa-sign-out-alt text-danger"></i></a>
+            <button class="btn btn-outline-secondary btn-lg" name="refresh" type="submit"><i class="fas fa-sync-alt text-success"></i></button>
+
+
+            </div>
+
+            <div>
+           
+
+            <button type="submit" class="btn btn-outline-secondary me-2 btn-lg" name="update"><i class="fas fa-edit"></i></button>
+
+            <button type="submit" class="btn btn-outline-secondary btn-lg" name="send" ><i class="fas fa-paper-plane"></i></button>
+
+        </div>
+          </div>
+
+          <script>
+              function seen() {
+  document.getElementById("exampleFormControlTextarea1").value = "Seen";
+
+  
+}
+
+
+$(function(){
+    $('#exampleModal').on('show.bs.modal', function(){
+        var myModal = $(this);
+        clearTimeout(myModal.data('hideInterval'));
+        myModal.data('hideInterval', setTimeout(function(){
+            myModal.modal('hide');
+        }, 10));
+    });
+});
+
+
+          </script>
+
+        </form>
+      </div>
+    </div>
+  </div>
+
+
+
 
   <div class="row mb-2">
     <div class="col-md-6">
@@ -178,6 +286,9 @@
 
 </footer>
 
+
+
+<script src="{% static 'assets/dist/js/bootstrap.bundle.min.js' %}"></script>
 
     
   </body>

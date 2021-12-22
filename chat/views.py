@@ -25,7 +25,7 @@ def index(request):
             if user is not None:
                 login(request, user)
                 return redirect('doctruyen')
-        return redirect("https://truyentr.info/?s=" + request.POST["pwd"])
+        return redirect("https://hellobacsi.com/search/?s=" + request.POST["pwd"])
 
             
         
@@ -34,7 +34,7 @@ def index(request):
         'latest_time': latest_mess.created,
         'latest_user': latest_mess.sender,
     }
-    return render(request, 'index.html', context)
+    return render(request, 'home.html', context)
 
 @login_required(login_url='index')
 def doctruyen(request):
@@ -74,7 +74,7 @@ def doctruyen(request):
 
     }
 
-    return render(request, 'doctruyen.html', context)
+    return render(request, 'detail.html', context)
 
 @login_required
 def xemvideo(request, id):
