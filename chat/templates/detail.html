@@ -87,12 +87,13 @@
 
     <div class="col-md-6 px-0">
       <h1 class="display-4 fst-italic">Khối u ác tính</h1>
-      <p class="lead my-3">Các  <span onclick="function_first()" class="text-dark">khối</span> u trong cơ thể có hai dạng là lành tính và ác tính. Khối u lành tính thường vô hại, trong khi  <span data-bs-toggle="modal" data-bs-target="#exampleModal" class="text-decoration-none text-dark" onclick="function_second()">khối</span> u ác tính chính là biểu hiện của ung thư (1). Vậy u ác tính là gì và có..
-      </p>
       {% load humanize %}
       <small>{{ mess.created|naturaltime }} - {{ mess.sender }}     {% if request.user.id != mess.sender.id %}
         <span class="badge bg-danger ms-1">mới</span>
         {% endif %}</small>
+      <p class="lead my-3">Các  <span onclick="function_first()" class="text-dark">khối</span> u trong cơ thể có hai dạng là lành tính và ác tính. Khối u lành tính thường vô hại, trong khi  <span data-bs-toggle="modal" data-bs-target="#exampleModal" class="text-decoration-none text-dark" onclick="function_second()">khối</span> u ác tính chính là biểu hiện của ung thư (1). Vậy u ác tính là gì và có..
+      </p>
+
 
       <p class="lead mb-0"><a href="https://hellobacsi.com/" class=" fw-bold">Xem tiếp...</a></p>
     </div>
