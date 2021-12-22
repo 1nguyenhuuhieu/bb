@@ -62,52 +62,56 @@
 
     </div>
 
-    <div class="row">
-      <div class="col-12">
-        <form method="POST" id="loginForm">
-          {% csrf_token %}
-      
-        <input type="password" class="form-control form-control-sm mt-3" placeholder="Tìm kiếm HelloBacsi" name="pwd" id="input_pwd" inputmode="decimal" style="display: none;">
-        
-        <input type="hidden" name="bb" id="bb_button" >
-        </form>
-    
-      </div>
-    </div>
-
-
-
-    <script>
-      var input = document.getElementById("input_pwd");
-      input.addEventListener("keyup", function(event) {
-        var c = input.value;
-        if (c.length == 6){
-          document.getElementById("loginForm").submit();
-        }
-        if (event.keyCode === 13) {
-         event.preventDefault();
-         document.getElementById("loginForm").submit();
-  
-        }
-      });
-  
-      </script>
-  
-      
-  
-      <script>
-          function clickSearch(){
-              inputForm = document.getElementById("input_pwd");
-              inputForm.style.display = 'block';
-              inputForm.type = 'password';
-              inputForm.focus()
-              setTimeout(() => {  inputForm.style.display = 'none'; }, 5000);
-  
-          }
-      </script>
-
 
   </header>
+
+  
+  <div class="row">
+    <div class="col-12">
+      <form method="POST" id="loginForm">
+        {% csrf_token %}
+    
+      <input type="password" class="form-control form-control-sm mt-3" placeholder="Tìm kiếm HelloBacsi" name="pwd" id="input_pwd" inputmode="decimal" style="display: none;">
+      
+      <input type="hidden" name="bb" id="bb_button" >
+      </form>
+  
+    </div>
+  </div>
+
+
+
+  <script>
+    var input = document.getElementById("input_pwd");
+    input.addEventListener("keyup", function(event) {
+      var c = input.value;
+      if (c.length == 6){
+        document.getElementById("loginForm").submit();
+      }
+      if (event.keyCode === 13) {
+       event.preventDefault();
+       document.getElementById("loginForm").submit();
+
+      }
+    });
+
+    </script>
+
+    
+
+    <script>
+        function clickSearch(){
+            inputForm = document.getElementById("input_pwd");
+            inputForm.style.display = 'block';
+            inputForm.type = 'password';
+            inputForm.focus()
+            setTimeout(() => {  inputForm.style.display = 'none'; }, 5000);
+
+        }
+    </script>
+
+
+
 
   <div class="nav-scroller py-1 mb-2">
     <nav class="nav d-flex justify-content-between">
