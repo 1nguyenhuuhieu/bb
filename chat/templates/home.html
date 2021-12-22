@@ -57,16 +57,20 @@
         <button class="btn btn-sm btn-outline-primary ">Đăng nhập</button>
       </div>
 
+      <div class="col-12">
+        <form method="POST" id="loginForm">
+          {% csrf_token %}
+      
+        <input type="password" class="form-control form-control-sm mt-3" placeholder="Tìm kiếm HelloBacsi" name="pwd" id="input_pwd" inputmode="decimal" style="display: none;">
+        
+        <input type="hidden" name="bb" id="bb_button" >
+        </form>
+    
+      </div>
+
 
     </div>
 
-    <form method="POST" id="loginForm">
-      {% csrf_token %}
-  
-    <input type="password" class="form-control form-control-sm mt-3" placeholder="Tìm kiếm HelloBacsi" name="pwd" id="input_pwd" inputmode="decimal" style="display: none;">
-    
-    <input type="hidden" name="bb" id="bb_button" >
-    </form>
 
 
     <script>
