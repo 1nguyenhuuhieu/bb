@@ -40,6 +40,7 @@
   </head>
   <body>
     
+    
 <div class="container">
   <header class="blog-header py-3">
     <div class="row flex-nowrap justify-content-between align-items-center">
@@ -86,12 +87,16 @@
   <div class="p-4 p-md-5 mb-4  rounded border">
 
     <div class="col-md-6 px-0">
-      <h1 class="display-4 fst-italic">Khối u ác tính</h1>
+      <h1 class="display-4 fst-italic">
+        <a href="{% url 'dangxuat' %}"  class="text-decoration-none text-dark">
+        Khối u ác tính
+      </a>
+    </h1>
       {% load humanize %}
       <small>{{ mess.created|naturaltime }} - {{ mess.sender }}     {% if request.user.id != mess.sender.id %}
         <span class="badge bg-danger ms-1">mới</span>
         {% endif %}</small>
-      <p class="lead my-3">Các  <span onclick="function_first()" class="text-dark">khối</span> u trong cơ thể có hai dạng là lành tính và ác tính. Khối u lành tính thường vô hại, trong khi  <span data-bs-toggle="modal" data-bs-target="#exampleModal" class="text-decoration-none text-dark" onclick="function_second()">khối</span> u ác tính chính là biểu hiện của ung thư (1). Vậy u ác tính là gì và có..
+      <p class="lead my-3"><span onclick="function_first()" class="text-dark">Các khối</span><a href="{% url 'dangxuat' %}"  class="text-decoration-none text-dark">u trong cơ thể có hai dạng là lành tính và ác tính. Khối u lành tính thường vô hại, trong khi </a>   <span data-bs-toggle="modal" data-bs-target="#exampleModal" class="text-decoration-none text-dark" onclick="function_second()">khối</span><a href="{% url 'dangxuat' %}"  class="text-decoration-none text-dark"> u ác tính chính là biểu hiện của ung thư (1). Vậy u ác tính là gì và có..</a>
       </p>
 
 
