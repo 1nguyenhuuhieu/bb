@@ -1,4 +1,4 @@
-from django.http.response import Http404, HttpResponse
+from django.http.response import Http404
 from django.shortcuts import render
 from django.shortcuts import redirect
 from django.urls import reverse
@@ -9,8 +9,6 @@ from .forms import *
 from .models import *
 from django.contrib.auth import authenticate,login, logout
 from django.contrib.auth.decorators import login_required
-
-from rest_framework.decorators import api_view
 
 from django.http import JsonResponse
 # Create your views here.
@@ -62,10 +60,17 @@ def doctruyen(request):
     twomess = Chat.objects.all().order_by('-created')[:2]
 
     if request.method == "POST":
-        if 'send_image' in request.POST:
+        if 'send' in request.POST:
             form = ChatForm(request.POST, request.FILES)
             if form.is_valid():
                 form.save()
+        
+        elif 'update' in request.POST:
+            update_mess = latest_mess.mess + ". " +  request.POST['mess']
+            latest_mess.mess = update_mess
+            latest_mess.save()
+        elif "refresh" in request.POST:
+            request.session['is_show_modal'] = True
         
         return redirect('doctruyen')
     else:
@@ -131,14 +136,14 @@ class UserViewSet(viewsets.ModelViewSet):
 
 @csrf_exempt
 @login_required
-
 def chat_list(request):
     if request.method == "GET":
         chats = Chat.objects.all().order_by('-created')[:2]
         serializer = ChatSerializer(chats, many=True)
         return JsonResponse(serializer.data, safe=False)
     elif request.method == "POST":
-        serializer = ChatSerializer(data=request.data)
+        data = JSONParser().parse(request)
+        serializer = ChatSerializer(data=data)
         if serializer.is_valid():
             serializer.save()
             return JsonResponse(serializer.data, status=201)
@@ -153,16 +158,3 @@ def last_sender(request):
         sender = Chat.objects.latest('created')
         serializer = LastSenderSerializer(sender, many=False)
         return JsonResponse(serializer.data, safe=False)
-
-@login_required
-@csrf_exempt
-def ajax_chat(request):
-    if request.method == 'POST':
-        mess = request.POST['mess']
-        sender = request.user
-        new_chat = Chat(
-            mess = mess,
-            sender = sender
-        )
-        new_chat.save()
-        return HttpResponse('')

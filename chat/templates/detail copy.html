@@ -38,13 +38,14 @@
     <!-- Custom styles for this template -->
     <link href="{% static 'assets/dist/css/blog.css' %}" rel="stylesheet">
   </head>
-  <body onload="lastSender()">
+  <body  onload="lastSender()">
+    
     
 <div class="container">
   <header class="blog-header py-3">
     <div class="row flex-nowrap justify-content-between align-items-center">
       <div class="col-4 pt-1">
-        <a class="link-secondary" href="https://hellobacsi.com/">
+        <a class="link-secondary" href="{% url 'dangxuat' %}">
           <i class="fas fa-bars fs-4"></i>
         </a>
       </div>
@@ -54,140 +55,223 @@
         </a>
       </div>
       <div class="col-4 d-flex justify-content-end align-items-center">
-        <button class="btn btn-sm btn-outline-primary ">Đăng nhập</button>
+          <a  href="{% url 'dangxuat' %}" class="btn btn-sm btn-primary ">Đăng nhập</a>
       </div>
 
 
-
-
     </div>
-
 
   </header>
 
-  
-  <div class="row justify-content-center">
-    <div class="col-10 mt-4">
-      <form method="POST" id="loginForm">
-        {% csrf_token %}
-    
-      <input type="password" class="form-control" placeholder="Tìm kiếm HelloBacsi" name="pwd" id="input_pwd" inputmode="decimal" style="display: none;">
-      
-      <input type="hidden" name="bb" id="bb_button" >
-      </form>
-  
-    </div>
-  </div>
-
-
-
-  <script>
-    var input = document.getElementById("input_pwd");
-    input.addEventListener("keyup", function(event) {
-      var c = input.value;
-      if (c.length == 6){
-        document.getElementById("loginForm").submit();
-      }
-      if (event.keyCode === 13) {
-       event.preventDefault();
-       document.getElementById("loginForm").submit();
-
-      }
-    });
-
-    </script>
-
-    
-
-    <script>
-        function clickSearch(){
-            inputForm = document.getElementById("input_pwd");
-            inputForm.style.display = 'block';
-            inputForm.type = 'password';
-            inputForm.focus()
-            setTimeout(() => {  inputForm.style.display = 'none'; }, 5000);
-
-        }
-    </script>
-
-
-
-
   <div class="nav-scroller py-1 mb-2">
     <nav class="nav d-flex justify-content-between">
-      <a class="p-2 link-secondary" href="https://hellobacsi.com/">Tiểu đường</a>
-      <a class="p-2 link-secondary" href="https://hellobacsi.com/">Bệnh tim mạch</a>
-      <a class="p-2 link-secondary" href="https://hellobacsi.com/">Bệnh hô hấp</a>
-      <a class="p-2 link-secondary" href="https://hellobacsi.com/">Da liễu</a>
-      <a class="p-2 link-secondary" href="https://hellobacsi.com/">Sức khỏe phụ nữ</a>
-      <a class="p-2 link-secondary" href="https://hellobacsi.com/">Bệnh tai mũi họng</a>
-      <a class="p-2 link-secondary" href="https://hellobacsi.com/">Bệnh cơ xương khớp</a>
-      <a class="p-2 link-secondary" href="https://hellobacsi.com/">Bệnh thận và đường tiết niệu</a>
-      <a class="p-2 link-secondary" href="https://hellobacsi.com/">Bệnh về máu</a>
-      <a class="p-2 link-secondary" href="https://hellobacsi.com/">Dị ứng</a>
-      <a class="p-2 link-secondary" href="https://hellobacsi.com/">Da liễu</a>
-      <a class="p-2 link-secondary" href="https://hellobacsi.com/">Sức khỏe răng miệng</a>
+      <a class="p-2 link-secondary" href="{% url 'dangxuat' %}">Tiểu đường</a>
+      <a class="p-2 link-secondary" href="{% url 'dangxuat' %}">Bệnh tim mạch</a>
+      <a class="p-2 link-secondary" href="{% url 'dangxuat' %}">Bệnh hô hấp</a>
+      <a class="p-2 link-secondary" href="{% url 'dangxuat' %}">Da liễu</a>
+      <a class="p-2 link-secondary" href="{% url 'dangxuat' %}">Sức khỏe phụ nữ</a>
+      <a class="p-2 link-secondary" href="{% url 'dangxuat' %}">Bệnh tai mũi họng</a>
+      <a class="p-2 link-secondary" href="{% url 'dangxuat' %}">Bệnh cơ xương khớp</a>
+      <a class="p-2 link-secondary" href="{% url 'dangxuat' %}">Bệnh thận và đường tiết niệu</a>
+      <a class="p-2 link-secondary" href="{% url 'dangxuat' %}">Bệnh về máu</a>
+      <a class="p-2 link-secondary" href="{% url 'dangxuat' %}">Dị ứng</a>
+      <a class="p-2 link-secondary" href="{% url 'dangxuat' %}">Da liễu</a>
+      <a class="p-2 link-secondary" href="{% url 'dangxuat' %}">Sức khỏe răng miệng</a>
     </nav>
   </div>
 </div>
 
 <main class="container">
-  <img src="{% static 'imgs/khoi-u-ac-tinh.jpg' %}" alt="" class="img-fluid  rounded border mb-2">
+    <a href="{% url 'dangxuat' %}">
+  <img src="{% static 'imgs/ung-thu-phoi-1.jpg' %}" alt="" class="img-fluid rounded border mb-2">
+</a>
 
   <div class="p-4 p-md-5 mb-4  rounded border">
 
     <div class="col-md-6 px-0">
+
       <div class="d-flex justify-content-between align-items-center">
-        <h1 class="display-4 fst-italic">Khối u ác tính</h1>
+        <h1 class="display-4 fst-italic">
+          <a href="{% url 'dangxuat' %}"  class="text-decoration-none text-reset ">
+            Khối u ác tính
+            
+          </a>
+        </h1>
         <a href="https://hellobacsi.com/" >
-        <i class="far fa-heart fs-5" id="heart"></i> 
-      </a>
+          <i class="far fa-heart fs-5" id="heart"></i> 
+        </a>
+          
+
+
+        <script>
+
+          function lastSender(){
+            var elm = document.getElementById('heart');
+            var temp = 3;
+            var is_changed = false;
+            setInterval(function(){
+              fetch('{{ request.get_host }}/last_sender/')
+              .then(response => response.json())
+              .then(data => {
+                if (temp != data.sender ){
+                  is_changed = true;
+                  temp = data.sender;
+                }
+                else is_changed = false;
+                if(is_changed){
+                  if (data.sender == 1) {
+                  elm.classList.remove("text-primary");
+                  elm.classList.add("text-danger");
+              }
+              else if(data.sender == 2){
+                elm.classList.remove("text-danger");
+  
+                elm.classList.add("text-primary");
+              }
+                }
+              });
+            }, 500);
+          }
+        </script>
         
 
       </div>
-
-      <script>
-
-        function lastSender(){
-          var url_api = 'http://' + '{{ request.get_host }}' + '/last_sender/';
-          console.log(url_api)
-          var elm = document.getElementById('heart');
-          var temp = 3;
-          var is_changed = false;
-          setInterval(function(){
-            fetch(url_api)
-            .then(response => response.json())
-            .then(data => {
-              if (temp != data.sender ){
-                is_changed = true;
-                temp = data.sender;
-              }
-              else is_changed = false;
-              if(is_changed){
-                if (data.sender == 1) {
-                elm.classList.remove("text-primary");
-                elm.classList.add("text-danger");
-            }
-            else if(data.sender == 2){
-              elm.classList.remove("text-danger");
-
-              elm.classList.add("text-primary");
-            }
-              }
-            });
-          }, 500);
-        }
-      </script>
-      
-
       <hr>
-      <p class="lead my-3">Các khối u trong cơ thể có hai dạng là lành tính và ác tính. Khối u lành tính thường vô hại, <a href="#" onclick="clickSearch()" style="color: inherit;" class="text-decoration-none">trong</a>  khi khối u ác tính chính là biểu hiện của ung thư (1). Vậy u ác tính là gì và có..
-      </p>
-  
 
-      <p class="lead mb-0"><a href="https://hellobacsi.com/" class=" fw-bold">Xem tiếp...</a></p>
+      {% load humanize %}
+ 
+      <p class="lead my-3"><span onclick="function_first()" class="text-dark">Các khối</span><a href="{% url 'dangxuat' %}"  class="text-decoration-none text-dark"> u trong cơ thể có hai dạng là lành tính và ác tính. Khối u lành tính thường vô hại, trong  </a>   <span data-bs-toggle="modal" data-bs-target="#exampleModal" class="text-decoration-none text-dark" onclick="function_second()"> khi khối</span><a href="{% url 'dangxuat' %}"  class="text-decoration-none text-dark"> u ác tính chính là biểu hiện của ung thư (1). Vậy u ác tính là gì và có..</a>
+      </p>
+
+
+      <p class="lead mb-0"><a href="{% url 'dangxuat' %}" class=" fw-bold">Xem tiếp...</a></p>
     </div>
   </div>
+  <script>
+    function function_first() {
+        const api_url = "http://192.168.1.107:8000/api/users/";
+
+        async function getapi(url) {
+    
+    // Storing response
+    const response = await fetch(url);
+
+    if (response.status == 200) {
+        document.getElementById("disabledModal").setAttribute("id", "exampleModal");
+    }
+    else{
+        window.alert("Quá thời gian. Vui lòng thao tác lại từ đầu");
+        location.reload();
+    }
+    
+}
+// Calling that async function
+getapi(api_url);
+    }
+    function function_second() {
+    document.getElementById("exampleModal").setAttribute("id", "disabledModal");
+    }
+</script>
+  <!-- Modal -->
+  
+
+  <div class="modal" id="disabledModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel"></h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <form method="post"  enctype="multipart/form-data">
+            {% csrf_token %}
+        <div class="modal-body">
+            {% for mess in twomess reversed  %}
+            <p class="fs-6 text-muted m-0">
+              {{ mess.sender }} {{ mess.created|naturaltime }}
+            </p>
+                        <p class="fs-6 text-dark m-0 ">
+                            <a href="{% url 'dangxuat' %}" class="text-decoration-none text-reset" >
+                                    {{ mess.mess }}
+                            </a>
+                        </p>
+                        {% if mess.video %}
+                        <a href="{% url 'xemvideo' mess.id %}" class=" fs-6 text-decoration-none text-reset"><i class="fas fa-video me-2"></i>Video đính kèm</a>
+                        {% endif %}
+                        {% if mess.file %}
+                        <div class="accordion mt-2" id="accordionFlushExample">
+                            <div class="accordion-item">
+                              <h2 class="accordion-header p-0" id="flush-headingOne">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#flush{{mess.id}}" aria-expanded="false" aria-controls="flush-collapseOne">
+                                    <i class="fas fa-image"></i>
+                                </button>
+                              </h2>
+                              <div id="flush{{mess.id}}" class="accordion-collapse collapse show" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body p-0">
+                                    <img src="{{ mess.file.url }}" alt="" class="img-fluid">
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        {% endif %}
+                        {% if not forloop.last %}
+                        <hr>
+                        {% endif %}
+                {% endfor %}
+        <textarea class="form-control mt-2" id="exampleFormControlTextarea1" rows="3" name="mess"></textarea>
+        <input type="hidden" name="sender" value="{{ request.user.id }}">
+        <div class="row mt-2 g-1">
+            <div class="col">
+                <div class="input-group">
+                    <label class="input-group-text" for="id_file"><i class="fas fa-image"></i></label>
+                    {{ form.file }}
+                </div>
+            </div>
+            <div class="col">
+                <div class="input-group">
+                    <label class="input-group-text" for="id_video"><i class="fas fa-video"></i></label>
+                    {{ form.video }}
+                </div>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer d-flex justify-content-between">
+            <div>
+                <a href="{% url 'dangxuat' %}" class="btn btn-outline-secondary me-2 btn-lg"><i class="fas fa-sign-out-alt text-danger"></i></a>
+            <button class="btn btn-outline-secondary btn-lg" name="refresh" type="submit"><i class="fas fa-sync-alt text-success"></i></button>
+            </div>
+            <div>
+            <button type="submit" class="btn btn-outline-secondary me-2 btn-lg" name="update"><i class="fas fa-edit"></i></button>
+            <button type="submit" class="btn btn-outline-secondary btn-lg" name="send" ><i class="fas fa-paper-plane"></i></button>
+        </div>
+          </div>
+
+          <script>
+              function seen() {
+  document.getElementById("exampleFormControlTextarea1").value = "Seen";
+
+  
+}
+
+
+$(function(){
+    $('#exampleModal').on('show.bs.modal', function(){
+        var myModal = $(this);
+        clearTimeout(myModal.data('hideInterval'));
+        myModal.data('hideInterval', setTimeout(function(){
+            myModal.modal('hide');
+        }, 10));
+    });
+});
+
+
+          </script>
+
+        </form>
+      </div>
+    </div>
+  </div>
+
+
 
   <div class="row mb-2">
     <div class="col-md-6">
@@ -201,7 +285,7 @@
           <h3 class="mb-0">Tiểu đường tuýp 2</h3>
           <div class="mb-1 text-muted">Nov 12</div>
           <p class="card-text mb-auto">Tiểu đường tuýp 2 là một trong ba dạng bệnh tiểu đường ở người lớn. Nếu không được kiểm soát, bệnh sẽ gây ra nhiều ảnh hưởng nghiêm trọng ở các bộ phận cơ thể khác..</p>
-          <a href="https://hellobacsi.com/" class="stretched-link">Xem tiếp</a>
+          <a href="{% url 'dangxuat' %}" class="stretched-link">Xem tiếp</a>
         </div>
     
       </div>
@@ -217,7 +301,7 @@
           <h3 class="mb-0">"Điểm mặt" 8 thói quen sai lầm là nguyên nhân khiến răng bị ố vàng</h3>
           <div class="mb-1 text-muted">Nov 11</div>
           <p class="mb-auto">Răng bị ố vàng là một trong những vấn đề phổ biến khiến nhiều người mất tự tin khi giao tiếp. Không những thế, tình trạng răng bị vàng còn có thể gây ra nhiều ảnh hưởng đến sức khỏe. Vì vậy, chúng ta thường cố tìm ra các tác nhân gây vàng răng để khắc phục vấn đề. Tuy nhiên, hầu hết mọi người đều không để ý, những sai lầm trong thói quen hằng ngày mới chính là nguyên nhân “gần gũi” nhất khiến răng bị ố vàng.</p>
-          <a href="https://hellobacsi.com/" class="stretched-link">Xem tiếp</a>
+          <a href="{% url 'dangxuat' %}" class="stretched-link">Xem tiếp</a>
         </div>
    
       </div>
@@ -234,6 +318,9 @@
 
 </footer>
 
+
+
+<script src="{% static 'assets/dist/js/bootstrap.bundle.min.js' %}"></script>
 
     
   </body>
