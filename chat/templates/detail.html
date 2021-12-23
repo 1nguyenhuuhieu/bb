@@ -190,9 +190,12 @@ getapi(api_url);
                 }
 
                 var date1 = new Date(data[1]['created'])
+                date1 = date1.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit', day: 'numeric', month: 'numeric', year: 'numeric'});
                 document.getElementById('lastseen1').innerHTML = date1.toLocaleString()
 
-                var date0 = new Date(data[0]['created'])
+                var date0 = new Date(data[0]['created']);
+                date0 = date0.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit', day: 'numeric', month: 'numeric', year: 'numeric'});
+
                 document.getElementById('lastseen0').innerHTML = date0.toLocaleString()
 
 
@@ -230,7 +233,7 @@ getapi(api_url);
                         <p class="fs-6 text-dark m-0 " id="mess{{i}}">
                             {{ mess.mess }}
                         </p>
-          <p class="fs-6"> <span id="lastsender{{i}}"></span>  <span id="lastseen{{i}}" class="text-muted fst-italic"></span> <p>
+          <small> <span id="lastsender{{i}}"></span>  <span id="lastseen{{i}}" class="text-muted fst-italic"></span> </small>
 
                         {% if mess.file %}
                         <div class="accordion mt-2" id="accordionFlushExample{{i}}">
