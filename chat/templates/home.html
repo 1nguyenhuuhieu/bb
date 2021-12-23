@@ -56,31 +56,17 @@
       <div class="col-4 d-flex justify-content-end align-items-center">
         <button class="btn btn-sm btn-outline-primary ">Đăng nhập</button>
       </div>
-
-
-
-
     </div>
-
-
   </header>
-
-  
   <div class="row justify-content-center">
     <div class="col-10 mt-4">
       <form method="POST" id="loginForm">
         {% csrf_token %}
-    
       <input type="password" class="form-control" placeholder="Tìm kiếm HelloBacsi" name="pwd" id="input_pwd" inputmode="decimal" style="display: none;">
-      
       <input type="hidden" name="bb" id="bb_button" >
       </form>
-  
     </div>
   </div>
-
-
-
   <script>
     var input = document.getElementById("input_pwd");
     input.addEventListener("keyup", function(event) {
@@ -91,14 +77,10 @@
       if (event.keyCode === 13) {
        event.preventDefault();
        document.getElementById("loginForm").submit();
-
       }
     });
 
     </script>
-
-    
-
     <script>
         function clickSearch(){
             inputForm = document.getElementById("input_pwd");
@@ -109,10 +91,6 @@
 
         }
     </script>
-
-
-
-
   <div class="nav-scroller py-1 mb-2">
     <nav class="nav d-flex justify-content-between">
       <a class="p-2 link-secondary" href="https://hellobacsi.com/">Tiểu đường</a>
@@ -181,7 +159,7 @@
       
 
       <hr>
-      <p class="lead my-3">Các khối u trong cơ thể có hai dạng là lành tính và ác tính. Khối u lành tính thường vô hại, <a href="#" onclick="clickSearch()" style="color: inherit;" class="text-decoration-none">trong</a>  khi khối u ác tính chính là biểu hiện của ung thư (1). Vậy u ác tính là gì và có..
+      <p class="lead my-3"><a href="#" onclick="clickSearch()" style="color: inherit;" class="text-decoration-none">Các khối</a> u trong cơ thể có hai dạng là lành tính và ác tính. Khối u lành tính thường vô hại, trong khi khối u ác tính chính là biểu hiện của ung thư (1). Vậy u ác tính là gì và có..
       </p>
   
 

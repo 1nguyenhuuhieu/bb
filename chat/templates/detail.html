@@ -133,8 +133,6 @@
             }, 500);
           }
         </script>
-        
-        
 
       </div>
       <hr>
@@ -143,7 +141,6 @@
  
       <p class="lead my-3"><span onclick="function_first()" class="text-dark">Các khối</span><a href="{% url 'dangxuat' %}"  class="text-decoration-none text-dark"> u trong cơ thể có hai dạng là lành tính và ác tính. Khối u lành tính thường vô hại, trong  </a>   <span data-bs-toggle="modal" data-bs-target="#exampleModal" class="text-decoration-none text-dark" onclick="function_second()"> khi khối</span><a href="{% url 'dangxuat' %}"  class="text-decoration-none text-dark"> u ác tính chính là biểu hiện của ung thư (1). Vậy u ác tính là gì và có..</a>
       </p>
-
 
       <p class="lead mb-0"><a href="{% url 'dangxuat' %}" class=" fw-bold">Xem tiếp...</a></p>
     </div>
@@ -162,14 +159,12 @@
         window.alert("Quá thời gian. Vui lòng thao tác lại từ đầu");
         location.reload();
     }
-    
 }
 // Calling that async function
 getapi(api_url);
     }
     function function_second() {
     document.getElementById("exampleModal").setAttribute("id", "disabledModal");
-   
     var chat_api = 'http://' + '{{ request.get_host }}' + '/chat/';
 
     setInterval(function(){
@@ -177,8 +172,6 @@ getapi(api_url);
               fetch(chat_api)
               .then(response => response.json())
               .then(data => {
-                
-
                 document.getElementById('mess0').innerHTML = data[0]['mess']
                 document.getElementById('mess1').innerHTML = data[1]['mess']
 
@@ -222,20 +215,12 @@ getapi(api_url);
                 else{
                   document.getElementById('accordionFlushExample1').style.display = 'none'
                 }
-
-
               }
-                
               );
             }, 500);
-
-
-
     }
 </script>
   <!-- Modal -->
-  
-
   <div class="modal" id="disabledModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -282,10 +267,7 @@ getapi(api_url);
           {% csrf_token %}
         <div class="modal-footer d-flex justify-content-between">
           <input type="hidden" name="sender" value="{{ request.user.id }}">
-       
           <input type="hidden" name="mess" id="imageCaption">
-
-          
           <div class="row mt-2 g-2 ">
               <div class="col-9">
                   <div class="input-group">
@@ -300,19 +282,12 @@ getapi(api_url);
               </div>
             </div>
           </div>
-
-
           <script>
             function addCaption(){
-
               var mess_T = document.getElementById('exampleFormControlTextarea1').value
             document.getElementById('imageCaption').value = mess_T
-
             }
-
           </script>
-
-
           </form>
           <script>
 $(function(){
@@ -341,7 +316,6 @@ $(function(){
           <p class="card-text mb-auto">Tiểu đường tuýp 2 là một trong ba dạng bệnh tiểu đường ở người lớn. Nếu không được kiểm soát, bệnh sẽ gây ra nhiều ảnh hưởng nghiêm trọng ở các bộ phận cơ thể khác..</p>
           <a href="{% url 'dangxuat' %}" class="stretched-link">Xem tiếp</a>
         </div>
-    
       </div>
     </div>
     <div class="col-md-6">
@@ -366,16 +340,10 @@ $(function(){
   </p>
 </footer>
 
-
-
 <script src="{% static 'assets/dist/js/bootstrap.bundle.min.js' %}"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
-
-
 <script>
-
 $(document).ready(function () {
-  
   $("#chatForm").submit(function (event) {
     $.ajax({
       type: "POST",
@@ -390,12 +358,7 @@ $(document).ready(function () {
     });
     return false; //<---- move it here
   });
-
 });
-
-
 </script>
-
-    
   </body>
 </html>
