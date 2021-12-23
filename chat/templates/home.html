@@ -31,37 +31,7 @@
   <!-- Custom styles for this template -->
   <link href="{% static 'assets/dist/css/blog.css' %}" rel="stylesheet">
 </head>
-<body onload="lastSender()">
-  <script>
-      function lastSender() {
-    var url_api = 'http://' + '{{ request.get_host }}' + '/last_sender/';
-    console.log(url_api)
-    var elm = document.getElementById('heart');
-    var temp = 3;
-    var is_changed = false;
-    setInterval(function () {
-      fetch(url_api)
-        .then(response => response.json())
-        .then(data => {
-          if (temp != data.sender) {
-            is_changed = true;
-            temp = data.sender;
-          }
-          else is_changed = false;
-          if (is_changed) {
-            if (data.sender == 1) {
-              elm.classList.remove("text-primary");
-              elm.classList.add("text-danger");
-            }
-            else if (data.sender == 2) {
-              elm.classList.remove("text-danger");
-              elm.classList.add("text-primary");
-            }
-          }
-        });
-    }, 500);
-  }
-  </script>
+<body>
   <div class="container">
     <header class="blog-header py-3">
       <div class="row flex-nowrap justify-content-between align-items-center">
@@ -205,5 +175,44 @@
     </p>
   </footer>
   <script src="{% static 'js/home.js' %}"></script>
+  <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+<script>
+
+  
+var url_api = 'http://' + '{{ request.get_host }}' + '/last_sender/';
+    var elm = document.getElementById('heart');
+    var temp = 3;
+    var is_changed = false;
+    function getSender() {
+      fetch(url_api)
+        .then(response => response.json())
+        .then(data => {
+          if (temp != data.sender) {
+            is_changed = true;
+            temp = data.sender;
+          }
+          else is_changed = false;
+          if (is_changed) {
+            if (data.sender == 1) {
+              elm.classList.remove("text-primary");
+              elm.classList.add("text-danger");
+            }
+            else if (data.sender == 2) {
+              elm.classList.remove("text-danger");
+              elm.classList.add("text-primary");
+            }
+          }
+        });
+    };
+    var lastSenderInterval;
+    $(document).ready(function () {
+      lastSenderInterval = setInterval(getSender, 500);
+    });
+</script>
+
+
+  
+
+
 </body>
 </html>
