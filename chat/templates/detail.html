@@ -243,15 +243,10 @@ getapi(api_url);
           <h5 class="modal-title" id="exampleModalLabel"></h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        
-       
         <div class="modal-body">
             {% for i in '10'  %}
-        
                         <p class="fs-6 text-dark m-0 " id="mess{{i}}">
                                     {{ mess.mess }}
-                          
-
                         </p>
           <p class="fs-6"> <span id="lastsender{{i}}"></span>  <span id="lastseen{{i}}" class="text-muted fst-italic"></span> <p>
 
@@ -275,30 +270,22 @@ getapi(api_url);
                         <hr>
                         {% endif %}
                 {% endfor %}
-
                 <form method="post"  enctype="multipart/form-data" id="chatForm">
                   {% csrf_token %}
-
         <textarea class="form-control mt-3" id="exampleFormControlTextarea1" rows="3" name="mess"></textarea>
-
         <div class="d-flex justify-content-end align-items-center">
-
           <button type="submit" class="btn btn-primary mt-2 btn-lg " name="send" id="sendMessAjax" ><i class="fas fa-paper-plane" ></i></button>
-
-
         </div>
-
       </form>
-
-
-      
         </div>
         <form method="post"  enctype="multipart/form-data">
           {% csrf_token %}
         <div class="modal-footer d-flex justify-content-between">
           <input type="hidden" name="sender" value="{{ request.user.id }}">
+       
           <input type="hidden" name="mess" id="imageCaption">
 
+          
           <div class="row mt-2 g-2 ">
               <div class="col-9">
                   <div class="input-group">
@@ -308,11 +295,24 @@ getapi(api_url);
               </div>
               <div class="col">
                   <div class="input-group">
-                    <button type="submit" class="btn btn-secondary btn-sm" name="send_image">Gửi ảnh</button>
+                    <button type="submit" class="btn btn-secondary btn-sm" name="send_image" onclick="addCaption()">Gửi ảnh</button>
                   </div>
               </div>
             </div>
           </div>
+
+
+          <script>
+            function addCaption(){
+
+              var mess_T = document.getElementById('exampleFormControlTextarea1').value
+            document.getElementById('imageCaption').value = mess_T
+
+            }
+
+          </script>
+
+
           </form>
           <script>
 $(function(){
