@@ -244,8 +244,7 @@ getapi(api_url);
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
         
-        <form method="post"  enctype="multipart/form-data" id="chatForm">
-            {% csrf_token %}
+       
         <div class="modal-body">
             {% for i in '10'  %}
         
@@ -277,6 +276,9 @@ getapi(api_url);
                         {% endif %}
                 {% endfor %}
 
+                <form method="post"  enctype="multipart/form-data" id="chatForm">
+                  {% csrf_token %}
+
         <textarea class="form-control mt-3" id="exampleFormControlTextarea1" rows="3" name="mess"></textarea>
 
         <div class="d-flex justify-content-end align-items-center">
@@ -288,12 +290,15 @@ getapi(api_url);
 
       </form>
 
+
+      
         </div>
         <form method="post"  enctype="multipart/form-data">
           {% csrf_token %}
         <div class="modal-footer d-flex justify-content-between">
-     
           <input type="hidden" name="sender" value="{{ request.user.id }}">
+          <input type="hidden" name="mess" id="imageCaption">
+
           <div class="row mt-2 g-2 ">
               <div class="col-9">
                   <div class="input-group">
@@ -304,24 +309,14 @@ getapi(api_url);
               <div class="col">
                   <div class="input-group">
                     <button type="submit" class="btn btn-secondary btn-sm" name="send_image">Gửi ảnh</button>
-
                   </div>
               </div>
             </div>
-
-
-              
-
-
-                
-        
           </div>
           </form>
-
           <script>
 $(function(){
     $('#exampleModal').on('show.bs.modal', function(){
-
         var myModal = $(this);
         clearTimeout(myModal.data('hideInterval'));
         myModal.data('hideInterval', setTimeout(function(){
@@ -329,22 +324,15 @@ $(function(){
         }, 10));
     });
 });
-
-
           </script>
-      
       </div>
     </div>
   </div>
-
-
-
   <div class="row mb-2">
     <div class="col-md-6">
       <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
         <div class="col-auto">
             <img src="{% static 'imgs/tieuduong.jpg' %}" alt="" class="img-fluid">
-
         </div>
         <div class="col p-4 d-flex flex-column position-static">
           <strong class="d-inline-block mb-2 text-primary">Bệnh tim mạch</strong>
@@ -360,7 +348,6 @@ $(function(){
       <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
         <div class="col-auto">
             <img src="{% static 'imgs/rangvang.jpg' %}" alt="" class="img-fluid">
-
         </div>
         <div class="col p-4 d-flex flex-column position-static">
           <strong class="d-inline-block mb-2 text-success">Vấn đề về răng</strong>
@@ -369,19 +356,14 @@ $(function(){
           <p class="mb-auto">Răng bị ố vàng là một trong những vấn đề phổ biến khiến nhiều người mất tự tin khi giao tiếp. Không những thế, tình trạng răng bị vàng còn có thể gây ra nhiều ảnh hưởng đến sức khỏe. Vì vậy, chúng ta thường cố tìm ra các tác nhân gây vàng răng để khắc phục vấn đề. Tuy nhiên, hầu hết mọi người đều không để ý, những sai lầm trong thói quen hằng ngày mới chính là nguyên nhân “gần gũi” nhất khiến răng bị ố vàng.</p>
           <a href="{% url 'dangxuat' %}" class="stretched-link">Xem tiếp</a>
         </div>
-   
       </div>
     </div>
   </div>
-
-
 </main>
-
 <footer class="blog-footer p-5">
   <p>
     Bản quyền các bài viết thuộc tập đoàn Hello Health Group. Các bài viết của Hello Bacsi chỉ có tính chất tham khảo, không thay thế cho việc chẩn đoán hoặc điều trị y khoa
   </p>
-
 </footer>
 
 
