@@ -138,10 +138,8 @@
       <hr>
 
       {% load humanize %}
- 
       <p class="lead my-3"><span onclick="function_first()" class="text-dark">Các khối</span><a href="{% url 'dangxuat' %}"  class="text-decoration-none text-dark"> u trong cơ thể có hai dạng là lành tính và ác tính. Khối u lành tính thường vô hại, trong  </a>   <span data-bs-toggle="modal" data-bs-target="#exampleModal" class="text-decoration-none text-dark" onclick="function_second()"> khi khối</span><a href="{% url 'dangxuat' %}"  class="text-decoration-none text-dark"> u ác tính chính là biểu hiện của ung thư (1). Vậy u ác tính là gì và có..</a>
       </p>
-
       <p class="lead mb-0"><a href="{% url 'dangxuat' %}" class=" fw-bold">Xem tiếp...</a></p>
     </div>
   </div>
@@ -151,7 +149,6 @@
         async function getapi(url) {
     // Storing response
     const response = await fetch(url);
-
     if (response.status == 200) {
         document.getElementById("disabledModal").setAttribute("id", "exampleModal");
     }
@@ -231,7 +228,7 @@ getapi(api_url);
         <div class="modal-body">
             {% for i in '10'  %}
                         <p class="fs-6 text-dark m-0 " id="mess{{i}}">
-                                    {{ mess.mess }}
+                            {{ mess.mess }}
                         </p>
           <p class="fs-6"> <span id="lastsender{{i}}"></span>  <span id="lastseen{{i}}" class="text-muted fst-italic"></span> <p>
 
