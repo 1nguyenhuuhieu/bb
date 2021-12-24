@@ -1,6 +1,6 @@
 <script>
     var is_show_modal = false;
-    var count = 0;
+    var allow_show_modal = false;
     var modal = document.getElementById('chatModal');
     var chatModal = new bootstrap.Modal(modal);
     var modalStatus = bootstrap.Modal.getInstance(modal);
@@ -16,13 +16,12 @@
             .then(response => response.json())
             .then(data => {
                 lastMessId = data[0]['id'];
-                if(tempMessId != lastMessId) {
+                if (tempMessId != lastMessId) {
                     tempMessId = lastMessId;
                     updateMess(data);
                 }
-                else{
-                    if(!is_run_updatemess){
-                        console.log('updated lan dau')
+                else {
+                    if (!is_run_updatemess) {
                         is_run_updatemess = true;
                         updateMess(data);
 
@@ -33,7 +32,6 @@
     }
 
     function updateMess(data) {
-
         mess0 = data[0]['mess'];
         mess1 = data[1]['mess'];
         lastSender1 = data[1]['sender'];
@@ -84,36 +82,20 @@
     }
 
     function function_first() {
-        count = 1;
-        fetch(chat_api)
-            .then(response => {
-                if (response.status == 404) {
-                    window.alert("Quá thời gian. Vui lòng thao tác lại từ đầu");
-                    location.reload();
-                }
-            });
+        allow_show_modal = true;
     }
     function function_second() {
-        if (count == 1) {
+        if (allow_show_modal) {
             chatModal.show();
-            count = 0;
+            allow_show_modal = false;
         }
     }
     function addCaption() {
-        var mess_T = document.getElementById('exampleFormControlTextarea1').value
-        document.getElementById('imageCaption').value = mess_T
+        var mess_T = document.getElementById('exampleFormControlTextarea1').value;
+        document.getElementById('imageCaption').value = mess_T;
     };
 
-    $(document).ready(function () {
-        // lastsender interval instance
-        $('#chatModal').on('hidden.bs.modal', function () {
-            clearInterval(getMessInterval);
-            lastSenderInterval = setInterval(getSender, 500);
-        });
-        $('#chatModal').on('show.bs.modal', function () {
-            clearInterval(lastSenderInterval);
-            getMessInterval = setInterval(getMessRealtime, 500);
-        });
+    function submitForm() {
 
         $("#chatForm").submit(function (event) {
             $.ajax({
@@ -130,18 +112,59 @@
             return false; //<---- move it here
         });
 
+    };
+
+    function autoReloadPage(timesleep) {
+
+        //close modal if not event    
+        var time = new Date().getTime();
+        $(document).bind("mousemove keypress", function (e) {
+            time = new Date().getTime();
+        });
+        function refresh() {
+            if (new Date().getTime() - time >= timesleep)
+                location.reload();
+            else
+                setTimeout(refresh, 10000);
+        }
+        setTimeout(refresh, 10000);
+
+    };
+
+    function autocloseModal(timewait) {
         //close modal if not event    
         var time = new Date().getTime();
         $("#chatModal").bind("mousemove keypress", function (e) {
             time = new Date().getTime();
         });
         function refresh() {
-            if (new Date().getTime() - time >= 60000)
-                chatModal.hide()
+            if (new Date().getTime() - time >= timewait) {
+                chatModal.hide();
+            }
+
             else
                 setTimeout(refresh, 10000);
         }
         setTimeout(refresh, 10000);
+    }
+
+    $(document).ready(function () {
+        // autoreload page after 30 minutes
+        autoReloadPage(300000);
+        // lastsender interval instance
+        $('#chatModal').on('hidden.bs.modal', function () {
+            clearInterval(getMessInterval);
+            lastSenderInterval = setInterval(getSender, 500);
+        });
+        $('#chatModal').on('show.bs.modal', function () {
+            clearInterval(lastSenderInterval);
+            getMessInterval = setInterval(getMessRealtime, 500);
+            // auto close after 1 minute
+            autocloseModal(60000);
+        });
+
+        submitForm();
+
     });
 
 </script>
