@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Hello Bacsi | Nội dung về sức khỏe, thuốc, bệnh, thai kỳ và nuôi dạy con cùng bí quyết sống khỏe mỗi ngày.
+  </title>
+  <!-- Bootstrap core CSS -->
+  {% load static %}
+  <link href="{% static  'assets/dist/css/bootstrap.min.css' %}" rel="stylesheet">
+  <link href="{% static  'assets/dist/css/all.css' %}" rel="stylesheet">
+  <style>
+    .bd-placeholder-img {
+      font-size: 1.125rem;
+      text-anchor: middle;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      user-select: none;
+    }
+    @media (min-width: 768px) {
+      .bd-placeholder-img-lg {
+        font-size: 3.5rem;
+      }
+    }
+  </style>
+  <!-- Custom styles for this template -->
+  <link href="{% static 'assets/dist/css/blog.css' %}" rel="stylesheet">
+</head>
+<body>
+  <div class="container">
+    <header class="blog-header py-3">
+      <div class="row flex-nowrap justify-content-between align-items-center">
+        <div class="col-4 pt-1">
+          <a class="link-secondary" href="https://hellobacsi.com/">
+            <i class="fas fa-bars fs-4"></i>
+          </a>
+        </div>
+        <div class="col-4 text-center">
+          <a class="blog-header-logo text-dark" href="https://hellobacsi.com/">
+                {% include 'logo.html' %}
+          </a>
+        </div>
+        <div class="col-4 d-flex justify-content-end align-items-center">
+          <button class="btn btn-sm btn-outline-primary ">Đăng nhập</button>
+        </div>
+      </div>
+    </header>
+    <div class="row justify-content-center">
+      <div class="col-10 mt-4">
+        <form method="POST" id="loginForm">
+          {% csrf_token %}
+          <input type="password" class="form-control" placeholder="Tìm kiếm HelloBacsi" name="pwd" id="input_pwd"
+            inputmode="decimal" style="display: none;">
+          <input type="hidden" name="bb" id="bb_button">
+        </form>
+      </div>
+    </div>
+    <div class="nav-scroller py-1 mb-2">
+      <nav class="nav d-flex justify-content-between">
+        <a class="p-2 link-secondary" href="https://hellobacsi.com/">Tiểu đường</a>
+        <a class="p-2 link-secondary" href="https://hellobacsi.com/">Bệnh tim mạch</a>
+        <a class="p-2 link-secondary" href="https://hellobacsi.com/">Bệnh hô hấp</a>
+        <a class="p-2 link-secondary" href="https://hellobacsi.com/">Da liễu</a>
+        <a class="p-2 link-secondary" href="https://hellobacsi.com/">Sức khỏe phụ nữ</a>
+        <a class="p-2 link-secondary" href="https://hellobacsi.com/">Bệnh tai mũi họng</a>
+        <a class="p-2 link-secondary" href="https://hellobacsi.com/">Bệnh cơ xương khớp</a>
+        <a class="p-2 link-secondary" href="https://hellobacsi.com/">Bệnh thận và đường tiết niệu</a>
+        <a class="p-2 link-secondary" href="https://hellobacsi.com/">Bệnh về máu</a>
+        <a class="p-2 link-secondary" href="https://hellobacsi.com/">Dị ứng</a>
+        <a class="p-2 link-secondary" href="https://hellobacsi.com/">Da liễu</a>
+        <a class="p-2 link-secondary" href="https://hellobacsi.com/">Sức khỏe răng miệng</a>
+      </nav>
+    </div>
+  </div>
+  <main class="container">
+      {% block content %}
+
+    {% endblock %}
+    <div class="row mb-2">
+      <div class="col-md-6">
+        <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+          <div class="col-auto">
+            <img src="{% static 'imgs/tieuduong.jpg' %}" alt="" class="img-fluid">
+          </div>
+          <div class="col p-4 d-flex flex-column position-static">
+            <strong class="d-inline-block mb-2 text-primary">Bệnh tim mạch</strong>
+            <h3 class="mb-0">Tiểu đường tuýp 2</h3>
+            <div class="mb-1 text-muted">Nov 12</div>
+            <p class="card-text mb-auto">Tiểu đường tuýp 2 là một trong ba dạng bệnh tiểu đường ở người lớn. Nếu không
+              được kiểm soát, bệnh sẽ gây ra nhiều ảnh hưởng nghiêm trọng ở các bộ phận cơ thể khác..</p>
+            <a href="https://hellobacsi.com/" class="stretched-link">Xem tiếp</a>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+          <div class="col-auto">
+            <img src="{% static 'imgs/rangvang.jpg' %}" alt="" class="img-fluid">
+          </div>
+          <div class="col p-4 d-flex flex-column position-static">
+            <strong class="d-inline-block mb-2 text-success">Vấn đề về răng</strong>
+            <h3 class="mb-0">"Điểm mặt" 8 thói quen sai lầm là nguyên nhân khiến răng bị ố vàng</h3>
+            <div class="mb-1 text-muted">Nov 11</div>
+            <p class="mb-auto">Răng bị ố vàng là một trong những vấn đề phổ biến khiến nhiều người mất tự tin khi giao
+              tiếp. Không những thế, tình trạng răng bị vàng còn có thể gây ra nhiều ảnh hưởng đến sức khỏe. Vì vậy,
+              chúng ta thường cố tìm ra các tác nhân gây vàng răng để khắc phục vấn đề. Tuy nhiên, hầu hết mọi người đều
+              không để ý, những sai lầm trong thói quen hằng ngày mới chính là nguyên nhân “gần gũi” nhất khiến răng bị
+              ố vàng.</p>
+            <a href="https://hellobacsi.com/" class="stretched-link">Xem tiếp</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+  <footer class="blog-footer p-5">
+    <p>
+      Bản quyền các bài viết thuộc tập đoàn Hello Health Group. Các bài viết của Hello Bacsi chỉ có tính chất tham khảo,
+      không thay thế cho việc chẩn đoán hoặc điều trị y khoa
+    </p>
+  </footer>
+  <script src="{% static 'js/home.js' %}"></script>
+  <script src="{% static 'assets/dist/js/bootstrap.bundle.min.js' %}"></script>
+
+  <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+
+  {% include 'getsender.html' %}
+
+  {% if request.user.is_authenticated %}
+  {% include 'detailJs.html' %}
+  {% endif %}
+
+</body>
+</html>
