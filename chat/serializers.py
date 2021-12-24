@@ -10,7 +10,7 @@ class UserSerializer(serializers.HyperlinkedModelSerializer):
 class ChatSerializer(serializers.ModelSerializer):
     class Meta:
         model = Chat
-        fields = ['sender', 'created', 'mess', 'file', 'video']
+        fields = ['sender', 'created', 'mess', 'file', 'video', 'id']
 
 class LastSenderSerializer(serializers.ModelSerializer):
     class Meta:

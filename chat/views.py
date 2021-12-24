@@ -55,7 +55,6 @@ def doctruyen(request):
     latest_mess = Chat.objects.latest('created')
     latest_user_id = latest_mess.sender.id
     request.session['is_access_photos'] = True
-    latest_mess = Chat.objects.latest('created')
     twomess = Chat.objects.all().order_by('-created')[:2]
 
     if request.method == "POST":
