@@ -20,7 +20,7 @@
         <form method="post" enctype="multipart/form-data" id="chatForm">
           {% csrf_token %}
           <textarea class="form-control mt-3" id="exampleFormControlTextarea1" rows="3" name="mess"></textarea>
-          <div class="d-flex justify-content-end align-items-center mt-3">
+          <div class="d-flex justify-content-end align-items-center mt-3 mb-5">
             <div class="input-group me-2">
               <label class="input-group-text" for="id_file"><i class="fas fa-image"></i></label>
               {{ form.file }}
