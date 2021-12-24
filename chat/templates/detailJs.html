@@ -23,7 +23,6 @@
     };
 
     function getMessRealtime() {
-        console.log('get Mess');
         fetch(chat_api)
             .then(response => response.json())
             .then(data => {
