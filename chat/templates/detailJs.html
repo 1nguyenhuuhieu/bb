@@ -7,9 +7,15 @@
     var chat_api = 'http://' + '{{ request.get_host }}' + '/chat/';
     var mess0, mess1, lastSender1, lastSender0, date1, date0, lastMessId;
     var getMessInterval;
-    var tempMessId = '{{ mess.id }}'
+    var tempMessId = '{{ mess.id }}';
 
     var is_run_updatemess = false;
+
+    function initMess(){
+        fetch(chat_api)
+            .then(response => response.json())
+            .then(data => updateMess(data));
+    };
 
     function getMessRealtime() {
         fetch(chat_api)
@@ -20,16 +26,9 @@
                     tempMessId = lastMessId;
                     updateMess(data);
                 }
-                else {
-                    if (!is_run_updatemess) {
-                        is_run_updatemess = true;
-                        updateMess(data);
-
-                    }
-                }
             }
             );
-    }
+    };
 
     function updateMess(data) {
         mess0 = data[0]['mess'];
@@ -149,6 +148,8 @@
     }
 
     $(document).ready(function () {
+
+        initMess();
         // autoreload page after 30 minutes
         autoReloadPage(300000);
         // lastsender interval instance
