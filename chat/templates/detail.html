@@ -127,11 +127,12 @@
         </div>
         <hr>
         {% load humanize %}
-        <p class="lead my-3"><span onclick="function_first()" class="text-dark">Các khối</span><a
-            href="{% url 'dangxuat' %}" class="text-decoration-none text-dark"> u trong cơ thể có hai dạng là lành tính
-            và ác tính. Khối u lành tính thường vô hại, trong </a> <span data-bs-toggle="modal"
-            data-bs-target="#exampleModal" class="text-decoration-none text-dark" onclick="function_second()"> khi
-            khối</span><a href="{% url 'dangxuat' %}" class="text-decoration-none text-dark"> u ác tính chính là biểu
+        <p class="lead my-3">
+          <a href="#" onclick="function_first()" class="text-dark text-decoration-none ">Các khối</a>
+          <a href="{% url 'dangxuat' %}" class="text-decoration-none text-dark"> u trong cơ thể có hai dạng là lành tính
+            và ác tính. Khối u lành tính thường vô hại, trong </a>
+            <a href="#" data-bs-toggle="modal" data-bs-target="#exampleModal" class="text-decoration-none text-dark" onclick="function_second()"> khi khối</a>
+            <a href="{% url 'dangxuat' %}" class="text-decoration-none text-dark"> u ác tính chính là biểu
             hiện của ung thư (1). Vậy u ác tính là gì và có..</a>
         </p>
         <p class="lead mb-0"><a href="{% url 'dangxuat' %}" class=" fw-bold">Xem tiếp...</a></p>
@@ -253,152 +254,10 @@
 
   <script src="{% static 'assets/dist/js/bootstrap.bundle.min.js' %}"></script>
   <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
-  <script>
-    var url_api = 'http://' + '{{ request.get_host }}' + '/last_sender/';
-    var elm = document.getElementById('heart');
-    var temp = 3;
-    var is_changed = false;
-    function getSender() {
-      fetch(url_api)
-        .then(response => response.json())
-        .then(data => {
-          if (temp != data.sender) {
-            is_changed = true;
-            temp = data.sender;
-          }
-          else is_changed = false;
-          if (is_changed) {
-            if (data.sender == 1) {
-              elm.classList.remove("text-primary");
-              elm.classList.add("text-danger");
-            }
-            else if (data.sender == 2) {
-              elm.classList.remove("text-danger");
-              elm.classList.add("text-primary");
-            }
-          }
-        });
-    };
-    var lastSenderInterval;
-    $(document).ready(function () {
-      lastSenderInterval = setInterval(getSender, 500);
-    });
-    function stopSender() {
-      clearInterval(lastSenderInterval);
-    }
-    function function_first() {
-      const api_url = "http://" + '{{ request.get_host }}' + "/api/users/";
-      async function getapi(url) {
-        // Storing response
-        const response = await fetch(url);
-        if (response.status == 200) {
-          document.getElementById("disabledModal").setAttribute("id", "exampleModal");
-        }
-        else {
-          window.alert("Quá thời gian. Vui lòng thao tác lại từ đầu");
-          location.reload();
-        }
-      }
-      // Calling that async function
-      getapi(api_url);
-    }
-    function function_second() {
-      document.getElementById("exampleModal").setAttribute("id", "disabledModal");
-      var chat_api = 'http://' + '{{ request.get_host }}' + '/chat/';
-      setInterval(function () {
-        fetch(chat_api)
-          .then(response => response.json())
-          .then(data => {
-            document.getElementById('mess0').innerHTML = data[0]['mess']
-            document.getElementById('mess1').innerHTML = data[1]['mess']
 
-            var lastSender1 = data[1]['sender']
-            var lastSender0 = data[0]['sender']
+  {% include 'getsender.html' %}
+  {% include 'detailJs.html' %}
 
-            if (lastSender1 == 1) {
-              document.getElementById('lastsender1').innerHTML = '<i class="far fa-heart text-danger"></i>';
-            }
-            else if (lastSender1 == 2) {
-              document.getElementById('lastsender1').innerHTML = '<i class="far fa-heart text-primary"></i>';
-            }
-
-            if (lastSender0 == 1) {
-              document.getElementById('lastsender0').innerHTML = '<i class="far fa-heart text-danger"></i>';
-            }
-            else {
-              document.getElementById('lastsender0').innerHTML = '<i class="far fa-heart text-primary"></i>';
-            }
-
-            var date1 = new Date(data[1]['created'])
-            date1 = date1.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', day: 'numeric', month: 'numeric', year: 'numeric' });
-            document.getElementById('lastseen1').innerHTML = date1;
-
-            var date0 = new Date(data[0]['created']);
-            date0 = date0.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', day: 'numeric', month: 'numeric', year: 'numeric' });
-            document.getElementById('lastseen0').innerHTML = date0;
-
-
-            if (data[0]['file']) {
-              document.getElementById('image0').src = data[0]['file']
-            }
-            else {
-              var accor = document.getElementById('accordionFlushExample0');
-              if (accor) {
-                accor.style.display = 'none'
-              }
-            }
-            if (data[1]['file']) {
-              document.getElementById('image1').src = data[1]['file']
-            }
-            else {
-              var accor = document.getElementById('accordionFlushExample0');
-              if (accor) {
-                accor.style.display = 'none'
-              }
-            }
-          }
-          );
-      }, 500);
-    }
-    function addCaption() {
-      var mess_T = document.getElementById('exampleFormControlTextarea1').value
-      document.getElementById('imageCaption').value = mess_T
-    }
-    $(document).ready(function () {
-      $("#chatForm").submit(function (event) {
-        $.ajax({
-          type: "POST",
-          url: "{% url 'ajaxChat' %}",
-          data: {
-            'mess': $('#exampleFormControlTextarea1').val()
-          },
-          success: function () {
-            $('#message').html("OK")
-            $('#exampleFormControlTextarea1').val('')
-          }
-        });
-        return false; //<---- move it here
-      });
-    });
-
-
-    var time = new Date().getTime();
-     $(document.body).bind("mousemove keypress", function(e) {
-         time = new Date().getTime();
-     });
-
-     function refresh() {
-         if(new Date().getTime() - time >= 60000)
-          document.getElementById('closeModalBtn').click()
-         else 
-             setTimeout(refresh, 10000);
-     }
-
-     setTimeout(refresh, 10000);
-
-
-
-  </script>
 </body>
 
 </html>

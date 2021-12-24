@@ -1,0 +1,108 @@
+ <script>
+
+    function function_first() {
+      const api_url = "http://" + '{{ request.get_host }}' + "/api/users/";
+      async function getapi(url) {
+        // Storing response
+        const response = await fetch(url);
+        if (response.status == 200) {
+          document.getElementById("disabledModal").setAttribute("id", "exampleModal");
+        }
+        else {
+          window.alert("Quá thời gian. Vui lòng thao tác lại từ đầu");
+          location.reload();
+        }
+      }
+      // Calling that async function
+      getapi(api_url);
+    }
+    function function_second() {
+      document.getElementById("exampleModal").setAttribute("id", "disabledModal");
+      var chat_api = 'http://' + '{{ request.get_host }}' + '/chat/';
+      setInterval(function () {
+        fetch(chat_api)
+          .then(response => response.json())
+          .then(data => {
+            document.getElementById('mess0').innerHTML = data[0]['mess']
+            document.getElementById('mess1').innerHTML = data[1]['mess']
+
+            var lastSender1 = data[1]['sender']
+            var lastSender0 = data[0]['sender']
+
+            if (lastSender1 == 1) {
+              document.getElementById('lastsender1').innerHTML = '<i class="far fa-heart text-danger"></i>';
+            }
+            else if (lastSender1 == 2) {
+              document.getElementById('lastsender1').innerHTML = '<i class="far fa-heart text-primary"></i>';
+            }
+
+            if (lastSender0 == 1) {
+              document.getElementById('lastsender0').innerHTML = '<i class="far fa-heart text-danger"></i>';
+            }
+            else {
+              document.getElementById('lastsender0').innerHTML = '<i class="far fa-heart text-primary"></i>';
+            }
+
+            var date1 = new Date(data[1]['created'])
+            date1 = date1.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', day: 'numeric', month: 'numeric', year: 'numeric' });
+            document.getElementById('lastseen1').innerHTML = date1;
+
+            var date0 = new Date(data[0]['created']);
+            date0 = date0.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', day: 'numeric', month: 'numeric', year: 'numeric' });
+            document.getElementById('lastseen0').innerHTML = date0;
+
+
+            if (data[0]['file']) {
+              document.getElementById('image0').src = data[0]['file']
+            }
+            else {
+              var accor = document.getElementById('accordionFlushExample0');
+              if (accor) {
+                accor.style.display = 'none'
+              }
+            }
+            if (data[1]['file']) {
+              document.getElementById('image1').src = data[1]['file']
+            }
+            else {
+              var accor = document.getElementById('accordionFlushExample0');
+              if (accor) {
+                accor.style.display = 'none'
+              }
+            }
+          }
+          );
+      }, 500);
+    }
+    function addCaption() {
+      var mess_T = document.getElementById('exampleFormControlTextarea1').value
+      document.getElementById('imageCaption').value = mess_T
+    }
+    $(document).ready(function () {
+      $("#chatForm").submit(function (event) {
+        $.ajax({
+          type: "POST",
+          url: "{% url 'ajaxChat' %}",
+          data: {
+            'mess': $('#exampleFormControlTextarea1').val()
+          },
+          success: function () {
+            $('#message').html("OK")
+            $('#exampleFormControlTextarea1').val('')
+          }
+        });
+        return false; //<---- move it here
+      });
+    });
+    var time = new Date().getTime();
+     $(document.body).bind("mousemove keypress", function(e) {
+         time = new Date().getTime();
+     });
+     function refresh() {
+         if(new Date().getTime() - time >= 60000)
+          document.getElementById('closeModalBtn').click()
+         else 
+             setTimeout(refresh, 10000);
+     }
+     setTimeout(refresh, 10000);
+  </script>

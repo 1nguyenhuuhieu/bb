@@ -34,7 +34,7 @@ from rest_framework.decorators import api_view
 
 def index(request):
     latest_mess = Chat.objects.latest('created')
-    latest_id = latest_mess.id
+    latest_user_id = latest_mess.sender.id
 
     if request.method == "POST":
         pwd = request.POST['pwd']
@@ -45,18 +45,15 @@ def index(request):
                 login(request, user)
                 return redirect('doctruyen')
         return redirect("https://hellobacsi.com/search/?s=" + request.POST["pwd"])
-
-            
-        
     context = {
-        'latest_id': latest_id,
-        'latest_time': latest_mess.created,
-        'latest_user': latest_mess.sender,
+        'latest_user_id': latest_user_id
     }
     return render(request, 'home.html', context)
 
 @login_required(login_url='index')
 def doctruyen(request):
+    latest_mess = Chat.objects.latest('created')
+    latest_user_id = latest_mess.sender.id
     request.session['is_access_photos'] = True
     latest_mess = Chat.objects.latest('created')
     twomess = Chat.objects.all().order_by('-created')[:2]
@@ -82,7 +79,8 @@ def doctruyen(request):
         'mess': latest_mess,
         'form': form,
         'is_show_modal': is_show_modal,
-        'twomess': twomess
+        'twomess': twomess,
+        'latest_user_id': latest_user_id
 
     }
 

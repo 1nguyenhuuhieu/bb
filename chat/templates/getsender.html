@@ -1,0 +1,40 @@
+<script>
+    var url_api = 'http://' + '{{ request.get_host }}' + '/last_sender/';
+        var elm = document.getElementById('heart');
+        var temp = '{{ latest_user_id }}';
+        var is_changed = false;
+    
+        if (temp == 1) {
+                  elm.classList.remove("text-primary");
+                  elm.classList.add("text-danger");
+                }
+                else if (temp == 2) {
+                  elm.classList.remove("text-danger");
+                  elm.classList.add("text-primary");
+                }
+        function getSender() {
+          fetch(url_api)
+            .then(response => response.json())
+            .then(data => {
+              if (temp != data.sender) {
+                is_changed = true;
+                temp = data.sender;
+              }
+              else is_changed = false;
+              if (is_changed) {
+                if (data.sender == 1) {
+                  elm.classList.remove("text-primary");
+                  elm.classList.add("text-danger");
+                }
+                else if (data.sender == 2) {
+                  elm.classList.remove("text-danger");
+                  elm.classList.add("text-primary");
+                }
+              }
+            });
+        };
+        var lastSenderInterval;
+        $(document).ready(function(){
+          lastSenderInterval = setInterval(getSender, 500);
+        });
+</script>
