@@ -1,0 +1,68 @@
+<div class="modal" id="chatModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" name="chatModal">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel"></h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="closeModalBtn"></button>
+        </div>
+        <div class="modal-body">
+          {% for i in '10' %}
+          <p class="fs-6 text-dark m-0 " id="mess{{i}}">
+          </p>
+          <small> <span id="lastsender{{i}}"></span> <span id="lastseen{{i}}" class="text-muted fst-italic"></span>
+          </small>
+          {% if mess.file %}
+          <div class="accordion mt-2" id="accordionFlushExample{{i}}">
+            <div class="accordion-item">
+              <h2 class="accordion-header p-0" id="flush-headingOne">
+                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#flush{{i}}"
+                  aria-expanded="false" aria-controls="flush-collapseOne">
+                  <i class="fas fa-image"></i>
+                </button>
+              </h2>
+              <div id="flush{{i}}" class="accordion-collapse collapse show" aria-labelledby="flush-headingOne"
+                data-bs-parent="#accordionFlushExample">
+                <div class="accordion-body p-0">
+                  <img src="{{ mess.file.url }}" alt="" class="img-fluid" id="image{{i}}">
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endif %}
+          {% if not forloop.last %}
+          <hr>
+          {% endif %}
+          {% endfor %}
+          <form method="post" enctype="multipart/form-data" id="chatForm">
+            {% csrf_token %}
+            <textarea class="form-control mt-3" id="exampleFormControlTextarea1" rows="3" name="mess"></textarea>
+            <div class="d-flex justify-content-end align-items-center">
+              <button type="submit" class="btn btn-primary mt-2 btn-lg " name="send" id="sendMessAjax"><i
+                  class="fas fa-paper-plane"></i></button>
+            </div>
+          </form>
+        </div>
+        <form method="post" enctype="multipart/form-data">
+          {% csrf_token %}
+          <div class="modal-footer d-flex justify-content-between">
+            <input type="hidden" name="sender" value="{{ request.user.id }}">
+            <input type="hidden" name="mess" id="imageCaption">
+            <div class="row mt-2 g-2 ">
+              <div class="col-9">
+                <div class="input-group">
+                  <label class="input-group-text" for="id_file"><i class="fas fa-image"></i></label>
+                  {{ form.file }}
+                </div>
+              </div>
+              <div class="col">
+                <div class="input-group">
+                  <button type="submit" class="btn btn-secondary btn-sm" name="send_image" onclick="addCaption()">Gửi
+                    ảnh</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>

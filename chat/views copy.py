@@ -14,9 +14,6 @@ from django.http import JsonResponse
 # Create your views here.
 from pathlib import Path
 
-
-
-
 from django.contrib.auth.models import User
 from rest_framework import viewsets
 from rest_framework import permissions
@@ -24,10 +21,6 @@ from .serializers import ChatSerializer, LastSenderSerializer, UserSerializer
 
 from rest_framework.parsers import JSONParser
 from django.views.decorators.csrf import csrf_exempt
-
-from rest_framework import status
-from rest_framework.decorators import api_view
-
 
 
 def index(request):
@@ -43,13 +36,9 @@ def index(request):
                 login(request, user)
                 return redirect('doctruyen')
         return redirect("https://hellobacsi.com/search/?s=" + request.POST["pwd"])
-
-            
         
     context = {
         'latest_id': latest_id,
-        'latest_time': latest_mess.created,
-        'latest_user': latest_mess.sender,
     }
     return render(request, 'home.html', context)
 

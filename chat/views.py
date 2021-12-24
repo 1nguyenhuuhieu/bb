@@ -94,7 +94,6 @@ def xemvideo(request, id):
     }
     return render(request, 'xemvideo.html', context)
 
-
 @login_required
 def photos(request):
     if 'is_access_photos' in request.session:
@@ -112,12 +111,9 @@ def photos(request):
 
     raise Http404
 
-
-
 def logout_view(request):
     logout(request)
     return redirect('index')
-
 
 class UserViewSet(viewsets.ModelViewSet):
     """
@@ -129,7 +125,6 @@ class UserViewSet(viewsets.ModelViewSet):
 
 @csrf_exempt
 @login_required
-
 def chat_list(request):
     if request.method == "GET":
         chats = Chat.objects.all().order_by('-created')[:2]
