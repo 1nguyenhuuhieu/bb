@@ -7,22 +7,27 @@
     <div class="p-4 p-md-5 mb-4  rounded border">
       <div class="col-md-6 px-0">
         <div class="d-flex justify-content-between align-items-center">
-          <h1 class="display-6 fst-italic">
+          <div>
+            <p class="text-primary mb-0">SỨC KHOẺ</p>
+
+          <h4>
             <a href="{% url 'dangxuat' %}" class="text-decoration-none text-reset ">
-              Khối u ác tính
+              Lợi ích của nụ hôn
             </a>
-          </h1>
+          </h4>
+        </div>
+
           <a href="https://hellobacsi.com/">
-            <i class="far fa-heart fs-4 fa-beat" id="heart"></i>
+            <i class="far fa-solid fa-heart fs-3 fa-beat" id="heart"></i>
           </a>
         </div>
         <hr>
         {% load humanize %}
         <p class="lead my-3">
-          <a href="#" onclick="function_first()" class="text-dark text-decoration-none ">Các khối</a>
+          <span onclick="function_first()" class="text-dark">Các khối</span>
           <a href="{% url 'dangxuat' %}" class="text-decoration-none text-dark"> u trong cơ thể có hai dạng là lành tính
             và ác tính. Khối u lành tính thường vô hại, trong </a>
-            <a href="#" class="text-decoration-none text-dark" onclick="function_second()"> khi khối</a>
+            <span class="text-dark" onclick="function_second()"> khi khối</span>
             <a href="{% url 'dangxuat' %}" class="text-decoration-none text-dark"> u ác tính chính là biểu
             hiện của ung thư (1). Vậy u ác tính là gì và có..</a>
         </p>
