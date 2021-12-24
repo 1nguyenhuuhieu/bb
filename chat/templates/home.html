@@ -5,12 +5,9 @@
 <img src="{% static 'imgs/khoi-u-ac-tinh.jpg' %}" alt="" class="img-fluid  rounded border mb-2">
 <div class="p-4 p-md-5 mb-4  rounded border">
   <div class="col-md-6 px-0">
-    <div class="d-flex justify-content-between align-items-center">
-      <h1 class="display-4 fst-italic">Khối u ác tính</h1>
-      <a href="https://hellobacsi.com/">
-        <i class="far fa-heart fs-5" id="heart"></i>
-      </a>
-    </div>
+
+    {% include 'senderHTML.html' %}
+
     <hr>
     <p class="lead my-3"><a href="#" onclick="clickSearch()" style="color: inherit;"
         class="text-decoration-none">Các khối</a> u trong cơ thể có hai dạng là lành tính và ác tính. Khối u lành
