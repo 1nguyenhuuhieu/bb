@@ -54,16 +54,16 @@ def index(request):
 def doctruyen(request):
     latest_mess = Chat.objects.latest('created')
     latest_user_id = latest_mess.sender.id
-    request.session['is_access_photos'] = True
     twomess = Chat.objects.all().order_by('-created')[:2]
 
     if request.method == "POST":
-        if 'send_image' in request.POST:
-            form = ChatForm(request.POST, request.FILES)
-            if form.is_valid():
-                form.save()
-        
+        form = ChatForm(request.POST, request.FILES)
+        if form.is_valid():
+            form.save()
+            request.session['is_show_modal'] = True
+
         return redirect('doctruyen')
+        
     else:
         form = ChatForm()
 

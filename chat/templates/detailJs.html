@@ -3,21 +3,27 @@
     var allow_show_modal = false;
     var modal = document.getElementById('chatModal');
     var chatModal = new bootstrap.Modal(modal);
+
+    var modalInstance = bootstrap.Modal.getInstance(modal) // Returns a Bootstrap modal instance
+
     var modalStatus = bootstrap.Modal.getInstance(modal);
     var chat_api = 'http://' + '{{ request.get_host }}' + '/chat/';
     var mess0, mess1, lastSender1, lastSender0, date1, date0, lastMessId;
     var getMessInterval;
     var tempMessId = '{{ mess.id }}';
 
+    var is_show_modal = '{{ is_show_modal }}';
+
     var is_run_updatemess = false;
 
-    function initMess(){
+    function initMess() {
         fetch(chat_api)
             .then(response => response.json())
             .then(data => updateMess(data));
     };
 
     function getMessRealtime() {
+        console.log('get Mess');
         fetch(chat_api)
             .then(response => response.json())
             .then(data => {
@@ -37,47 +43,65 @@
         lastSender0 = data[0]['sender'];
         date1 = new Date(data[1]['created']);
         date0 = new Date(data[0]['created']);
+        file0 = data[0]['file'];
+        file1 = data[1]['file'];
 
-        document.getElementById('mess0').innerHTML = mess0;
-        document.getElementById('mess1').innerHTML = mess1;
+        elmMess0 = document.getElementById('mess0');
+        elmMess1 = document.getElementById('mess1');
 
-        date1 = date1.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', day: 'numeric', month: 'numeric', year: 'numeric' });
-        document.getElementById('lastseen1').innerHTML = date1;
-        date0 = date0.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', day: 'numeric', month: 'numeric', year: 'numeric' });
-        document.getElementById('lastseen0').innerHTML = date0;
+        elmDate0 = document.getElementById('lastseen0');
+        elmDate1 = document.getElementById('lastseen1');
 
-        if (lastSender1 == 1) {
-            document.getElementById('lastsender1').innerHTML = '<i class="far fa-heart text-danger"></i>';
-        }
-        else if (lastSender1 == 2) {
-            document.getElementById('lastsender1').innerHTML = '<i class="far fa-heart text-primary"></i>';
-        }
+        elmLastSender0 = document.getElementById('lastsender0');
+        elmLastSender1 = document.getElementById('lastsender1');
 
-        if (lastSender0 == 1) {
-            document.getElementById('lastsender0').innerHTML = '<i class="far fa-heart text-danger"></i>';
-        }
-        else {
-            document.getElementById('lastsender0').innerHTML = '<i class="far fa-heart text-primary"></i>';
+        elmMess0.innerHTML = mess0;
+        elmMess1.innerHTML = mess1;
+
+        elmImage0 = document.getElementById('image0');
+        elmImage1 = document.getElementById('image1');
+
+        function addDateLocale(date) {
+            return date.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', day: 'numeric', month: 'numeric', year: 'numeric' });
         }
 
-        if (data[0]['file']) {
-            document.getElementById('image0').src = data[0]['file']
-        }
-        else {
-            var accor = document.getElementById('accordionFlushExample0');
-            if (accor) {
-                accor.style.display = 'none'
+        date1 = addDateLocale(date1);
+        date0 = addDateLocale(date0);
+
+        elmDate0.innerHTML = date0;
+        elmDate1.innerHTML = date1;
+
+        function lastSenderStyle(s, elm) {
+            if (s == 1) {
+                elm.innerHTML = '<i class="far fa-heart text-danger"></i>';
             }
+            else if (s == 2) {
+                elm.innerHTML = '<i class="far fa-heart text-primary"></i>';
+            }
+        };
+
+        lastSenderStyle(lastSender1, elmLastSender1);
+        lastSenderStyle(lastSender0, elmLastSender0);
+
+        function addImageStyle(i, e) {
+            e.classList.remove('d-none');
+            e.src = i;
         }
-        if (data[1]['file']) {
-            document.getElementById('image1').src = data[1]['file']
+
+        if (file0) {
+            addImageStyle(file0, elmImage0);
         }
         else {
-            var accor = document.getElementById('accordionFlushExample0');
-            if (accor) {
-                accor.style.display = 'none'
-            }
+            elmImage0.classList.add("d-none");
         }
+
+        if (file1) {
+            addImageStyle(file1, elmImage1);
+        }
+        else {
+            elmImage1.classList.add("d-none");
+        }
+
     }
 
     function function_first() {
@@ -95,23 +119,29 @@
     };
 
     function submitForm() {
-
         $("#chatForm").submit(function (event) {
-            $.ajax({
-                type: "POST",
-                url: "{% url 'ajaxChat' %}",
-                data: {
-                    'mess': $('#exampleFormControlTextarea1').val()
-                },
-                success: function () {
-                    $('#message').html("OK")
-                    $('#exampleFormControlTextarea1').val('')
-                }
-            });
-            return false; //<---- move it here
+            var file_form = document.getElementById('id_file').value;
+            if (!file_form) {
+                sendMess();
+                return false; //<---- move it here
+            };
         });
 
     };
+
+    function sendMess() {
+        $.ajax({
+            type: "POST",
+            url: "{% url 'ajaxChat' %}",
+            data: {
+                'mess': $('#exampleFormControlTextarea1').val()
+            },
+            success: function () {
+                $('#message').html("OK")
+                $('#exampleFormControlTextarea1').val('')
+            }
+        });
+    }
 
     function autoReloadPage(timesleep) {
 
@@ -140,7 +170,6 @@
             if (new Date().getTime() - time >= timewait) {
                 chatModal.hide();
             }
-
             else
                 setTimeout(refresh, 10000);
         }
@@ -148,24 +177,29 @@
     }
 
     $(document).ready(function () {
-
         initMess();
-        // autoreload page after 30 minutes
         autoReloadPage(300000);
+        // autoreload page after 30 minutes
         // lastsender interval instance
-        $('#chatModal').on('hidden.bs.modal', function () {
+        modal.addEventListener('hidden.bs.modal', function (event) {
+
             clearInterval(getMessInterval);
             lastSenderInterval = setInterval(getSender, 500);
+            // do something...
         });
-        $('#chatModal').on('show.bs.modal', function () {
+        modal.addEventListener('shown.bs.modal', function (event) {
+            // do something...
             clearInterval(lastSenderInterval);
             getMessInterval = setInterval(getMessRealtime, 500);
             // auto close after 1 minute
             autocloseModal(60000);
         });
 
-        submitForm();
+        if (is_show_modal == 'True') {
+            chatModal.show();
+        }
 
+        submitForm();
     });
 
 </script>
