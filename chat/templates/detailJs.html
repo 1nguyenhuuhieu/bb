@@ -6,7 +6,6 @@
     var modalStatus = bootstrap.Modal.getInstance(modal);
     var chat_api = 'http://' + '{{ request.get_host }}' + '/chat/';
     var lastSender1, lastSender0, date1, date0;
-
     var getMessInterval;
 
     function getMessRealtime() {
@@ -51,7 +50,6 @@
                             accor.style.display = 'none'
                         }
                     }
-
                     if (data[1]['file']) {
                         document.getElementById('image1').src = data[1]['file']
                     }
@@ -124,10 +122,6 @@
             setTimeout(refresh, 10000);
     }
     setTimeout(refresh, 10000);
-    
-
-
     });
-
 
 </script>
