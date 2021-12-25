@@ -16,6 +16,11 @@
 
     var is_run_updatemess = false;
 
+    // var toastLive = document.getElementById('liveToast');
+    // var toast = new bootstrap.Toast(toastLive);
+
+
+
     function initMess() {
         fetch(chat_api)
             .then(response => response.json())
@@ -200,5 +205,4 @@
 
         submitForm();
     });
-
 </script>

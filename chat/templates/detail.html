@@ -1,39 +1,52 @@
 {% extends 'base.html' %}
 {% block content %}
 {% load static %}
+
+{% include 'toast.html' %}
     <a href="{% url 'dangxuat' %}">
-      <img src="{% static 'imgs/ung-thu-phoi-1.jpg' %}" alt="" class="img-fluid rounded border mb-2">
+      <img src="{% static 'imgs/kiss.jpeg' %}" alt="" class="img-fluid rounded mb-2 shadow-sm">
     </a>
-    <div class="p-4 p-md-5 mb-4  rounded border">
+
+
+
+    <div class="p-4 p-md-5 mb-4">
       <div class="col-md-6 px-0">
         <div class="d-flex justify-content-between align-items-center">
           <div>
-            <p class="text-primary mb-0">SỨC KHOẺ</p>
+            <p class="text-primary mb-0">TÌNH YÊU & CUỘC SỐNG</p>
 
-          <h4>
+          <h2 class="mb-0">
             <a href="{% url 'dangxuat' %}" class="text-decoration-none text-reset ">
               Lợi ích của nụ hôn
             </a>
-          </h4>
+          </h2>
         </div>
 
           <a href="https://hellobacsi.com/">
             <i class="far fa-solid fa-heart fs-3 fa-beat" id="heart"></i>
           </a>
         </div>
-        <hr>
+        <hr class="my-3">
         {% load humanize %}
-        <p class="lead my-3">
-          <span onclick="function_first()" class="text-dark">Các khối</span>
-          <a href="{% url 'dangxuat' %}" class="text-decoration-none text-dark"> u trong cơ thể có hai dạng là lành tính
-            và ác tính. Khối u lành tính thường vô hại, trong </a>
-            <span class="text-dark" onclick="function_second()"> khi khối</span>
-            <a href="{% url 'dangxuat' %}" class="text-decoration-none text-dark"> u ác tính chính là biểu
-            hiện của ung thư (1). Vậy u ác tính là gì và có..</a>
+        <p class="lead my-1">
+          <a href="{% url 'dangxuat' %}" class="text-decoration-none text-dark">
+          Nhiều người vẫn xem
+          </a>
+          <span onclick="function_first()" class="text-primary">nụ hôn</span>
+          <a href="{% url 'dangxuat' %}" class="text-decoration-none text-dark">
+          như một cách chân thành để bày tỏ tình cảm yêu thương. Thế nhưng đằng sau mỗi
+          </a>
+          <span class="text-primary" onclick="function_second()"> cái hôn ngọt ngào</span>
+          <a href="{% url 'dangxuat' %}" class="text-decoration-none text-dark">
+
+          còn ẩn chứa rất nhiều lợi ích của nụ hôn đối với sức khỏe.
+          </a>
         </p>
-        <p class="lead mb-0"><a href="{% url 'dangxuat' %}" class=" fw-bold">Xem tiếp...</a></p>
+        <p class="mb-0"><a href="{% url 'dangxuat' %}" class="text-decoration-none fw-bold">Xem tiếp...</a></p>
       </div>
     </div>
     <!-- Modal -->
     {% include 'chatModal.html' %}
+
+    
   {% endblock %}
