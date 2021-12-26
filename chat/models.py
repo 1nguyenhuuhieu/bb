@@ -9,8 +9,3 @@ class Chat(models.Model):
     created = models.DateTimeField( auto_now=True)
     file = models.ImageField(upload_to='x_files/',blank=True)
     video = models.FileField(upload_to='x_files/video/', blank=True, null=True)
-
-class Typing(models.Model):
-    sender = models.ForeignKey(User, on_delete=models.CASCADE)
-    is_typing = models.BooleanField(default=False)
-    timestamp = models.DateTimeField( auto_now=True)

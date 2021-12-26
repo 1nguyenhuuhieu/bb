@@ -5,7 +5,3 @@ from .models import *
 @admin.register(Chat)
 class ChatAdmin(admin.ModelAdmin):
     pass
-
-@admin.register(Typing)
-class TypingAdmin(admin.ModelAdmin):
-    pass
