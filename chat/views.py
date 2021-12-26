@@ -155,13 +155,13 @@ def last_sender(request):
 def is_typing(request):
     one_mess = Chat.objects.get(pk=1)
     if request.method == "POST":
-        one_mess.mess = request['status']
+        one_mess.mess = request.POST['status']
         one_mess.sender = request.user
         one_mess.save()
 
     now = timezone.now()
 
-    limit_time = one_mess.created + timedelta(seconds=5)
+    limit_time = one_mess.created + timedelta(seconds=10)
     
     if limit_time < now and one_mess.mess == 'True':
         one_mess.mess = 'False'
