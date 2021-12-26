@@ -161,7 +161,7 @@ def is_typing(request):
 
     now = timezone.now()
 
-    limit_time = one_mess.created + timedelta(seconds=10)
+    limit_time = one_mess.created + timedelta(seconds=5)
     
     if limit_time < now and one_mess.mess == 'True':
         one_mess.mess = 'False'
