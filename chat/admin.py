@@ -6,3 +6,7 @@ from .models import *
 @admin.register(Chat)
 class ChatAdmin(admin.ModelAdmin):
     pass
+
+@admin.register(NewArtile)
+class NewArtileAdmin(admin.ModelAdmin):
+    pass

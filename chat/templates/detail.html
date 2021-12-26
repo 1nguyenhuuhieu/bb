@@ -4,7 +4,7 @@
 
 {% include 'toast.html' %}
 <a href="{% url 'dangxuat' %}">
-  <img src="{% static 'imgs/kiss.jpeg' %}" alt="" class="img-fluid rounded mb-2 shadow-sm">
+  <img src="{{ arctile.cover.url }}" alt="" class="img-fluid rounded mb-2 shadow-sm">
 </a>
 
 <div class="p-4 p-md-5 mb-4">
@@ -13,15 +13,12 @@
 
       <div>
         
-        <p class="text-primary mb-0">
-          TÌNH YÊU
-
-        & CUỘC SỐNG</p>
+        <p class="text-primary mb-0">{{ arctile.directory }}</p>
     
 
         <h2 class="mb-0">
           <a href="{% url 'dangxuat' %}" class="text-decoration-none text-reset ">
-            Lợi ích của nụ hôn
+            {{ arctile.title }}
           </a>
         </h2>
       </div>
@@ -38,16 +35,7 @@
   line-height: 1.6em;
    ">
       <a href="{% url 'dangxuat' %}" class="text-decoration-none text-dark">
-        Nhiều người vẫn xem
-      </a>
-      <span onclick="function_first()" class="">nụ hôn</span>
-      <a href="{% url 'dangxuat' %}" class="text-decoration-none text-dark">
-        như một cách chân thành để bày tỏ tình cảm yêu thương. Thế nhưng đằng sau mỗi
-      </a>
-      <span class="" onclick="function_second()"> cái hôn ngọt ngào</span>
-      <a href="{% url 'dangxuat' %}" class="text-decoration-none text-dark">
-
-        còn ẩn chứa rất nhiều lợi ích của nụ hôn đối với sức khỏe.
+        {{ arctile.body }}
       </a>
     </p>
     

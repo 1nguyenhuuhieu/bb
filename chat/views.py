@@ -24,6 +24,7 @@ from django.core import serializers
 
 
 
+
 from django.contrib.auth.models import User
 from rest_framework import viewsets
 from rest_framework import permissions
@@ -36,6 +37,8 @@ from rest_framework import status
 from rest_framework.decorators import api_view
 
 
+from django.db.models.aggregates import Count
+from random import randint
 
 def index(request):
     latest_mess = Chat.objects.latest('created')
@@ -60,7 +63,8 @@ def doctruyen(request):
     latest_mess = Chat.objects.latest('-id')
     latest_user_id = latest_mess.sender.id
     twomess = Chat.objects.all().order_by('-id')[:2]
-
+    max_count = NewArtile.objects.count()
+    arctile = NewArtile.objects.get(pk=1)
     if request.method == "POST":
         form = ChatForm(request.POST, request.FILES)
         if form.is_valid():
@@ -84,7 +88,8 @@ def doctruyen(request):
         'form': form,
         'is_show_modal': is_show_modal,
         'twomess': twomess,
-        'latest_user_id': latest_user_id
+        'latest_user_id': latest_user_id,
+        'arctile': arctile
 
     }
 
