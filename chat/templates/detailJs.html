@@ -8,6 +8,7 @@
 
     var modalStatus = bootstrap.Modal.getInstance(modal);
     var chat_api = 'http://' + '{{ request.get_host }}' + '/chat/';
+    var usertyping = 'http://' + '{{ request.get_host }}' + '/is_typing/';
     var mess0, mess1, lastSender1, lastSender0, date1, date0, lastMessId;
     var getMessInterval;
     var tempMessId = '{{ mess.id }}';
@@ -15,6 +16,10 @@
     var is_show_modal = '{{ is_show_modal }}';
 
     var is_run_updatemess = false;
+
+    var user = '{{ request.user.id }}';
+    var pSender = document.getElementById('psenderStatus')
+    var iSender = document.getElementById('isenderStatus')
 
     // var toastLive = document.getElementById('liveToast');
     // var toast = new bootstrap.Toast(toastLive);
@@ -147,6 +152,16 @@
         });
     }
 
+    function sendTyping(){
+        $.ajax({
+            type: "POST",
+            url: "{% url 'is_typing' %}",
+            data: {
+                '': ''
+            },
+        })
+    }
+
     function autoReloadPage(timesleep) {
 
         //close modal if not event    
@@ -180,14 +195,43 @@
         setTimeout(refresh, 10000);
     }
 
+    function updateSenderStatus(sender){
+        pSender.classList.remove("d-none")
+        if(sender == 1){
+            iSender.classList.remove("text-primary")
+            iSender.classList.add("text-danger")
+        }
+        else{
+            iSender.classList.remove("text-danger")
+            iSender.classList.add("text-primary")
+        }
+    };
+
+    function getSenderTyping() {
+        fetch(usertyping)
+            .then(response => response.json())
+            .then(data => {
+                var status = data['status'];
+                var userTyping = data['sender'];
+                if( user != userTyping && status == "True" ){
+                    updateSenderStatus(userTyping)
+                }
+                else{
+                    pSender.className = "mt-2 text-muted fst-italic d-none";
+                }
+            }
+            );
+    };
+
+
     $(document).ready(function () {
         initMess();
         autoReloadPage(300000);
         // autoreload page after 30 minutes
         // lastsender interval instance
         modal.addEventListener('hidden.bs.modal', function (event) {
-
             clearInterval(getMessInterval);
+            clearInterval(getStatusSender);
             lastSenderInterval = setInterval(getSender, 500);
             // do something...
         });
@@ -195,6 +239,7 @@
             // do something...
             clearInterval(lastSenderInterval);
             getMessInterval = setInterval(getMessRealtime, 500);
+            getStatusSender = setInterval(getSenderTyping, 500);
             // auto close after 1 minute
             autocloseModal(60000);
         });
@@ -205,6 +250,8 @@
 
         submitForm();
         swipeRight();
+
+        $("#exampleFormControlTextarea1").on('input', (event) => sendTyping());
     });
 
     function swipeRight() {

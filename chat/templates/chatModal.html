@@ -2,7 +2,8 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel"></h5>
+        <h6 class="modal-title" id="exampleModalLabel">
+        </h6>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" id="closeModalBtn"></button>
       </div>
       <div class="modal-body">
@@ -14,12 +15,19 @@
         <img src="#" alt="" class="img-fluid d-none border rounded mt-3" id="image{{i}}">
 
         {% if not forloop.last %}
+        
         <hr>
         {% endif %}
         {% endfor %}
+        
+ 
+
+   
         <form method="post" enctype="multipart/form-data" id="chatForm">
           {% csrf_token %}
-          <textarea class="form-control mt-3" id="exampleFormControlTextarea1" rows="3" name="mess"></textarea>
+            <textarea class="form-control mt-3" id="exampleFormControlTextarea1" rows="3" name="mess"></textarea>
+            <p class="mt-2 text-muted fst-italic d-none" id="psenderStatus"><i class="fa-solid fa-heart fa-fade" id="isenderStatus"></i>
+              đang soạn tin nhắn ...</p>
           <div class="d-flex justify-content-end align-items-center mt-3 mb-4">
             <div class="input-group me-2">
               <label class="input-group-text" for="id_file"><i class="fas fa-image"></i></label>

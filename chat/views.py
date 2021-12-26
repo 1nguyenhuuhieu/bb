@@ -16,6 +16,11 @@ from django.http import JsonResponse
 # Create your views here.
 from pathlib import Path
 
+from datetime import datetime, timedelta
+from django.utils import timezone
+
+from django.core import serializers
+
 
 
 
@@ -52,9 +57,9 @@ def index(request):
 
 @login_required(login_url='index')
 def doctruyen(request):
-    latest_mess = Chat.objects.latest('created')
+    latest_mess = Chat.objects.latest('-id')
     latest_user_id = latest_mess.sender.id
-    twomess = Chat.objects.all().order_by('-created')[:2]
+    twomess = Chat.objects.all().order_by('-id')[:2]
 
     if request.method == "POST":
         form = ChatForm(request.POST, request.FILES)
@@ -126,7 +131,7 @@ class UserViewSet(viewsets.ModelViewSet):
 @login_required
 def chat_list(request):
     if request.method == "GET":
-        chats = Chat.objects.all().order_by('-created')[:2]
+        chats = Chat.objects.all().order_by('-id')[:2]
         serializer = ChatSerializer(chats, many=True)
         return JsonResponse(serializer.data, safe=False)
     elif request.method == "POST":
@@ -142,9 +147,32 @@ def test(request):
 @csrf_exempt
 def last_sender(request):
     if request.method == "GET":
-        sender = Chat.objects.latest('created')
+        sender = Chat.objects.latest('id')
         serializer = LastSenderSerializer(sender, many=False)
         return JsonResponse(serializer.data, safe=False)
+
+@csrf_exempt
+def is_typing(request):
+    one_mess = Chat.objects.get(pk=1)
+    if request.method == "POST":
+        one_mess.mess = 'True'
+        one_mess.sender = request.user
+        one_mess.save()
+
+    now = timezone.now()
+
+    limit_time = one_mess.created + timedelta(seconds=10)
+    
+    if limit_time < now and one_mess.mess == 'True':
+        one_mess.mess = 'False'
+        one_mess.save()
+
+    json_return = {
+        'status': one_mess.mess,
+        'sender': one_mess.sender.id
+    }
+
+    return JsonResponse(json_return)
 
 @login_required
 @csrf_exempt
