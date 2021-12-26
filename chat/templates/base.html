@@ -23,55 +23,22 @@
       }
     }
 
-    #outer-dropzone {
-  height: 140px;
-}
-
 #inner-dropzone {
-  height: 80px;
+  height: 20px;
 }
 
 .dropzone {
-  background-color: #bfe4ff;
-  border: dashed 4px transparent;
-  border-radius: 4px;
-  margin: 10px auto 30px;
-  padding: 10px;
-  width: 80%;
-  transition: background-color 0.3s;
-}
-
-.drop-active {
-  border-color: #aaa;
-}
-
-.drop-target {
-  background-color: #29e;
-  border-color: #fff;
-  border-style: solid;
+  width: 50px;
+  height: 20px;
 }
 
 .drag-drop {
   display: inline-block;
-  min-width: 40px;
-  padding: 2em 0.5em;
-  margin: 1rem 0 0 1rem;
-
-  color: #fff;
-  background-color: #29e;
-  border: solid 2px #fff;
-
+  width: 50px;
+  height: 20px;
   touch-action: none;
   transform: translate(0px, 0px);
-
-  transition: background-color 0.3s;
 }
-
-.drag-drop.can-drop {
-  color: #000;
-  background-color: #4e4;
-}
-
 
   </style>
   <!-- Custom styles for this template -->
@@ -178,11 +145,16 @@
   <script src="{% static 'assets/dist/js/bootstrap.bundle.min.js' %}"></script>
 
   <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+  <script src="https://cdn.jsdelivr.net/npm/interactjs/dist/interact.min.js"></script>
+
 
   {% include 'getsender.html' %}
 
   {% if request.user.is_authenticated %}
+  <!-- <script src="{% static 'js/interact.min.js' %}"></script> -->
   {% include 'detailJs.html' %}
+
+
   {% endif %}
 </body>
 </html>
