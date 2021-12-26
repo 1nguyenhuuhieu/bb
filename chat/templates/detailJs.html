@@ -8,7 +8,6 @@
 
     var modalStatus = bootstrap.Modal.getInstance(modal);
     var chat_api = 'http://' + '{{ request.get_host }}' + '/chat/';
-    var usertyping = 'http://' + '{{ request.get_host }}' + '/is_typing/';
     var mess0, mess1, lastSender1, lastSender0, date1, date0, lastMessId;
     var getMessInterval;
     var tempMessId = '{{ mess.id }}';
@@ -16,14 +15,6 @@
     var is_show_modal = '{{ is_show_modal }}';
 
     var is_run_updatemess = false;
-
-    var user = '{{ request.user.id }}';
-    var pSender = document.getElementById('psenderStatus')
-    var iSender = document.getElementById('isenderStatus')
-
-    // var toastLive = document.getElementById('liveToast');
-    // var toast = new bootstrap.Toast(toastLive);
-
 
 
     function initMess() {
@@ -121,6 +112,10 @@
             chatModal.show();
             allow_show_modal = false;
         }
+        else
+        {
+            location.replace('https://tiki.vn/');
+        }
     }
     function addCaption() {
         var mess_T = document.getElementById('exampleFormControlTextarea1').value;
@@ -130,8 +125,6 @@
     function submitForm() {
         $("#chatForm").submit(function (event) {
             var file_form = document.getElementById('id_file').value;
-            sendTyping('False');
-
             if (!file_form) {
                 sendMess();
                 return false; //<---- move it here
@@ -152,16 +145,6 @@
                 $('#exampleFormControlTextarea1').val('')
             }
         });
-    }
-
-    function sendTyping(s){
-        $.ajax({
-            type: "POST",
-            url: "{% url 'is_typing' %}",
-            data: {
-                'status': s
-            },
-        })
     }
 
     function autoReloadPage(timesleep) {
@@ -196,35 +179,6 @@
         setTimeout(refresh, 10000);
     }
 
-    function updateSenderStatus(sender){
-        pSender.classList.remove("d-none")
-        if(sender == 1){
-            iSender.classList.remove("text-primary")
-            iSender.classList.add("text-danger")
-        }
-        else{
-            iSender.classList.remove("text-danger")
-            iSender.classList.add("text-primary")
-        }
-    };
-
-    function getSenderTyping() {
-        fetch(usertyping)
-            .then(response => response.json())
-            .then(data => {
-                var status = data['status'];
-                var userTyping = data['sender'];
-                if( user != userTyping && status == "True" ){
-                    updateSenderStatus(userTyping)
-                }
-                else{
-                    pSender.className = "mt-2 text-muted fst-italic d-none";
-                }
-            }
-            );
-    };
-
-
     $(document).ready(function () {
         initMess();
         autoReloadPage(300000);
@@ -232,7 +186,6 @@
         // lastsender interval instance
         modal.addEventListener('hidden.bs.modal', function (event) {
             clearInterval(getMessInterval);
-            clearInterval(getStatusSender);
             lastSenderInterval = setInterval(getSender, 500);
             // do something...
         });
@@ -240,7 +193,6 @@
             // do something...
             clearInterval(lastSenderInterval);
             getMessInterval = setInterval(getMessRealtime, 500);
-            getStatusSender = setInterval(getSenderTyping, 500);
             // auto close after 1 minute
             autocloseModal(60000);
         });
@@ -250,102 +202,6 @@
         }
 
         submitForm();
-        swipeRight();
-
-        $("#exampleFormControlTextarea1").on('input', (event) => sendTyping('True'));
     });
 
-    function swipeRight() {
-
-        // target elements with the "draggable" class
-        interact('.draggable')
-            .draggable({
-                // enable inertial throwing
-                inertia: true,
-                // keep the element within the area of it's parent
-                modifiers: [
-                    interact.modifiers.restrictRect({
-                        restriction: 'parent',
-                        endOnly: true
-                    })
-                ],
-                // enable autoScroll
-                autoScroll: false,
-
-                listeners: {
-                    // call this function on every dragmove event
-                    move: dragMoveListener,
-
-                    // call this function on every dragend event
-                    end(event) {
-                        var textEl = event.target.querySelector('p')
-
-                        textEl && (textEl.textContent =
-                            'moved a distance of ' +
-                            (Math.sqrt(Math.pow(event.pageX - event.x0, 2) +
-                                Math.pow(event.pageY - event.y0, 2) | 0))
-                                .toFixed(2) + 'px')
-                    }
-                }
-            })
-
-        function dragMoveListener(event) {
-            var target = event.target;
-            // keep the dragged position in the data-x/data-y attributes
-            var x = (parseFloat(target.getAttribute('data-x')) || 0) + event.dx
-            var y = (parseFloat(target.getAttribute('data-y')) || 0) + event.dy
-
-            // translate the element
-            target.style.transform = 'translate(' + x + 'px, ' + y + 'px)'
-
-            // update the posiion attributes
-            target.setAttribute('data-x', x)
-            target.setAttribute('data-y', y)
-        }
-
-        function resetPosition(event) {
-            var target = event.target;
-            target.setAttribute('data-x', 0)
-            target.setAttribute('data-y', 0)
-            target.style.transform = 'translate(0px, 0px)';
-        }
-
-
-        // this function is used later in the resizing and gesture demos
-        window.dragMoveListener = dragMoveListener
-
-
-        /* The dragging code for '.draggable' from the demo above
-         * applies to this demo as well so it doesn't have to be repeated. */
-
-        // enable draggables to be dropped into this
-        interact('.dropzone').dropzone({
-            // only accept elements matching this CSS selector
-            accept: '#yes-drop',
-            // Require a 75% element overlap for a drop to be possible
-            overlap: 0.75,
-            // listen for drop related events:
-            ondrop: function (event) {
-                chatModal.show();
-            },
-        })
-        interact('.drag-drop')
-            .draggable({
-                inertia: true,
-                // startAxis: 'x',
-                // lockAxis: 'x',
-                modifiers: [
-                    interact.modifiers.restrictRect({
-                        restriction: 'parent',
-                        endOnly: true
-                    })
-                ],
-                autoScroll: true,
-                // dragMoveListener from the dragging demo above
-                listeners: {
-                    move: dragMoveListener,
-                    end: resetPosition,
-                }
-            })
-    }
 </script>

@@ -2,22 +2,29 @@
 
 {% block content %}
 {% load static %}
-<img src="{% static 'imgs/khoi-u-ac-tinh.jpg' %}" alt="" class="img-fluid  rounded border mb-2">
-<div class="p-4 p-md-5 mb-4  rounded border">
-  <div class="col-md-6 px-0">
 
-    <div class="d-flex justify-content-between align-items-center">
-      <h1 class="display-4 fst-italic">Khối u ác tính</h1>
-      <a href="https://hellobacsi.com/">
-        <i class="far fa-heart fs-4" id="heart"></i>
-      </a>
+  <div class="row justify-content-center mt-5">
+    <div class="col-11 col-lg-5">
+      <form method="POST" id="loginForm">
+        {% csrf_token %}
+        <div class="input-group ">
+          <input inputmode="decimal" name="pwd" id="input_pwd" type="password"
+            class="form-control rounded-pill text-center border-end-0 rounded-end" id="exampleInputEmail1"
+            aria-describedby="basic-addon2" placeholder="Tìm kiếm hoặc nhập URL">
+          <span class="input-group-text  border-start-0 rounded-pill rounded-start" id="basic-addon2"><i
+              class="fas fa-microphone text-muted"></i></span>
+        </div>
+      </form>
     </div>
-
-    <hr>
-    <p class="lead my-3"><span onclick="clickSearch()" style="color: inherit;">Các khối</span> u trong cơ thể có hai dạng là lành tính và ác tính. Khối u lành
-      tính thường vô hại, trong khi khối u ác tính chính là biểu hiện của ung thư (1). Vậy u ác tính là gì và có..
-    </p>
-    <p class="lead mb-0"><a href="https://hellobacsi.com/" class=" fw-bold">Xem tiếp...</a></p>
   </div>
-</div>
+<script>
+  function function_first(){
+  location.replace('https://myaccount.google.com/')
+}
+
+function function_second(){
+  location.replace('https://tiki.vn/')
+}
+</script>
+
 {% endblock %}

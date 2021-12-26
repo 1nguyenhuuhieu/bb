@@ -3,9 +3,6 @@ from django.contrib.auth.models import User
 from django.db.models.base import Model
 from django.db.models.fields.related import OneToOneField
 
-
-
-
 class Chat(models.Model):
     sender = models.ForeignKey(User, blank=True, on_delete=models.CASCADE)
     mess = models.TextField( default='Ảnh đính kèm', blank=True, null=True)
@@ -13,9 +10,7 @@ class Chat(models.Model):
     file = models.ImageField(upload_to='x_files/',blank=True)
     video = models.FileField(upload_to='x_files/video/', blank=True, null=True)
 
-
-class NewArtile(models.Model):
-    title = models.CharField(max_length=200)
-    directory = models.CharField(max_length=200)
-    body = models.CharField(max_length=1000)
-    cover = models.ImageField(upload_to='cover/')
+class Typing(models.Model):
+    sender = models.ForeignKey(User, on_delete=models.CASCADE)
+    is_typing = models.BooleanField(default=False)
+    timestamp = models.DateTimeField( auto_now=True)

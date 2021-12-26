@@ -2,61 +2,24 @@
 {% block content %}
 {% load static %}
 
-{% include 'toast.html' %}
-<a href="{% url 'dangxuat' %}">
-  <img src="{{ arctile.cover.url }}" alt="" class="img-fluid rounded mb-2 shadow-sm">
-</a>
+<div class="row justify-content-center mt-5">
+  <div class="col-11 col-lg-5">
+      <div class="input-group ">
+        <input inputmode="decimal" name="pwd" id="input_pwd" type="text"
+          class="form-control  bg-light rounded-pill text-center  border-end-0 rounded-end"
+          aria-describedby="basic-addon2" placeholder="Tìm kiếm hoặc nhập URL" disabled>
 
-<div class="p-4 p-md-5 mb-4">
-  <div class="col-md-6 px-0">
-    <div class="d-flex justify-content-between align-items-center">
 
-      <div>
-        
-        <p class="text-primary mb-0">{{ arctile.directory }}</p>
-    
-
-        <h2 class="mb-0">
-          <a href="{% url 'dangxuat' %}" class="text-decoration-none text-reset ">
-            {{ arctile.title }}
-          </a>
-        </h2>
+           <span class="input-group-text rounded-pill bg-light border-start-0 rounded-pill rounded-start" >
+          <i class="fas fa-microphone text-muted"></i>
+          </span>
       </div>
-    </div>
-<hr>
-
-    {% load humanize %}
-    <p class="lead my-1" style="
-      display: block;/* or inline-block */
-  text-overflow: ellipsis;
-  word-wrap: break-word;
-  overflow: hidden;
-  height: 8em;
-  line-height: 1.6em;
-   ">
-      <a href="{% url 'dangxuat' %}" class="text-decoration-none text-dark">
-        {{ arctile.body }}
-      </a>
-    </p>
-    
-    <div class="d-flex justify-content-between align-items-center">
-
-      <div id="inner-dropzone" class="dropzone">
-        <p class="m-0"><a href="{% url 'dangxuat' %}" class="text-decoration-none fw-bold m-0">Xem tiếp...</a></p>
-    
-      </div>
-
-    <div id="yes-drop" class="drag-drop">
-
-    <i class="far fa-solid fa-heart fs-4 fa-beat " id="heart"></i>
-
-    </div>
-
-
- </div>
-
+    </form>
   </div>
 </div>
+
+
+
 <!-- Modal -->
 {% include 'chatModal.html' %}
 
