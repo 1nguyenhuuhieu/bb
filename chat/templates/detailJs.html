@@ -130,6 +130,8 @@
     function submitForm() {
         $("#chatForm").submit(function (event) {
             var file_form = document.getElementById('id_file').value;
+            sendTyping('False');
+
             if (!file_form) {
                 sendMess();
                 return false; //<---- move it here
@@ -152,12 +154,12 @@
         });
     }
 
-    function sendTyping(){
+    function sendTyping(s){
         $.ajax({
             type: "POST",
             url: "{% url 'is_typing' %}",
             data: {
-                '': ''
+                'status': s
             },
         })
     }
@@ -251,7 +253,7 @@
         submitForm();
         swipeRight();
 
-        $("#exampleFormControlTextarea1").on('input', (event) => sendTyping());
+        $("#exampleFormControlTextarea1").on('input', (event) => sendTyping('True'));
     });
 
     function swipeRight() {
