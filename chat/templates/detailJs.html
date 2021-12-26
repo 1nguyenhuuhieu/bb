@@ -265,7 +265,7 @@
                 // keep the element within the area of it's parent
                 modifiers: [
                     interact.modifiers.restrictRect({
-                        // restriction: 'parent',
+                        restriction: 'parent',
                         endOnly: true
                     })
                 ],
@@ -324,10 +324,7 @@
             accept: '#yes-drop',
             // Require a 75% element overlap for a drop to be possible
             overlap: 0.75,
-
             // listen for drop related events:
-
-
             ondrop: function (event) {
                 chatModal.show();
             },

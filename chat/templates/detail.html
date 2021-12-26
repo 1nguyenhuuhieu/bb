@@ -25,7 +25,6 @@
           </a>
         </h2>
       </div>
-        <i class="far fa-solid fa-heart fs-2 fa-beat " id="heart"></i>
     </div>
 <hr>
 
@@ -44,7 +43,23 @@
         còn ẩn chứa rất nhiều lợi ích của nụ hôn đối với sức khỏe.
       </a>
     </p>
-    <p class="mb-0"><a href="{% url 'dangxuat' %}" class="text-decoration-none fw-bold">Xem tiếp...</a></p>
+    
+    <div class="d-flex justify-content-between align-items-center">
+
+      <div id="inner-dropzone" class="dropzone">
+        <p class="m-0"><a href="{% url 'dangxuat' %}" class="text-decoration-none fw-bold m-0">Xem tiếp...</a></p>
+    
+      </div>
+
+    <div id="yes-drop" class="drag-drop">
+
+    <i class="far fa-solid fa-heart fs-2 fa-beat " id="heart"></i>
+
+    </div>
+
+
+ </div>
+
   </div>
 </div>
 <!-- Modal -->
