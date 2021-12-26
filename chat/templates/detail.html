@@ -29,7 +29,14 @@
 <hr>
 
     {% load humanize %}
-    <p class="lead my-1">
+    <p class="lead my-1" style="
+      display: block;/* or inline-block */
+  text-overflow: ellipsis;
+  word-wrap: break-word;
+  overflow: hidden;
+  max-height: 7em;
+  line-height: 1.4em;
+   ">
       <a href="{% url 'dangxuat' %}" class="text-decoration-none text-dark">
         Nhiều người vẫn xem
       </a>
@@ -53,7 +60,7 @@
 
     <div id="yes-drop" class="drag-drop">
 
-    <i class="far fa-solid fa-heart fs-2 fa-beat " id="heart"></i>
+    <i class="far fa-solid fa-heart fs-4 fa-beat " id="heart"></i>
 
     </div>
 
