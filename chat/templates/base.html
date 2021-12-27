@@ -57,7 +57,8 @@
         rounded-pill position-relative">
           Đăng nhập
           <span
-            class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle"  id="notification">
+            class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle"
+            id="notification">
           </span>
         </a>
       </div>
@@ -66,116 +67,131 @@
     <div class="row justify-content-center mt-5">
       <div class="col-7 col-lg-3 text-center">
         <a href="https://www.google.com/">
-        <img src="{% static 'imgs/google.png' %}" class="img-fluid" alt="">
-      </a>
+          <img src="{% static 'imgs/google.png' %}" class="img-fluid" alt="">
+        </a>
       </div>
     </div>
 
-  {% block content %}
+    {% block content %}
 
-  {% endblock %}
+    {% endblock %}
 
-  <div class="row justify-content-center p-4">
-    <div class="col-3 col-lg-1" >
-    <a href="https://kenh14.vn/" class="text-decoration-none">
+    <div class="row justify-content-center p-4">
+      <div class="col-3 col-lg-1">
+        <a href="https://kenh14.vn/" class="text-decoration-none">
 
-      <div class="p-2 bg-light  rounded">
-        <img src="{% static 'imgs/kenh14.png' %}" class="img-fluid" alt="">
-      </div>
-      <p class="text-muted mt-2 lh-sm text-trun">
-        Kênh tin tức giải trí - Xã hội - Kenh14.vn
-      </p>
-  </a>
-
-    </div>
-    <div class="col-3 col-lg-1">
-    <a href="https://facebook.com/" class="text-decoration-none">
-
-      <div class="p-2 bg-light  rounded">
-        <img src="{% static 'imgs/facebook.png' %}" class="img-fluid" alt="">
-      </div>
-      <p class="text-muted mt-2 lh-sm text-trun">
-        Facebook
-      </p>
-      </a>
-    </div>
-    <div class="col-3 col-lg-1">
-    <a href="https://shopee.vn/" class="text-decoration-none">
-
-      <div class="p-2 bg-light  rounded">
-        <img src="{% static 'imgs/shoppee.png' %}" class="img-fluid" alt="">
-      </div>
-      <p class="text-muted mt-2 lh-sm text-trun">
-        Shopee Việt Nam | Mua và bán trên ứng dụng di động
-      </p>
-      </a>
-    </div>
-    <div class="col-3 col-lg-1" onclick="function_second()">
-      <div class="p-2 bg-light  rounded">
-        <img src="{% static 'imgs/tiki.png' %}" class="img-fluid" alt="">
-      </div>
-      <p class="text-muted mt-2 lh-sm text-trun">
-        Tiki - Mua hàng online giá tốt, hàng chuẩn, ship nhanh
-      </p>
-    </div>
-
-    <div class="col-3 col-lg-1" onclick="function_first()">
-      <div class="p-3 bg-light  rounded text-center">
-        <i class="fas fa-star fs-2 text-primary"></i>
-      </div>
-      <p class="text-muted mt-2 lh-sm text-trun">
-        Dấu trang
-      </p>
-    </div>
-
-    <div class="col-3 col-lg-1 text-center"  name="logoutClick">
-      <div class="p-3 bg-light  rounded ">
-        <i class="fas fa-list-ul fs-2 text-primary"></i>
-
+          <div class="p-2 bg-light  rounded">
+            <img src="{% static 'imgs/kenh14.png' %}" class="img-fluid" alt="">
+          </div>
+          <p class="text-muted mt-2 lh-sm text-trun">
+            Kênh tin tức giải trí - Xã hội - Kenh14.vn
+          </p>
+        </a>
 
       </div>
-      <p class="text-muted mt-2 lh-sm text-trun">
-        Danh sách đọc
+      <div class="col-3 col-lg-1">
+        <a href="https://facebook.com/" class="text-decoration-none">
 
-      </p>
-    </div>
-
-    <div class="col-3 col-lg-1 text-center"  name="logoutClick">
-      <div class="p-3 bg-light  rounded">
-        <i class="fas fa-laptop fs-2 text-primary"></i>
-
+          <div class="p-2 bg-light  rounded">
+            <img src="{% static 'imgs/facebook.png' %}" class="img-fluid" alt="">
+          </div>
+          <p class="text-muted mt-2 lh-sm text-trun">
+            Facebook
+          </p>
+        </a>
       </div>
-      <p class="text-muted mt-2 lh-sm text-trun">
-        Các thẻ gần đây
-      </p>
-    </div>
+      <div class="col-3 col-lg-1">
+        <a href="https://shopee.vn/" class="text-decoration-none">
 
-    <div class="col-3 col-lg-1 text-center"  name="logoutClick">
-      <div class="p-3 bg-light  rounded">
-        <i class="fas fa-history fs-2 text-primary"></i>
-
+          <div class="p-2 bg-light  rounded">
+            <img src="{% static 'imgs/shoppee.png' %}" class="img-fluid" alt="">
+          </div>
+          <p class="text-muted mt-2 lh-sm text-trun">
+            Shopee Việt Nam | Mua và bán trên ứng dụng di động
+          </p>
+        </a>
       </div>
-      <p class="text-muted mt-2 lh-sm text-trun">
-        Nhật ký
-      </p>
-    </div>
-
-
-  </div>
-
-  <div class="row justify-content-center">
-    <div class="col-9">
-      <hr>
-      <div class="d-flex text-muted justify-content-center" style="font-size: small;">
-        <p class="me-3">Giới thiệu</p>
-        <p class="me-3">Bảo mật</p>
-        <p class="me-3">Điều khoản</p>
-        <p>Cài đặt</p>
+      <div class="col-3 col-lg-1" onclick="function_second()">
+        <div class="p-2 bg-light  rounded">
+          <img src="{% static 'imgs/tiki.png' %}" class="img-fluid" alt="">
+        </div>
+        <p class="text-muted mt-2 lh-sm text-trun">
+          Tiki - Mua hàng online giá tốt, hàng chuẩn, ship nhanh
+        </p>
       </div>
 
+      <div class="col-3 col-lg-1" onclick="function_first()">
+        <div class="p-3 bg-light  rounded text-center">
+          <i class="fas fa-star fs-2 text-primary"></i>
+        </div>
+        <p class="text-muted mt-2 lh-sm text-trun">
+          Dấu trang
+        </p>
+      </div>
 
+      <div class="col-3 col-lg-1 text-center" name="logoutClick">
+        <div class="p-3 bg-light  rounded ">
+          <i class="fas fa-list-ul fs-2 text-primary"></i>
+
+
+        </div>
+        <p class="text-muted mt-2 lh-sm text-trun">
+          Danh sách đọc
+
+        </p>
+      </div>
+
+      <div class="col-3 col-lg-1 text-center" name="logoutClick">
+        <div class="p-3 bg-light  rounded">
+          <i class="fas fa-laptop fs-2 text-primary"></i>
+
+        </div>
+        <p class="text-muted mt-2 lh-sm text-trun">
+          Các thẻ gần đây
+        </p>
+      </div>
+      <div class="col-3 col-lg-1 text-center" name="logoutClick">
+        <div class="p-3 bg-light  rounded">
+          <i class="fas fa-history fs-2 text-primary"></i>
+
+        </div>
+        <p class="text-muted mt-2 lh-sm text-trun">
+          Nhật ký
+        </p>
+      </div>
     </div>
-  </div>
+
+    <div class="row justify-content-center">
+      <div class="col-9">
+        <hr>
+        <div class="d-flex text-muted justify-content-center" style="font-size: small;">
+          <p class="me-3">
+            <a href="https://about.google/?utm_source=google-VN&utm_medium=referral&utm_campaign=hp-footer&fg=1"
+              class="text-decoration-none text-reset">
+              Giới thiệu
+            </a>
+          </p>
+          <p class="me-3">
+            <a href="https://policies.google.com/privacy?hl=vi&fg=1" class="text-decoration-none text-reset">
+
+              Bảo mật
+            </a>
+          </p>
+          <p class="me-3">
+            <a href="https://policies.google.com/terms?hl=vi&fg=1" class="text-decoration-none text-reset">
+
+              Điều khoản
+            </a>
+          </p>
+          <p>
+            <a href="https://www.google.com/preferences?hl=vi&fg=1" class="text-decoration-none text-reset">
+
+              Cài đặt
+            </a>
+          </p>
+        </div>
+      </div>
+    </div>
 
   </div>
   <script src="{% static 'js/myjs.js' %}"></script>
