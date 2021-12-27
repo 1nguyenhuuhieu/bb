@@ -12,6 +12,7 @@
     var is_show_modal = '{{ is_show_modal }}';
     var is_run_updatemess = false;
     var count_no_changed = 0;
+    const TIME_COLOSE_MODAL = 120;
 
     function initMess() {
         fetch(chat_api)
@@ -23,7 +24,7 @@
         fetch(chat_api)
             .then(response => response.json())
             .then(data => {
-                console.log(count)
+                if(count_no_changed > TIME_COLOSE_MODAL) chatModal.hide();
                 lastMessId = data[0]['id'];
                 if (tempMessId != lastMessId) {
                     tempMessId = lastMessId;
@@ -161,23 +162,6 @@
         setTimeout(refresh, 10000);
 
     };
-
-    function autocloseModal(timewait) {
-        //close modal if not event    
-        var time = new Date().getTime();
-        $("#chatModal").bind("mousemove keypress", function (e) {
-            time = new Date().getTime();
-        });
-        function refresh() {
-            if (new Date().getTime() - time >= timewait) {
-                chatModal.hide();
-            }
-            else
-                setTimeout(refresh, 10000);
-        }
-        setTimeout(refresh, 10000);
-    }
-
     $(document).ready(function () {
         initMess();
         autoReloadPage(300000);
@@ -193,7 +177,7 @@
             clearInterval(lastSenderInterval);
             getMessInterval = setInterval(getMessRealtime, 500);
             // auto close after 1 minute
-            autocloseModal(60000);
+            
         });
 
         if (is_show_modal == 'True') {
