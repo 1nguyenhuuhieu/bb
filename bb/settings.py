@@ -28,7 +28,7 @@ DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
-AUTO_LOGOUT = {'IDLE_TIME': 6000}  
+AUTO_LOGOUT = {'IDLE_TIME': 18000}  
 
 
 # Application definition
