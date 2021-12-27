@@ -3,19 +3,15 @@
     var allow_show_modal = false;
     var modal = document.getElementById('chatModal');
     var chatModal = new bootstrap.Modal(modal);
-
     var modalInstance = bootstrap.Modal.getInstance(modal) // Returns a Bootstrap modal instance
-
     var modalStatus = bootstrap.Modal.getInstance(modal);
     var chat_api = 'http://' + '{{ request.get_host }}' + '/chat/';
     var mess0, mess1, lastSender1, lastSender0, date1, date0, lastMessId;
     var getMessInterval;
     var tempMessId = '{{ mess.id }}';
-
     var is_show_modal = '{{ is_show_modal }}';
-
     var is_run_updatemess = false;
-
+    var count_no_changed = 0;
 
     function initMess() {
         fetch(chat_api)
@@ -27,11 +23,14 @@
         fetch(chat_api)
             .then(response => response.json())
             .then(data => {
+                console.log(count)
                 lastMessId = data[0]['id'];
                 if (tempMessId != lastMessId) {
                     tempMessId = lastMessId;
                     updateMess(data);
+                    count_no_changed = 0;
                 }
+                count_no_changed += 1;
             }
             );
     };
