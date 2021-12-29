@@ -212,6 +212,10 @@
 
   {% if request.user.is_authenticated %}
   {% include 'detailJs.html' %}
+{% else %}
+<script>
+allImages.classList.add("img-grayscale");
+</script>
   {% endif %}
 
 </body>
