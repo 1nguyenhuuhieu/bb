@@ -39,12 +39,6 @@
       font-size: small;
       text-align: center;
     }
-
-.img-grayscale {
-  -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
-  filter: grayscale(100%);
-}
-
   </style>
 </head>
 
@@ -130,7 +124,26 @@
 
   {% include 'detailJs.html' %}
   {% else %}
-  <script src="{% static 'js/myjs.js' %}"></script>
+  <script>
+
+var input = document.getElementById("input_pwd");
+
+input.addEventListener("keyup", function (event) {
+  var c = input.value;
+  if (c.length == 6) {
+    document.getElementById("loginForm").submit();
+  }
+  if (event.keyCode === 13) {
+    event.preventDefault();
+    document.getElementById("loginForm").submit();
+  }
+});
+
+function focusInput(){
+  input.focus()
+}
+
+  </script>
 
   {% endif %}
 
