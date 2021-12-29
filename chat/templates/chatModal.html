@@ -15,38 +15,41 @@
         <img src="#" alt="" class="img-fluid d-none border rounded mt-3" id="image{{i}}">
 
         {% if not forloop.last %}
-        
+
         <hr>
         {% endif %}
         {% endfor %}
-  
 
-   
         <form method="post" enctype="multipart/form-data" id="chatForm">
           {% csrf_token %}
-            <textarea class="form-control mt-3" id="exampleFormControlTextarea1" rows="3" name="mess"></textarea>
+          <textarea class="form-control mt-3" id="exampleFormControlTextarea1" rows="3" name="mess"></textarea>
           <div class="row d-flex justify-content-end align-items-center mt-3 mb-4 g-1">
-            <div class="col-8">
+            <div class="col-7">
               <div class="input-group">
                 <label class="input-group-text" for="id_file"><i class="fas fa-image"></i></label>
                 {{ form.file }}
               </div>
+            </div>
+
+            <input type="hidden" name="sender" value="{{ request.user.id }}">
+
+            <div class="col">
+              
+       <button type="submit" class="btn btn-primary  btn-sm w-100" name="send" id="sendMessAjax"><i
+                class="fas fa-paper-plane"></i></button>
+
+              <button class="btn btn-warning btn-sm w-100 d-none" type="button" id="waitSendBtn">
+                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                Đang gửi...
+              </button>
+
+              <button class="btn btn-danger btn-sm w-100 d-none" type="button" id="connectSendBtn">
+                <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                Đang kết nối...
+              </button>
+
 
             </div>
-      
-          <input type="hidden" name="sender" value="{{ request.user.id }}">
-       
-<div class="col">
-<!-- 
-       <button type="submit" class="btn btn-primary  btn-sm w-100" name="send" id="sendMessAjax"><i
-                class="fas fa-paper-plane"></i></button> -->
-
-  <button class="btn btn-warning btn-sm w-100" type="button" disabled>
-    <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
-    Đang gửi...
-  </button>
-
-</div>
 
           </div>
         </form>
