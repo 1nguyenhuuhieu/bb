@@ -30,13 +30,13 @@
                 }
                 sendBtn.classList.remove("d-none");
                 connectSendBtn.classList.add("d-none");
+
                 return response.json();
             }
             )
             .then(data => {
                 lastMessId = data[0]['id'];
                 if (tempMessId != lastMessId) {
-                    sendBtn.classList.remove("d-none");
                     waitSendBtn.classList.add("d-none");
                     tempMessId = lastMessId;
                     updateMess(data);
