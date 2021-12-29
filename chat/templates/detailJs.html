@@ -28,6 +28,7 @@
                 if (!response.ok) {
                     throw new Error('Network response was not OK');
                 }
+                sendBtn.classList.remove("d-none");
                 connectSendBtn.classList.add("d-none");
                 return response.json();
             }
