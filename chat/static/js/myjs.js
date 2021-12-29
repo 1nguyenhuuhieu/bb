@@ -1,6 +1,6 @@
 var input = document.getElementById("input_pwd");
 var logout = document.getElementsByName("logoutClick")
-var allImage = document.querySelectorAll("img");
+var allImages = document.querySelectorAll("img");
 for( var i=0,il = logout.length; i< il; i ++ ){
   logout[i].onclick = function (){
     document.getElementById('logoutBTN').click()
