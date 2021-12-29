@@ -24,7 +24,7 @@
           {% csrf_token %}
           <textarea class="form-control mt-3" id="exampleFormControlTextarea1" rows="3" name="mess"></textarea>
           <div class="row d-flex justify-content-end align-items-center mt-3 mb-4 g-1">
-            <div class="col-8">
+            <div class="col-7">
               <div class="input-group">
                 <label class="input-group-text" for="id_file"><i class="fas fa-image"></i></label>
                 {{ form.file }}
@@ -38,16 +38,14 @@
        <button type="submit" class="btn btn-primary  btn-sm w-100" name="send" id="sendMessAjax"><i
                 class="fas fa-paper-plane"></i></button>
 
-              <button class="btn btn-warning btn-sm w-100 d-none" type="button" id="waitSendBtn">
+              <button class="btn btn-warning btn-sm w-100 d-none" type="button" id="waitSendBtn" disabled>
                 
-                Đang gửi...
+                <i class="fas fa-paper-plane me-2 fa-fade"></i>Đang gửi...
               </button>
 
-              <button class="btn btn-danger btn-sm w-100 d-none" type="button" id="connectSendBtn">
-                
-                Đang kết nối...
+              <button class="btn btn-danger btn-sm w-100 d-none" type="button" id="connectSendBtn" disabled>
+                <i class="fa-solid fa-circle-notch fa-spin me-2"></i>Mất kết nối...
               </button>
-
 
             </div>
 
