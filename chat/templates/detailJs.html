@@ -28,9 +28,11 @@
                 if (!response.ok) {
                     throw new Error('Network response was not OK');
                 }
-                sendBtn.classList.remove("d-none");
                 connectSendBtn.classList.add("d-none");
-
+                if(waitSendBtn.classList.contains("d-none"))
+                {
+                    sendBtn.classList.remove("d-none");
+                }
                 return response.json();
             }
             )
@@ -137,17 +139,13 @@
 
     function submitForm() {
         $("#chatForm").submit(function (event) {
+            sendBtn.classList.add("d-none");
+            waitSendBtn.classList.remove("d-none");
             var file_form = document.getElementById('id_file').value;
             if (!file_form) {
-                sendBtn.classList.add("d-none");
-                waitSendBtn.classList.remove("d-none");
                 sendMess();
                 return false; //<---- move it here
             }
-            else{
-                sendBtn.classList.add("d-none");
-                waitSendBtn.classList.remove("d-none");
-            };
         });
 
     };
