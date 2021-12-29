@@ -82,6 +82,26 @@
     {% endblock %}
 
 
+  </div>
+
+  <div class="container-fluid bg-light border-top" style="min-height:200px">
+
+    <div class="row justify-content-center">
+
+      <div class="col-8 mt-3 text-center ">
+        {% if request.user.is_authenticated %}
+        <p class="text-success" style="font-size: smaller;">
+          <i class="fas fa-circle me-1 fa-xs"></i> <span class="text-dark fw-bolder">Nghệ An, Việt Nam</span>
+        </p>
+        {% else %}
+        <p class="text-secondary" style="font-size: smaller;">
+          <i class="fas fa-circle me-1 fa-xs"></i> <span class="text-dark fw-bolder">Không xác định</span>
+        </p>
+        {% endif %}
+      </div>
+    
+    </div>
+
     <div class="row justify-content-center">
       <div class="col-9">
         <hr>
@@ -113,8 +133,9 @@
         </div>
       </div>
     </div>
-
   </div>
+
+
 
   <script src="{% static 'assets/dist/js/bootstrap.bundle.min.js' %}"></script>
   <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
