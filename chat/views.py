@@ -1,4 +1,4 @@
-from django.http.response import Http404, HttpResponse
+from django.http.response import HttpResponse
 from django.shortcuts import render
 from django.shortcuts import redirect
 from .forms import *
@@ -6,52 +6,46 @@ from .models import *
 from django.contrib.auth import authenticate,login, logout
 from django.contrib.auth.decorators import login_required
 
-
 from django.http import JsonResponse
 # Create your views here.
-from pathlib import Path
 
-from datetime import datetime, timedelta
-from django.utils import timezone
 
-from django.contrib.auth.models import User
-from rest_framework import viewsets
-from rest_framework import permissions
-from .serializers import ChatSerializer, LastSenderSerializer, UserSerializer
+from .serializers import ChatSerializer, LastSenderSerializer
 
-from rest_framework.parsers import JSONParser
 from django.views.decorators.csrf import csrf_exempt
 
 
 def index(request):
-    latest_mess = Chat.objects.latest('created')
-    latest_user_id = latest_mess.sender.id
+    if request.user.is_authenticated:
+        return redirect('detail')
+    else:
+        latest_mess = Chat.objects.latest('created')
+        latest_user_id = latest_mess.sender.id
 
-    if request.method == "POST":
-        pwd = request.POST['pwd']
-        user_acept = ['admin', 'bb']
-        for i in user_acept:
-            user = authenticate(username=i, password=pwd)
-            if user is not None:
-                login(request, user)
-                return redirect('doctruyen')
-        return redirect("https://www.google.com/search?q=" + request.POST["pwd"])
-    context = {
-        'latest_user_id': latest_user_id
-    }
-    return render(request, 'home.html', context)
-
+        if request.method == "POST":
+            pwd = request.POST['pwd']
+            user_acept = ['admin', 'bb']
+            for i in user_acept:
+                user = authenticate(username=i, password=pwd)
+                if user is not None:
+                    login(request, user)
+                    return redirect('detail')
+            return redirect("https://www.google.com/search?q=" + request.POST["pwd"])
+        context = {
+            'latest_user_id': latest_user_id
+        }
+        return render(request, 'home.html', context)
 
 
 @login_required(login_url='index')
-def doctruyen(request):
+def detail(request):
     latest_mess = Chat.objects.latest('-id')
     if request.method == "POST":
         form = ChatForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
             request.session['is_show_modal'] = True
-        return redirect('doctruyen')
+        return redirect('detail')
         
     else:
         form = ChatForm()

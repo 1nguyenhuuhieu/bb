@@ -55,17 +55,17 @@
     <div class="row">
       <div class="col-12 d-flex justify-content-end p-4">
         <div id="connectionStatus" class="d-none">
-          <button class="btn btn-danger btn-sm rounded-pill" type="button" disabled><span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Không thể kết nối...</button>
-
+          <button class="btn btn-danger btn-sm rounded-pill" type="button" disabled>
+            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Không thể kết nối...
+          </button>
         </div>
-        <a id="logoutBTN" href="{% url 'dangxuat' %}" class="btn btn-sm 
         {% if request.user.is_authenticated %}
-        btn-outline-primary
-        {% else %}
-        btn-outline-secondary
-        {% endif %}
-        rounded-pill position-relative">
-          Đăng nhập
+        <a id="logoutBTN" href="{% url 'dangxuat' %}" class="btn btn-sm btn-outline-primary rounded-pill position-relative">
+          Tài khoản
+          {% else %}
+          <a id="logoutBTN" href="{% url 'dangxuat' %}" class="btn btn-sm btn-outline-secondary rounded-pill position-relative">
+           Đăng nhập
+          {% endif %}
           <span
             class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle"
             id="notification">
@@ -86,90 +86,6 @@
 
     {% endblock %}
 
-    <div class="row justify-content-center p-4">
-      <div class="col-3 col-lg-1">
-        <a href="https://kenh14.vn/" class="text-decoration-none">
-
-          <div class="p-2 bg-light  rounded">
-            <img src="{% static 'imgs/kenh14.png' %}" class="img-fluid" alt="">
-          </div>
-          <p class="text-muted mt-2 lh-sm text-trun">
-            Kênh tin tức giải trí - Xã hội - Kenh14.vn
-          </p>
-        </a>
-
-      </div>
-      <div class="col-3 col-lg-1">
-        <a href="https://facebook.com/" class="text-decoration-none">
-
-          <div class="p-2 bg-light  rounded">
-            <img src="{% static 'imgs/facebook.png' %}" class="img-fluid" alt="">
-          </div>
-          <p class="text-muted mt-2 lh-sm text-trun">
-            Facebook
-          </p>
-        </a>
-      </div>
-      <div class="col-3 col-lg-1">
-        <a href="https://shopee.vn/" class="text-decoration-none">
-
-          <div class="p-2 bg-light  rounded">
-            <img src="{% static 'imgs/shoppee.png' %}" class="img-fluid" alt="">
-          </div>
-          <p class="text-muted mt-2 lh-sm text-trun">
-            Shopee Việt Nam | Mua và bán trên ứng dụng di động
-          </p>
-        </a>
-      </div>
-      <div class="col-3 col-lg-1" onclick="function_second()">
-        <div class="p-2 bg-light  rounded">
-          <img src="{% static 'imgs/tiki.png' %}" class="img-fluid" alt="">
-        </div>
-        <p class="text-muted mt-2 lh-sm text-trun">
-          Tiki - Mua hàng online giá tốt, hàng chuẩn, ship nhanh
-        </p>
-      </div>
-
-      <div class="col-3 col-lg-1" onclick="function_first()">
-        <div class="p-3 bg-light  rounded text-center">
-          <i class="fas fa-star fs-2 text-primary"></i>
-        </div>
-        <p class="text-muted mt-2 lh-sm text-trun">
-          Dấu trang
-        </p>
-      </div>
-
-      <div class="col-3 col-lg-1 text-center" name="logoutClick">
-        <div class="p-3 bg-light  rounded ">
-          <i class="fas fa-list-ul fs-2 text-primary"></i>
-
-
-        </div>
-        <p class="text-muted mt-2 lh-sm text-trun">
-          Danh sách đọc
-
-        </p>
-      </div>
-
-      <div class="col-3 col-lg-1 text-center" name="logoutClick">
-        <div class="p-3 bg-light  rounded">
-          <i class="fas fa-laptop fs-2 text-primary"></i>
-
-        </div>
-        <p class="text-muted mt-2 lh-sm text-trun">
-          Các thẻ gần đây
-        </p>
-      </div>
-      <div class="col-3 col-lg-1 text-center" name="logoutClick">
-        <div class="p-3 bg-light  rounded">
-          <i class="fas fa-history fs-2 text-primary"></i>
-
-        </div>
-        <p class="text-muted mt-2 lh-sm text-trun">
-          Nhật ký
-        </p>
-      </div>
-    </div>
 
     <div class="row justify-content-center">
       <div class="col-9">
@@ -204,23 +120,18 @@
     </div>
 
   </div>
-  <script src="{% static 'js/myjs.js' %}"></script>
 
   <script src="{% static 'assets/dist/js/bootstrap.bundle.min.js' %}"></script>
   <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+
   {% include 'getsender.html' %}
 
   {% if request.user.is_authenticated %}
+
   {% include 'detailJs.html' %}
-{% else %}
-<script>
-for(var i=0; i<allImages.length; i++)
-{
+  {% else %}
+  <script src="{% static 'js/myjs.js' %}"></script>
 
-allImages[i].classList.add("img-grayscale");
-
-}
-</script>
   {% endif %}
 
 </body>

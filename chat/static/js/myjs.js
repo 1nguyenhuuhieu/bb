@@ -18,3 +18,6 @@ input.addEventListener("keyup", function (event) {
   }
 });
 
+function focusInput(){
+  input.focus()
+}
