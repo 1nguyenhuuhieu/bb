@@ -214,7 +214,12 @@
   {% include 'detailJs.html' %}
 {% else %}
 <script>
-allImages.classList.add("img-grayscale");
+for(var i=0; i<allImages.length; i++)
+{
+
+allImages[i].classList.add("img-grayscale");
+
+}
 </script>
   {% endif %}
 
