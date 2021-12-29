@@ -48,6 +48,10 @@
 
     <div class="row">
       <div class="col-12 d-flex justify-content-end p-4">
+        <div id="connectionStatus" class="d-none">
+          <button class="btn btn-danger btn-sm rounded-pill" type="button" disabled><span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span> Không thể kết nối...</button>
+
+        </div>
         <a id="logoutBTN" href="{% url 'dangxuat' %}" class="btn btn-sm 
         {% if request.user.is_authenticated %}
         btn-outline-primary

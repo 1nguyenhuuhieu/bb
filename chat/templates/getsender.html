@@ -5,6 +5,8 @@
   var temp = '{{ latest_user_id }}';
   var is_changed = false;
   var sender, lastSenderInterval;
+  var connectionStatus = document.getElementById('connectionStatus');
+  var logoutBTN = document.getElementById('logoutBTN');
 
   function updateSender(senderI) {
     if (senderI == 1) {
@@ -19,7 +21,15 @@
 
   function getSender() {
     fetch(url_api)
-      .then(response => response.json())
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not OK');
+        }
+        connectionStatus.className = "d-none";
+        logoutBTN.classList.remove("d-none")
+        return response.json();
+      }
+      )
       .then(data => {
         sender = data.sender;
         if (temp != sender) {
@@ -27,9 +37,13 @@
           temp = sender;
         }
         else is_changed = false;
-        if (is_changed){
+        if (is_changed) {
           updateSender(sender);
         }
+      })
+      .catch(error => {
+        connectionStatus.classList.remove('d-none');
+        logoutBTN.classList.add("d-none")
       });
   };
 

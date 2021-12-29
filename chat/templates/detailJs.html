@@ -21,7 +21,15 @@
 
     function getMessRealtime() {
         fetch(chat_api)
-            .then(response => response.json())
+            .then(response =>
+
+            {
+        if (!response.ok) {
+          throw new Error('Network response was not OK');
+        }
+        return response.json();
+      }
+            )
             .then(data => {
                 lastMessId = data[0]['id'];
                 if (tempMessId != lastMessId) {
@@ -29,7 +37,11 @@
                     updateMess(data);
                 }
             }
-            );
+            )
+            .catch(error => {
+        connectionStatus.classList.remove('d-none');
+        logoutBTN.classList.add("d-none")
+      });
     };
 
     function updateMess(data) {
