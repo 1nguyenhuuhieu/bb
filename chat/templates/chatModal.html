@@ -20,9 +20,9 @@
         {% endif %}
         {% endfor %}
 
-        <form method="post" enctype="multipart/form-data" id="chatForm">
+        <form method="post" class="needs-validation" enctype="multipart/form-data" id="chatForm" novalidate>
           {% csrf_token %}
-          <textarea class="form-control mt-3" id="exampleFormControlTextarea1" rows="3" name="mess"></textarea>
+          <textarea class="form-control mt-3" id="exampleFormControlTextarea1" rows="3" name="mess" required></textarea>
           <div class="row d-flex justify-content-end align-items-center mt-3 mb-4 g-1">
             <div class="col-7">
               <div class="input-group">
