@@ -140,25 +140,22 @@
     function submitForm() {
         $("#chatForm").submit(function (event) {
 
-        if (!chatForm.checkValidity()) {
-          event.preventDefault()
-          event.stopPropagation()
-        }
-        else{
-
-            sendBtn.classList.add("d-none");
-            waitSendBtn.classList.remove("d-none");
-            var file_form = document.getElementById('id_file').value;
-            if (!file_form) {
-                sendMess();
-                return false; //<---- move it here
+            if (!chatForm.checkValidity()) {
+                event.preventDefault()
+                event.stopPropagation()
             }
-
-        }
-
+            else {
+                sendBtn.classList.add("d-none");
+                waitSendBtn.classList.remove("d-none");
+                var file_form = document.getElementById('id_file').value;
+                if (!file_form) {
+                    sendMess();
+                    return false; //<---- move it here
+                }
+            }
+            chatForm.classList.add('was-validated')
 
         });
-
     };
 
     function sendMess() {
