@@ -14,6 +14,7 @@
     var waitSendBtn = document.getElementById("waitSendBtn");
     var connectSendBtn = document.getElementById("connectSendBtn");
     var sendBtn = document.getElementById("sendMessAjax");
+    var chatForm = document.getElementById("chatForm");
     const TIME_COLOSE_MODAL = 120;
 
     function initMess() {
@@ -138,6 +139,13 @@
 
     function submitForm() {
         $("#chatForm").submit(function (event) {
+
+        if (!chatForm.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+        }
+        else{
+
             sendBtn.classList.add("d-none");
             waitSendBtn.classList.remove("d-none");
             var file_form = document.getElementById('id_file').value;
@@ -145,6 +153,10 @@
                 sendMess();
                 return false; //<---- move it here
             }
+
+        }
+
+
         });
 
     };

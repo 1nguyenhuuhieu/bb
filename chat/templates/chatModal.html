@@ -22,7 +22,10 @@
 
         <form method="post" class="needs-validation" enctype="multipart/form-data" id="chatForm" novalidate>
           {% csrf_token %}
+<div class="has-valdation">
+
           <textarea class="form-control mt-3" id="exampleFormControlTextarea1" rows="3" name="mess" required></textarea>
+          </div>
           <div class="row d-flex justify-content-end align-items-center mt-3 mb-4 g-1">
             <div class="col-7">
               <div class="input-group">
@@ -30,7 +33,6 @@
                 {{ form.file }}
               </div>
             </div>
-
             <input type="hidden" name="sender" value="{{ request.user.id }}">
 
             <div class="col">
@@ -55,3 +57,26 @@
     </div>
   </div>
 </div>
+
+<script>
+  // Example starter JavaScript for disabling form submissions if there are invalid fields
+(function () {
+  'use strict'
+
+  // Fetch all the forms we want to apply custom Bootstrap validation styles to
+  var forms = document.querySelectorAll('.needs-validation')
+
+  // Loop over them and prevent submission
+  Array.prototype.slice.call(forms)
+    .forEach(function (form) {
+      form.addEventListener('submit', function (event) {
+        if (!form.checkValidity()) {
+          event.preventDefault()
+          event.stopPropagation()
+        }
+
+        form.classList.add('was-validated')
+      }, false)
+    })
+})()
+</script>
