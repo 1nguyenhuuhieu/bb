@@ -60,7 +60,7 @@
           {% if request.user.username == 'bb' %}
           {% static 'imgs/girl.jpg' %}
           {% else %}
-          {% static 'imgs/dino.png' %}
+          {% static 'imgs/boy.jpg' %}
           {% endif %}
           
           " alt="" class="border shadow-sm rounded-circle position-relative" width="40px">
@@ -70,10 +70,8 @@
             class="btn btn-sm btn-outline-secondary rounded-pill position-relative">
             Đăng nhập
             {% endif %}
-            <span
-              class="position-absolute top-0 start-100 translate-middle p-2 bg-primary border border-light rounded-circle"
-              id="notification">
-            </span>
+            <i class="position-absolute top-0 start-100 translate-middle fa-solid fa-circle fa-xs text-primary" id="notification" ></i>
+
           </a>
       </div>
     </div>
