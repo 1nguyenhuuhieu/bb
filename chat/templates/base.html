@@ -39,15 +39,23 @@
       font-size: small;
       text-align: center;
     }
+
+    .dark-mode-body{
+      background-color: #353739  ;
+    }
+
+    .dark-mode-search{
+      background-color: #5E6268;
+    }
   </style>
 </head>
 
-<body>
+<body class="bg-light" id="body">
 
-  <div class="container-fluid">
+  <div class="container-fluid bg-white" id="testDarkmode">
 
     <div class="row">
-      <div class="col-12 d-flex justify-content-end p-4">
+      <div class="col-12 d-flex justify-content-end p-4 align-items-center">
 
         <div id="connectionStatus" class="d-none">
           <button class="btn btn-danger btn-sm rounded-pill" type="button" disabled>
@@ -63,7 +71,7 @@
           {% static 'imgs/boy.jpg' %}
           {% endif %}
           
-          " alt="" class="border shadow-sm rounded-circle position-relative" width="40px">
+          " alt="" class="rounded-circle position-relative" width="40px">
           {% else %}
           <a id="logoutBTN"
             href="https://accounts.google.com/signin/v2/identifier?flowName=GlifWebSignIn&flowEntry=ServiceLogin"
@@ -91,7 +99,7 @@
 
   </div>
 
-  <div class="container-fluid bg-light border-top">
+  <div class="container-fluid border-top">
 
     <div class="row justify-content-center">
 
@@ -139,6 +147,14 @@
           </p>
         </div>
       </div>
+
+      <div class="col-8">
+        <div class="form-check form-switch me-2">
+          <input class="form-check-input" type="checkbox" role="switch" id="darkmodeSwitch">
+          <label class="form-check-label" for="flexSwitchCheckDefault">Chế độ ban đêm</label>
+        </div>
+
+      </div>
     </div>
   </div>
 
@@ -147,7 +163,7 @@
   <script src="{% static 'assets/dist/js/bootstrap.bundle.min.js' %}"></script>
   <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
 
-  {% include 'getsender.html' %}
+  {% include 'baseJS.html' %}
 
   {% if request.user.is_authenticated %}
 

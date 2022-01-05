@@ -7,6 +7,7 @@
   var sender, lastSenderInterval;
   var connectionStatus = document.getElementById('connectionStatus');
   var logoutBTN = document.getElementById('logoutBTN');
+  var switchDarkmode = document.getElementById('darkmodeSwitch')
 
   function updateSender(senderI) {
     if (senderI == 1) {
@@ -50,6 +51,16 @@
   $(document).ready(function () {
     updateSender(temp);
     lastSenderInterval = setInterval(getSender, 500);
+
+
+    $('#darkmodeSwitch').change(function(){
+      document.getElementById('testDarkmode').classList.toggle('dark-mode-body');
+      document.getElementById('testDarkmode').classList.toggle('bg-white');
+      document.getElementById('input_pwd').classList.toggle('dark-mode-search');
+      document.getElementById('input_pwd').classList.toggle('bg-light');
+    })
+
+
   });
 
 </script>
