@@ -74,7 +74,7 @@ a{
     }
 
     .modal p {
-        color: white;
+        color: rgba(255, 255, 255, 0.8);
     }
 
     .icon-top, .modal{
@@ -86,7 +86,8 @@ a{
 
     #exampleFormControlTextarea1{
         background: #464A4E;
-        color: white;
+        color: rgba(255, 255, 255, 0.8);
+        border-width: 0;
     }
 
     
