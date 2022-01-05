@@ -28,10 +28,12 @@
   function updateSender(senderI) {
     if (senderI == 1) {
       elm.classList.add("text-danger");
+      elm.classList.remove("text-primary");
       document.title = 'Google';
     }
     else if (senderI == 2) {
       elm.classList.remove("text-danger");
+      elm.classList.add("text-primary");
       document.title = '(1)Google';
     }
   }
