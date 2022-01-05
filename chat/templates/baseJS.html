@@ -1,29 +1,12 @@
 {% load static %}
 <script>
   var url_api = 'http://' + '{{ request.get_host }}' + '/last_sender/';
-  var elm = document.getElementById('notification');
   var temp = '{{ latest_user_id }}';
   var is_changed = false;
   var sender, lastSenderInterval;
   var connectionStatus = document.getElementById('connectionStatus');
   var logoutBTN = document.getElementById('logoutBTN');
-  var input = document.getElementById("input_pwd");
-
-
-  input.addEventListener("keyup", function (event) {
-      var c = input.value;
-      if (c.length == 6) {
-        document.getElementById("loginForm").submit();
-      }
-      if (event.keyCode === 13) {
-        event.preventDefault();
-        document.getElementById("loginForm").submit();
-      }
-    });
-    function focusInput() {
-      input.focus()
-    }
-
+  var elm = document.getElementById('notification');
 
   function updateSender(senderI) {
     if (senderI == 1) {
@@ -69,36 +52,6 @@
   $(document).ready(function () {
     updateSender(temp);
     lastSenderInterval = setInterval(getSender, 500);
-
-
-    $('#darkmodeSwitch').change(function(){
-
-      for (var i = 0; i < darkMode1.length; i++){
-        darkMode1[i].classList.toggle('dark-mode-body');
-        darkMode1[i].classList.toggle('bg-white');
-      }
-
-      for (var i = 0; i < darkMode2.length; i++){
-        darkMode2[i].classList.toggle('bg-light');
-
-        darkMode2[i].classList.toggle('dark-mode-search');
-      }
-
-      for (var i = 0; i< darkMode3.length; i++){
-        darkMode3[i].classList.toggle('dark-mode-3');
-        darkMode3[i].classList.toggle('bg-light');
-      }
-
-      document.getElementById('chatModal').classList.toggle('dark-mode-body');
-      document.getElementById('chatModal').classList.toggle('bg-white');
-
-      document.getElementById('modalDialog').classList.toggle('dark-mode-3');
-      document.getElementById('modalDialog').classList.toggle('bg-white');
-      document.getElementById('modalDialog').classList.toggle('text-white');
-
-    })
-
-
   });
 
 </script>

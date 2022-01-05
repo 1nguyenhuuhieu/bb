@@ -54,11 +54,16 @@
             class="btn btn-sm btn-outline-secondary rounded-pill position-relative">
             Đăng nhập
             {% endif %}
-            <span
-              class="position-absolute top-0 start-100 translate-middle p-2 border border-light rounded-circle"
-              id="notification">
-            </span>
+            
+          <span
+          class="position-absolute top-0 start-100 translate-middle p-2 border border-light rounded-circle"
+          id="notification">
+        </span>
+
+  
           </a>
+
+
       </div>
     </div>
     <div class="row justify-content-center mt-4">
@@ -123,6 +128,27 @@
   {% include 'baseJS.html' %}
   {% if request.user.is_authenticated %}
   {% include 'detailJs.html' %}
+  {% else %}
+
+  <script>
+    
+  var input = document.getElementById("input_pwd");
+  input.addEventListener("keyup", function (event) {
+      var c = input.value;
+      if (c.length == 6) {
+        document.getElementById("loginForm").submit();
+      }
+      if (event.keyCode === 13) {
+        event.preventDefault();
+        document.getElementById("loginForm").submit();
+      }
+    });
+    function focusInput() {
+      input.focus()
+    }
+
+
+  </script>
   {% endif %}
 
 </body>
