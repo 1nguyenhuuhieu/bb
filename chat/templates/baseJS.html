@@ -7,10 +7,23 @@
   var sender, lastSenderInterval;
   var connectionStatus = document.getElementById('connectionStatus');
   var logoutBTN = document.getElementById('logoutBTN');
-  var switchDarkmode = document.getElementById('darkmodeSwitch');
-  var darkMode1 = document.getElementsByName('dark-mode-1');
-  var darkMode2 = document.getElementsByName('darkMode2');
-  var darkMode3 = document.getElementsByName('darkMode3');
+  var input = document.getElementById("input_pwd");
+
+
+  input.addEventListener("keyup", function (event) {
+      var c = input.value;
+      if (c.length == 6) {
+        document.getElementById("loginForm").submit();
+      }
+      if (event.keyCode === 13) {
+        event.preventDefault();
+        document.getElementById("loginForm").submit();
+      }
+    });
+    function focusInput() {
+      input.focus()
+    }
+
 
   function updateSender(senderI) {
     if (senderI == 1) {

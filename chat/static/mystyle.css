@@ -1,0 +1,90 @@
+.text-trun {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    display: -webkit-box !important;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    white-space: normal;
+    font-size: small;
+    text-align: center;
+  }
+
+
+  .icon {
+    border-radius: 13px;
+    padding: 13px;
+    margin: 8px;
+    font-size: xx-small;
+}
+  
+/* Light mode */
+@media (prefers-color-scheme: light) {
+    body, .modal-content {
+        background-color: white;
+    }
+    p{
+        color: #777777;
+    }
+
+    .modal p {
+        color: black;
+    }
+
+    .search {
+        background-color: #E8EAED;
+        color: #999FA5;
+    }
+
+    .form-control::placeholder {
+        color: #999FA5;
+      }
+
+
+    .icon-top, .modal {
+        background-color: #F1F3F4;
+
+    }
+
+    .icon-bot {
+        background-color: #E8F0FE;
+
+    }
+}
+
+
+/* Dark mode */
+@media (prefers-color-scheme: dark) {
+    body, .modal {
+        background-color: #353739;
+    }
+
+    .form-control::placeholder {
+        color: #d1d1d1;
+      }
+
+    .search {
+        background-color: #5F6367;
+        color: #d1d1d1;
+    }
+    p{
+        color: #7E8085;
+    }
+
+    .modal p {
+        color: white;
+    }
+
+    .icon-top, .modal-content{
+        background-color: #464A4E;
+    }
+    .icon-bot{
+        background-color: #495567;
+    }
+
+    #exampleFormControlTextarea1{
+        background: #464A4E;
+        color: white;
+    }
+
+    
+}

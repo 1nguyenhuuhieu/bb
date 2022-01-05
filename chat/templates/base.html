@@ -27,36 +27,11 @@
   <!-- Bootstrap core CSS -->
   <link href="{% static  'assets/dist/css/bootstrap.min.css' %}" rel="stylesheet">
   <link href="{% static  'assets/dist/css/all.css' %}" rel="stylesheet">
-
-  <style>
-    .text-trun {
-      text-overflow: ellipsis;
-      overflow: hidden;
-      display: -webkit-box !important;
-      -webkit-line-clamp: 2;
-      -webkit-box-orient: vertical;
-      white-space: normal;
-      font-size: small;
-      text-align: center;
-    }
-
-    .dark-mode-body{
-      background-color: #353739  ;
-    }
-
-    .dark-mode-search{
-      background-color: #5E6268;
-    }
-    .dark-mode-3{
-      background-color: #464A4E;
-    }
-  </style>
+  <link href="{% static  'mystyle.css' %}" rel="stylesheet">
 </head>
 
-<body class="bg-light">
-
-  <div class="container-fluid bg-white" name="dark-mode-1">
-
+<body>
+  <div class="container-fluid">
     <div class="row">
       <div class="col-12 d-flex justify-content-end p-4 align-items-center">
         <div id="connectionStatus" class="d-none">
@@ -72,7 +47,6 @@
           {% else %}
           {% static 'imgs/boy.jpg' %}
           {% endif %}
-          
           " alt="" class="rounded-circle position-relative" width="40px">
           {% else %}
           <a id="logoutBTN"
@@ -80,56 +54,45 @@
             class="btn btn-sm btn-outline-secondary rounded-pill position-relative">
             Đăng nhập
             {% endif %}
-            <i class="position-absolute top-0 start-100 translate-middle fa-solid fa-circle fa-xs text-primary" id="notification" ></i>
-
+            <span
+              class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle"
+              id="notification">
+              <span class="visually-hidden">New alerts</span>
+            </span>
           </a>
       </div>
     </div>
-
-    <div class="row justify-content-center mt-5">
+    <div class="row justify-content-center mt-4">
       <div class="col-7 col-lg-3 text-center">
         <a href="https://www.google.com/">
           <img src="{% static 'imgs/google.png' %}" class="img-fluid" alt="">
         </a>
       </div>
     </div>
-
     {% block content %}
 
+    
     {% endblock %}
 
-
   </div>
-
-  <div class="container-fluid bg-white" name="dark-mode-1">
-
+  <div class="container-fluid">
     <div class="row justify-content-center">
-
       <div class="col-8 mt-3 text-center ">
         {% if request.user.is_authenticated %}
-        <p class="text-success" style="font-size: smaller;">
-          <i class="fas fa-circle me-1 fa-xs"></i> <span class="text-dark fw-bolder">Nghệ An, Việt Nam</span>
+        <p style="font-size: smaller;">
+          <i class="fas fa-circle me-1 fa-xs text-success"></i> <span class="text-reset fw-bolder">Nghệ An, Việt Nam</span>
         </p>
         {% else %}
-        <p class="text-secondary" style="font-size: smaller;">
-          <i class="fas fa-circle me-1 fa-xs"></i> <span class="text-dark fw-bolder">Không xác định</span>
+        <p style="font-size: smaller;">
+          <i class="fas fa-circle me-1 fa-xs text-secondary"></i> <span class="text-reset fw-bolder">Không xác định</span>
         </p>
         {% endif %}
       </div>
-
-      <div class="col-8 d-flex justify-content-center">
-        <div class="form-check form-switch">
-          <input class="form-check-input" type="checkbox" role="switch" id="darkmodeSwitch">
-          <label class="form-check-label" for="flexSwitchCheckDefault"> <span class="text-muted fs-6">Chế độ ban đêm</span> </label>
-        </div>
-      </div>
-
     </div>
-
     <div class="row justify-content-center">
       <div class="col-9">
         <hr>
-        <div class="d-flex text-muted justify-content-center" style="font-size: small;">
+        <div class="d-flex justify-content-center" style="font-size: small;">
           <p class="me-3">
             <a href="https://about.google/?utm_source=google-VN&utm_medium=referral&utm_campaign=hp-footer&fg=1"
               class="text-decoration-none text-reset">
@@ -138,59 +101,29 @@
           </p>
           <p class="me-3">
             <a href="https://policies.google.com/privacy?hl=vi&fg=1" class="text-decoration-none text-reset">
-
               Bảo mật
             </a>
           </p>
           <p class="me-3">
             <a href="https://policies.google.com/terms?hl=vi&fg=1" class="text-decoration-none text-reset">
-
               Điều khoản
             </a>
           </p>
           <p>
             <a href="https://www.google.com/preferences?hl=vi&fg=1" class="text-decoration-none text-reset">
-
               Cài đặt
             </a>
           </p>
         </div>
       </div>
-
     </div>
   </div>
-
-
-
   <script src="{% static 'assets/dist/js/bootstrap.bundle.min.js' %}"></script>
   <script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
 
   {% include 'baseJS.html' %}
-
   {% if request.user.is_authenticated %}
-
   {% include 'detailJs.html' %}
-  {% else %}
-  <script>
-
-    var input = document.getElementById("input_pwd");
-    input.addEventListener("keyup", function (event) {
-      var c = input.value;
-      if (c.length == 6) {
-        document.getElementById("loginForm").submit();
-      }
-      if (event.keyCode === 13) {
-        event.preventDefault();
-        document.getElementById("loginForm").submit();
-      }
-    });
-
-    function focusInput() {
-      input.focus()
-    }
-
-  </script>
-
   {% endif %}
 
 </body>
