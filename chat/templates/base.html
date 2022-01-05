@@ -47,12 +47,15 @@
     .dark-mode-search{
       background-color: #5E6268;
     }
+    .dark-mode-3{
+      background-color: #464A4E;
+    }
   </style>
 </head>
 
-<body class="bg-light" id="body">
+<body class="bg-light">
 
-  <div class="container-fluid bg-white" id="testDarkmode">
+  <div class="container-fluid bg-white" name="dark-mode-1">
 
     <div class="row">
       <div class="col-12 d-flex justify-content-end p-4 align-items-center">
@@ -99,7 +102,7 @@
 
   </div>
 
-  <div class="container-fluid border-top">
+  <div class="container-fluid border-top bg-white" name="dark-mode-1">
 
     <div class="row justify-content-center">
 
@@ -113,6 +116,13 @@
           <i class="fas fa-circle me-1 fa-xs"></i> <span class="text-dark fw-bolder">Không xác định</span>
         </p>
         {% endif %}
+      </div>
+
+      <div class="col-8 d-flex justify-content-center">
+        <div class="form-check form-switch">
+          <input class="form-check-input" type="checkbox" role="switch" id="darkmodeSwitch">
+          <label class="form-check-label" for="flexSwitchCheckDefault"> <span class="text-muted fs-6">Chế độ ban đêm</span> </label>
+        </div>
       </div>
 
     </div>
@@ -148,13 +158,6 @@
         </div>
       </div>
 
-      <div class="col-8">
-        <div class="form-check form-switch me-2">
-          <input class="form-check-input" type="checkbox" role="switch" id="darkmodeSwitch">
-          <label class="form-check-label" for="flexSwitchCheckDefault">Chế độ ban đêm</label>
-        </div>
-
-      </div>
     </div>
   </div>
 
@@ -172,7 +175,6 @@
   <script>
 
     var input = document.getElementById("input_pwd");
-
     input.addEventListener("keyup", function (event) {
       var c = input.value;
       if (c.length == 6) {

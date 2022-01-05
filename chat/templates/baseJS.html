@@ -7,7 +7,9 @@
   var sender, lastSenderInterval;
   var connectionStatus = document.getElementById('connectionStatus');
   var logoutBTN = document.getElementById('logoutBTN');
-  var switchDarkmode = document.getElementById('darkmodeSwitch')
+  var switchDarkmode = document.getElementById('darkmodeSwitch');
+  var darkMode1 = document.getElementsByName('dark-mode-1');
+  var darkMode3 = document.getElementsByName('darkMode3');
 
   function updateSender(senderI) {
     if (senderI == 1) {
@@ -54,10 +56,20 @@
 
 
     $('#darkmodeSwitch').change(function(){
-      document.getElementById('testDarkmode').classList.toggle('dark-mode-body');
-      document.getElementById('testDarkmode').classList.toggle('bg-white');
+
+      for (var i = 0; i < darkMode1.length; i++){
+        darkMode1[i].classList.toggle('dark-mode-body');
+        darkMode1[i].classList.toggle('bg-white');
+      }
+
+      for (var i = 0; i < darkMode3.length; i++){
+
+        darkMode3.classList.toggle('dark-mode-3');
+      }
+
       document.getElementById('input_pwd').classList.toggle('dark-mode-search');
       document.getElementById('input_pwd').classList.toggle('bg-light');
+      
     })
 
 
