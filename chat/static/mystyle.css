@@ -57,7 +57,7 @@ a{
 
 /* Dark mode */
 @media (prefers-color-scheme: dark) {
-    body, .modal {
+    body, .modal-content {
         background-color: #353739;
     }
 
@@ -77,7 +77,7 @@ a{
         color: white;
     }
 
-    .icon-top, .modal-content{
+    .icon-top, .modal{
         background-color: #464A4E;
     }
     .icon-bot{
