@@ -16,6 +16,9 @@
     margin: 8px;
     font-size: xx-small;
 }
+a{
+    text-decoration: none;
+}
   
 /* Light mode */
 @media (prefers-color-scheme: light) {
