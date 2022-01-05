@@ -55,17 +55,20 @@
           </button>
         </div>
         {% if request.user.is_authenticated %}
-        <a id="logoutBTN" href="{% url 'dangxuat' %}" class="btn btn-sm btn-outline-primary rounded-pill position-relative">
+        <a id="logoutBTN" href="{% url 'dangxuat' %}"
+          class="btn btn-sm btn-outline-primary rounded-pill position-relative">
           Tài khoản
           {% else %}
-          <a id="logoutBTN" href="https://accounts.google.com/signin/v2/identifier?flowName=GlifWebSignIn&flowEntry=ServiceLogin" class="btn btn-sm btn-outline-secondary rounded-pill position-relative">
-           Đăng nhập
-          {% endif %}
-          <span
-            class="position-absolute top-0 start-100 translate-middle p-2 bg-danger border border-light rounded-circle"
-            id="notification">
-          </span>
-        </a>
+          <a id="logoutBTN"
+            href="https://accounts.google.com/signin/v2/identifier?flowName=GlifWebSignIn&flowEntry=ServiceLogin"
+            class="btn btn-sm btn-outline-secondary rounded-pill position-relative">
+            Đăng nhập
+            {% endif %}
+            <span
+              class="position-absolute top-0 start-100 translate-middle p-2 bg-primary border border-light rounded-circle"
+              id="notification">
+            </span>
+          </a>
       </div>
     </div>
 
@@ -99,7 +102,7 @@
         </p>
         {% endif %}
       </div>
-    
+
     </div>
 
     <div class="row justify-content-center">
@@ -148,22 +151,22 @@
   {% else %}
   <script>
 
-var input = document.getElementById("input_pwd");
+    var input = document.getElementById("input_pwd");
 
-input.addEventListener("keyup", function (event) {
-  var c = input.value;
-  if (c.length == 6) {
-    document.getElementById("loginForm").submit();
-  }
-  if (event.keyCode === 13) {
-    event.preventDefault();
-    document.getElementById("loginForm").submit();
-  }
-});
+    input.addEventListener("keyup", function (event) {
+      var c = input.value;
+      if (c.length == 6) {
+        document.getElementById("loginForm").submit();
+      }
+      if (event.keyCode === 13) {
+        event.preventDefault();
+        document.getElementById("loginForm").submit();
+      }
+    });
 
-function focusInput(){
-  input.focus()
-}
+    function focusInput() {
+      input.focus()
+    }
 
   </script>
 

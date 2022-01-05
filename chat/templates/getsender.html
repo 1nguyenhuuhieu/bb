@@ -10,12 +10,12 @@
 
   function updateSender(senderI) {
     if (senderI == 1) {
-      elm.classList.remove("bg-primary");
       elm.classList.add("bg-danger");
+      document.title = 'Google';
     }
     else if (senderI == 2) {
       elm.classList.remove("bg-danger");
-      elm.classList.add("bg-primary");
+      document.title = '(1)Google';
     }
   }
 
