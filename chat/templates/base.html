@@ -55,9 +55,15 @@
           </button>
         </div>
         {% if request.user.is_authenticated %}
-        <a id="logoutBTN" href="{% url 'dangxuat' %}"
-          class="btn btn-sm btn-outline-primary rounded-pill position-relative">
-          Tài khoản
+        <a id="logoutBTN" href="{% url 'dangxuat' %}" class="position-relative">
+          <img src="
+          {% if request.user.username == 'bb' %}
+          {% static 'imgs/girl.jpg' %}
+          {% else %}
+          {% static 'imgs/dino.png' %}
+          {% endif %}
+          
+          " alt="" class="border shadow-sm rounded-circle position-relative" width="40px">
           {% else %}
           <a id="logoutBTN"
             href="https://accounts.google.com/signin/v2/identifier?flowName=GlifWebSignIn&flowEntry=ServiceLogin"
