@@ -1,6 +1,6 @@
-<div class="modal" id="chatModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" name="chatModal">
-  <div class="modal-dialog">
-    <div class="modal-content">
+<div class="modal bg-white" id="chatModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" name="chatModal">
+  <div class="modal-dialog"  >
+    <div class="modal-content bg-white" id="modalDialog">
       <div class="modal-header">
         <h6 class="modal-title" id="exampleModalLabel">
         </h6>
@@ -8,7 +8,7 @@
       </div>
       <div class="modal-body">
         {% for i in '10' %}
-        <p class="fs-6 text-dark m-0 " id="mess{{i}}">
+        <p class="fs-6  m-0 " id="mess{{i}}">
         </p>
         <small> <span id="lastsender{{i}}"></span> <span id="lastseen{{i}}" class="text-muted fst-italic"></span>
         </small>

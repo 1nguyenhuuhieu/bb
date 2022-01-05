@@ -9,6 +9,7 @@
   var logoutBTN = document.getElementById('logoutBTN');
   var switchDarkmode = document.getElementById('darkmodeSwitch');
   var darkMode1 = document.getElementsByName('dark-mode-1');
+  var darkMode2 = document.getElementsByName('darkMode2');
   var darkMode3 = document.getElementsByName('darkMode3');
 
   function updateSender(senderI) {
@@ -62,14 +63,24 @@
         darkMode1[i].classList.toggle('bg-white');
       }
 
-      for (var i = 0; i < darkMode3.length; i++){
+      for (var i = 0; i < darkMode2.length; i++){
+        darkMode2[i].classList.toggle('bg-light');
 
-        darkMode3.classList.toggle('dark-mode-3');
+        darkMode2[i].classList.toggle('dark-mode-search');
       }
 
-      document.getElementById('input_pwd').classList.toggle('dark-mode-search');
-      document.getElementById('input_pwd').classList.toggle('bg-light');
-      
+      for (var i = 0; i< darkMode3.length; i++){
+        darkMode3[i].classList.toggle('dark-mode-3');
+        darkMode3[i].classList.toggle('bg-light');
+      }
+
+      document.getElementById('chatModal').classList.toggle('dark-mode-body');
+      document.getElementById('chatModal').classList.toggle('bg-white');
+
+      document.getElementById('modalDialog').classList.toggle('dark-mode-3');
+      document.getElementById('modalDialog').classList.toggle('bg-white');
+      document.getElementById('modalDialog').classList.toggle('text-white');
+
     })
 
 
