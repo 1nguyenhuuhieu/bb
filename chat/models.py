@@ -9,3 +9,9 @@ class Chat(models.Model):
     created = models.DateTimeField( auto_now=True)
     file = models.ImageField(upload_to='x_files/',blank=True)
     video = models.FileField(upload_to='x_files/video/', blank=True, null=True)
+
+
+class UserProfile(models.Model):
+    user = models.OneToOneField(User, on_delete=models.CASCADE, blank=True)
+    allow_notification = models.BooleanField(blank=True)
+    

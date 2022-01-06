@@ -113,10 +113,39 @@
               Điều khoản
             </a>
           </p>
+            {% if request.user.is_authenticated %}
+            <div class="dropdown">
+              <a  href="#"  role="button" id="dropdownMenuLink" data-bs-toggle="dropdown" aria-expanded="false">
+                Cài đặt
+              </a>
+              <ul class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+                <li><h6 class="dropdown-header">Bạn hiện đang
+                  {% if request.user.userprofile.allow_notification|safe == 'True' %}
+                  bật
+                  {% else %}
+                  tắt
+                  {% endif %}
+                  thông báo</h6></li>
+                <li><a class="dropdown-item" href="{% url 'changenotification' %}"> 
+                  
+                  {% if request.user.userprofile.allow_notification|safe == 'True' %}
+                  <button class="btn btn-danger btn-sm">
+                  <i class="far fa-bell-slash me-2"></i>Tắt
+                  {% else %}
+                  <button class="btn btn-primary btn-sm">
+                  <i class="far fa-bell me-2"></i> Bật
+                  {% endif %}
+
+                  thông báo</button></a></li>
+              </ul>
+            </div>
+            {% else %}
           <p>
+
             <a href="https://www.google.com/preferences?hl=vi&fg=1" class="text-decoration-none text-reset">
               Cài đặt
             </a>
+            {% endif %}
           </p>
         </div>
       </div>

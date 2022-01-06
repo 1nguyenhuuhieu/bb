@@ -25,7 +25,7 @@ a{
     body, .modal-content {
         background-color: white;
     }
-    p{
+    p, a{
         color: #777777;
     }
 
@@ -69,7 +69,7 @@ a{
         background-color: #5F6367;
         color: #d1d1d1;
     }
-    p{
+    p, a{
         color: #7E8085;
     }
 

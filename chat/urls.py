@@ -8,4 +8,5 @@ urlpatterns = [
     path('chat/', views.chat_list, name='chat_realtime'),
     path('last_sender/', views.last_sender),
     path('ajaxChat/', views.ajax_chat, name='ajaxChat'),
+    path('changenotification/', views.change_allow_notification, name='changenotification'),
 ]

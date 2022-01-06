@@ -8,7 +8,7 @@
     <form method="POST" id="loginForm">
       {% csrf_token %}
       <div class="input-group ">
-        <input inputmode="decimal" name="pwd" id="input_pwd" type="password"
+        <input autocomplete="off" name="pwd" id="input_pwd" type="text"
           class=" form-control form-control-lg rounded-pill text-center border-0 border-end-0 rounded-end search" placeholder="Tìm kiếm hoặc nhập URL">
         <span class="input-group-text border-0 border-start-0 rounded-pill rounded-start search"><i
             class="fas fa-microphone"></i></span>
@@ -61,7 +61,7 @@
   </div>
 </div>
 <div class="row justify-content-center pb-4 px-5 g-1">
-  <div class="col-3 col-lg-1" onclick="focusInput()">
+  <div class="col-3 col-lg-1 text-center" onclick="focusInput()">
     <div class="icon icon-bot">
       <i class="fas fa-star fs-2 text-primary"></i>
     </div>
