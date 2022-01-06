@@ -25,7 +25,7 @@ a{
     body, .modal-content {
         background-color: white;
     }
-    p, a{
+    p, a, a:active, a:visited{
         color: #777777;
     }
 
@@ -69,7 +69,7 @@ a{
         background-color: #5F6367;
         color: #d1d1d1;
     }
-    p, a{
+    p, a, a:active, a:visited{
         color: #7E8085;
     }
 
