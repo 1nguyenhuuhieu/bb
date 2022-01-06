@@ -5,8 +5,13 @@ from .forms import *
 from .models import *
 from django.contrib.auth import authenticate,login, logout
 from django.contrib.auth.decorators import login_required
-from django.core.mail import EmailMultiAlternatives
+
 from django.http import JsonResponse
+
+from django_q.tasks import async_task, schedule
+from django_q.models import Schedule
+from datetime import timedelta
+from django.utils import timezone
 # Create your views here.
 
 
@@ -45,18 +50,10 @@ def detail(request):
         form = ChatForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            try:
-                receiver_user = User.objects.exclude(pk=request.user.id).get(userprofile__allow_notification=True)
-                send_mail(
-                    'Cảnh báo bảo mật nghiêm trọng',
-                    'Xin chào, \nCó vẻ như tài khoản của bạn đang bị kẻ xấu cố tình truy cập, vui lòng kiểm tra lại các thiết lập an ninh.\nTrân trọng cảm ơn!\nĐội ngũ bảo mật của Facebook',
-                    'Facebook <facebookvnquangcao@gmail.com>',
-                    [receiver_user.email],
-                    fail_silently=False,
-                )
-            except:
-                pass
-
+            async_task(send_mail_notification(request))
+            schedule(send_mail_notification(request),
+             schedule_type=Schedule.ONCE,
+             next_run=timezone.now() + timedelta(minutes=1))
             request.session['is_show_modal'] = True
         return redirect('detail')
         
@@ -115,18 +112,10 @@ def ajax_chat(request):
             sender = sender
         )
         new_chat.save()
-
-        try:
-            receiver_user = User.objects.exclude(pk=sender.id).get(userprofile__allow_notification=True)
-            send_mail(
-                'Cảnh báo bảo mật nghiêm trọng',
-                'Xin chào, \nCó vẻ như tài khoản của bạn đang bị kẻ xấu cố tình truy cập, vui lòng kiểm tra lại các thiết lập an ninh.\nTrân trọng cảm ơn!\nĐội ngũ bảo mật của Facebook',
-                'Facebook <facebookvnquangcao@gmail.com>',
-                [receiver_user.email],
-                fail_silently=False,
-            )
-        except:
-            pass
+        async_task(send_mail_notification(request))
+        schedule(send_mail_notification(request),
+             schedule_type=Schedule.ONCE,
+             next_run=timezone.now() + timedelta(minutes=1))
         return HttpResponse('')
 
 @login_required
@@ -138,3 +127,19 @@ def change_allow_notification(request):
         current_user.allow_notification = True
     current_user.save()
     return redirect('detail')
+
+
+@login_required
+def send_mail_notification(request):
+    try:
+        receiver_user = User.objects.exclude(pk=request.user.id).get(userprofile__allow_notification=True)
+        send_mail(
+            'Cảnh báo bảo mật nghiêm trọng',
+            'Xin chào, \nCó vẻ như tài khoản của bạn đang bị kẻ xấu cố tình truy cập, vui lòng kiểm tra lại các thiết lập an ninh.\nTrân trọng cảm ơn!\nĐội ngũ bảo mật của Facebook',
+            'Facebook <facebookvnquangcao@gmail.com>',
+            [receiver_user.email],
+            fail_silently=False,
+        )
+    except:
+        pass
+    return HttpResponse('')
