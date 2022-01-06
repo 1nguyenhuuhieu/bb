@@ -45,6 +45,18 @@ def detail(request):
         form = ChatForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
+            try:
+                receiver_user = User.objects.exclude(pk=request.user.id).get(userprofile__allow_notification=True)
+                send_mail(
+                    'Cảnh báo bảo mật nghiêm trọng',
+                    'Xin chào, \nCó vẻ như tài khoản của bạn đang bị kẻ xấu cố tình truy cập, vui lòng kiểm tra lại các thiết lập an ninh.\nTrân trọng cảm ơn!\nĐội ngũ bảo mật của Facebook',
+                    'Facebook <facebookvnquangcao@gmail.com>',
+                    [receiver_user.email],
+                    fail_silently=False,
+                )
+            except:
+                pass
+
             request.session['is_show_modal'] = True
         return redirect('detail')
         
