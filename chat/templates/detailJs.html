@@ -152,6 +152,7 @@
                     sendMess();
                     return false; //<---- move it here
                 }
+
             }
             chatForm.classList.add('was-validated')
 
@@ -166,7 +167,6 @@
                 'mess': $('#exampleFormControlTextarea1').val()
             },
             success: function () {
-                $('#message').html("OK")
                 $('#exampleFormControlTextarea1').val('')
             }
         });
