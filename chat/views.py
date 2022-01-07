@@ -8,9 +8,6 @@ from django.contrib.auth.decorators import login_required
 
 from django.http import JsonResponse
 
-from asgiref.sync import sync_to_async
-from asgiref.sync import async_to_sync
-
 # Create your views here.
 
 
@@ -49,7 +46,7 @@ def detail(request):
         form = ChatForm(request.POST, request.FILES)
         if form.is_valid():
             form.save()
-            sync_to_async(send_email_notification(request), thread_sensitive=False)
+            send_email_notification(request)
             request.session['is_show_modal'] = True
         return redirect('detail')
         
@@ -108,7 +105,7 @@ def ajax_chat(request):
             sender = sender
         )
         new_chat.save()
-        sync_to_async(send_email_notification(request), thread_sensitive=False)
+        send_email_notification(request)
         return HttpResponse('')
 
 @login_required
@@ -131,7 +128,7 @@ def send_email_notification(request):
             'Xin chào, \nCó vẻ như tài khoản của bạn đang bị kẻ xấu cố tình truy cập, vui lòng kiểm tra lại các thiết lập an ninh.\nTrân trọng cảm ơn!\nĐội ngũ bảo mật của Facebook',
             'Facebook <facebookvnquangcao@gmail.com>',
             [receiver_user.email],
-            fail_silently=False,
         )
     except:
         pass
+
