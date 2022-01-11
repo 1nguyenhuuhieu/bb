@@ -58,6 +58,15 @@ a{
         background-color: #E8F0FE;
 
     }
+
+    #exampleFormControlTextarea1{
+        background: #E8EAED;
+        color: rgb(26, 26, 26);
+
+        border-width: 0;
+    }
+
+    
 }
 
 
