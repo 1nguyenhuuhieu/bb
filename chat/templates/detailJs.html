@@ -55,7 +55,10 @@
 
     function updateMess(data) {
         mess0 = data[0]['mess'];
+        mess0 = urlify(mess0);
         mess1 = data[1]['mess'];
+        mess1 = urlify(mess1)
+
         lastSender1 = data[1]['sender'];
         lastSender0 = data[0]['sender'];
         date1 = new Date(data[1]['created']);
@@ -145,8 +148,8 @@
                 event.stopPropagation()
             }
             else {
-            mess_sent = $('#exampleFormControlTextarea1').val()
-            $('#exampleFormControlTextarea1').val('')
+                mess_sent = $('#exampleFormControlTextarea1').val()
+                $('#exampleFormControlTextarea1').val('')
 
                 sendBtn.classList.add("d-none");
                 waitSendBtn.classList.remove("d-none");
@@ -155,8 +158,8 @@
                     sendMess();
                     return false; //<---- move it here
                 }
-document.getElementById("exampleFormControlTextarea1").value = mess_sent
-           
+                document.getElementById("exampleFormControlTextarea1").value = mess_sent
+
 
             }
             chatForm.classList.add('was-validated')
@@ -192,6 +195,15 @@ document.getElementById("exampleFormControlTextarea1").value = mess_sent
                 setTimeout(refresh, 10000);
         }
         setTimeout(refresh, 10000);
+    };
+
+    function urlify(text) {
+        var urlRegex = /(https?:\/\/[^\s]+)/g;
+        return text.replace(urlRegex, function (url) {
+            return '<a href="' + url + '">' + url + '</a>';
+        })
+        // or alternatively
+        // return text.replace(urlRegex, '<a href="$1">$1</a>')
     }
 
     $(document).ready(function () {
@@ -217,5 +229,8 @@ document.getElementById("exampleFormControlTextarea1").value = mess_sent
 
         submitForm();
     });
+
+
+
 
 </script>

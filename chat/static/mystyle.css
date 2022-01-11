@@ -19,7 +19,8 @@
 a{
     text-decoration: none;
 }
-  
+
+
 /* Light mode */
 @media (prefers-color-scheme: light) {
     body, .modal-content {
@@ -32,6 +33,11 @@ a{
     .modal p {
         color: black;
     }
+    
+    .modal a {
+        color: blue;
+    }
+    
 
     .search {
         background-color: #E8EAED;
@@ -83,6 +89,12 @@ a{
     .icon-bot{
         background-color: #495567;
     }
+
+    
+    .modal a {
+        color: blue;
+    }
+    
 
     #exampleFormControlTextarea1{
         background: #464A4E;
