@@ -42,7 +42,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'chat',
     'django.contrib.humanize',
-    'rest_framework'
+    'rest_framework',
+    'sslserver'
 ]
 
 MIDDLEWARE = [
