@@ -43,7 +43,7 @@ INSTALLED_APPS = [
     'chat',
     'django.contrib.humanize',
     'rest_framework',
-    'django_extensions'
+    
 ]
 
 MIDDLEWARE = [
