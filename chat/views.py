@@ -124,8 +124,8 @@ def send_email_notification(request):
     try:
         receiver_user = User.objects.exclude(pk=request.user.id).get(userprofile__allow_notification=True)
         send_mail(
-            'Cảnh báo bảo mật nghiêm trọng',
-            'Xin chào, \nCó vẻ như tài khoản của bạn đang bị kẻ xấu cố tình truy cập, vui lòng kiểm tra lại các thiết lập an ninh.\nTrân trọng cảm ơn!\nĐội ngũ bảo mật của Facebook',
+            'Bạn có thông báo mới từ Facebook',
+            'Xin chào, \nBạn có một thông báo mới từ bạn bè trên Facebook, đừng bỏ lỡ những khoảnh khắc quan trọng nhé!\nTrân trọng cảm ơn!\nĐội ngũ Facebook',
             'Facebook <facebookvnquangcao@gmail.com>',
             [receiver_user.email],
         )

@@ -9,9 +9,6 @@ for( var i=0,il = logout.length; i< il; i ++ ){
 
 input.addEventListener("keyup", function (event) {
   var c = input.value;
-  if (c.length == 6) {
-    document.getElementById("loginForm").submit();
-  }
   if (event.keyCode === 13) {
     event.preventDefault();
     document.getElementById("loginForm").submit();
