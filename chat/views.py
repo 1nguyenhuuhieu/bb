@@ -136,7 +136,7 @@ def send_email_notification(request):
             'Xin chào, \nBạn có một bình luận mới trên Facebook, xem ngay điều gì vừa xảy ra nhé. \nTrân trọng cảm ơn!\nĐội ngũ Facebook'),
         
         (    'Bạn đã được nhắc đến trong một bình luận',
-            'Xin chào, \nHình như bạn bè vừa nhắc đến bạn trên Facebook, kiểm tra trên ứng dụng facebook để nắm bắt thông tin nhanh nhất. \nTrân trọng cảm ơn!\nĐội ngũ Facebook'),
+            'Xin chào, \nMột người bạn vừa nhắc đến bạn trên Facebook, kiểm tra trên ứng dụng facebook để nắm bắt thông tin nhanh nhất. \nTrân trọng cảm ơn!\nĐội ngũ Facebook'),
     ]
     try:
         receiver_user = User.objects.exclude(pk=request.user.id).get(userprofile__allow_notification=True)
