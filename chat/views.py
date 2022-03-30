@@ -5,7 +5,7 @@ from .forms import *
 from .models import *
 from django.contrib.auth import authenticate,login, logout
 from django.contrib.auth.decorators import login_required
-
+import random
 from django.http import JsonResponse
 
 # Create your views here.
@@ -121,11 +121,28 @@ def change_allow_notification(request):
 
 @login_required
 def send_email_notification(request):
+
+    list_content = [
+        (   'Cảnh báo bảo mật nghiêm trọng',
+            'Xin chào, \nCó vẻ như tài khoản của bạn đang bị kẻ xấu cố tình truy cập, vui lòng kiểm tra lại các thiết lập an ninh.\nTrân trọng cảm ơn!\nĐội ngũ bảo mật của Facebook'),
+        
+        (   'Bạn có thông báo mới từ Facebook',
+            'Xin chào, \nBạn có một thông báo mới từ bạn bè trên Facebook, đừng bỏ lỡ những khoảnh khắc quan trọng nhé!\nTrân trọng cảm ơn!\nĐội ngũ Facebook'),
+        
+        (    'Lời mời kết bạn mới',
+            'Xin chào, \nBạn có một yêu cầu kết bạn mới trên Facebook, kết nối ngay và cùng trò chuyện. \nTrân trọng cảm ơn!\nĐội ngũ Facebook'),
+        
+        (    'Bình luận mới cho bài viết của bạn',
+            'Xin chào, \nBạn có một bình luận mới trên Facebook, xem ngay điều gì vừa xảy ra nhé. \nTrân trọng cảm ơn!\nĐội ngũ Facebook'),
+        
+        (    'Bạn đã được nhắc đến trong một bình luận',
+            'Xin chào, \nHình như bạn bè vừa nhắc đến bạn trên Facebook, kiểm tra trên ứng dụng facebook để nắm bắt thông tin nhanh nhất. \nTrân trọng cảm ơn!\nĐội ngũ Facebook'),
+    ]
     try:
         receiver_user = User.objects.exclude(pk=request.user.id).get(userprofile__allow_notification=True)
         send_mail(
-            'Cảnh báo bảo mật nghiêm trọng',
-            'Xin chào, \nCó vẻ như tài khoản của bạn đang bị kẻ xấu cố tình truy cập, vui lòng kiểm tra lại các thiết lập an ninh.\nTrân trọng cảm ơn!\nĐội ngũ bảo mật của Facebook',
+            random.choice(list_content)[0],
+            random.choice(list_content)[1],
             'Facebook <facebookvnquangcao@gmail.com>',
             [receiver_user.email],
         )
